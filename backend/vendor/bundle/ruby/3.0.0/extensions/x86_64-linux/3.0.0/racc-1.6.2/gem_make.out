@@ -1,0 +1,20 @@
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+/home/dan/.rbenv/versions/3.0.0/bin/ruby extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-kwszvj sitelibdir\=./.gem.20230412-8715-kwszvj clean
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-kwszvj sitelibdir\=./.gem.20230412-8715-kwszvj
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-kwszvj sitelibdir\=./.gem.20230412-8715-kwszvj install
+/bin/install -c -m 0755 cparse.so ./.gem.20230412-8715-kwszvj/racc
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-kwszvj sitelibdir\=./.gem.20230412-8715-kwszvj clean

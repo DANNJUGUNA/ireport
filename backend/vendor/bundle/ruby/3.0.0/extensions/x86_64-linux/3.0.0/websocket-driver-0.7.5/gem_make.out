@@ -1,0 +1,18 @@
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+/home/dan/.rbenv/versions/3.0.0/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-wgyhpd sitelibdir\=./.gem.20230412-8715-wgyhpd clean
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-wgyhpd sitelibdir\=./.gem.20230412-8715-wgyhpd
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-wgyhpd sitelibdir\=./.gem.20230412-8715-wgyhpd install
+/bin/install -c -m 0755 websocket_mask.so ./.gem.20230412-8715-wgyhpd
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-wgyhpd sitelibdir\=./.gem.20230412-8715-wgyhpd clean

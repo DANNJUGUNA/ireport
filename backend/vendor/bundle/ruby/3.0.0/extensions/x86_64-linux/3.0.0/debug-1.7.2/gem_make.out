@@ -1,0 +1,19 @@
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/debug-1.7.2/ext/debug
+/home/dan/.rbenv/versions/3.0.0/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/debug-1.7.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-oiegdm sitelibdir\=./.gem.20230412-8715-oiegdm clean
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/debug-1.7.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-oiegdm sitelibdir\=./.gem.20230412-8715-oiegdm
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/debug-1.7.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-oiegdm sitelibdir\=./.gem.20230412-8715-oiegdm install
+/bin/install -c -m 0755 debug.so ./.gem.20230412-8715-oiegdm/debug
+
+current directory: /home/dan/Development/ireport/backend/vendor/bundle/ruby/3.0.0/gems/debug-1.7.2/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230412-8715-oiegdm sitelibdir\=./.gem.20230412-8715-oiegdm clean
