@@ -1,6 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
@@ -11,6 +12,8 @@ function App() {
     <div className="App">
       <Navbar />
 
+      <Footer />
+
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<Signup/>} />
@@ -20,7 +23,6 @@ function App() {
  
     </div>
   );
-
 }
 
 export default App;
