@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import AddReport from "./components/AddReport";
 
 
 function App() {
@@ -12,15 +13,15 @@ function App() {
     <div className="App">
       <Navbar />
 
-      <Footer />
-
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<Signup/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/addreport" element={<AddReport/>} />
         </Routes>
       </BrowserRouter>
- 
+
+      <Footer />
     </div>
   );
 }
