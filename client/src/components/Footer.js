@@ -92,7 +92,7 @@ export default function Footer() {
           <div className="space-y-8">
             <img
               className="h-7"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://bit.ly/3GL4ZQk"
               alt="Company name"
             />
             <p className="text-sm leading-6 text-bodyText1">
