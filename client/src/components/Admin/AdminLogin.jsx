@@ -1,16 +1,16 @@
 import React from 'react'
+import logo1 from '../../assets/images/logo-icon.png'
 
-function Login() {
+function AdminLogin() {
   return (
     <div>
-        <div>
         <div className="flex min-h-full p-10">
             <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
             <div className="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                 <img
                     className="h-12 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src={logo1}
                     alt="Your Company"
                 />
                 <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
@@ -73,9 +73,8 @@ function Login() {
             />
             </div>
         </div>
-        </div>
     </div>
   )
 }
 
-export default Login
+export default AdminLogin
