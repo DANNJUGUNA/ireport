@@ -27,22 +27,30 @@ module.exports = {
             DEFAULT: '#F5D35D',
             light: '#EBEBD3'
         },
-        success: {
-            DEFAULT: '#00ab55',
-            light: '#ddf5f0'
+        success:  '#00ab55',
+        
+        danger: '#e7515a',
+        
+        warning: '#e2a03f',
+        
+        info: '#2196f3',   
+        
+        
+        dark: {
+            DEFAULT: '#3b3f5c',
+            light: '#eaeaec',
+            'dark-light': 'rgba(59,63,92,.15)',
         },
-        danger: {
-            DEFAULT: '#e7515a',
-            light: '#fff5f5'
+        black: {
+            DEFAULT: '#0e1726',
+            light: '#e3e4eb',
+            'dark-light': 'rgba(14,23,38,.15)',
         },
-        warning: {
-            DEFAULT: '#e2a03f',
-            light: '#fff9ed'
-        },
-        info: {
-            DEFAULT: '#2196f3',
-            light: '#e7f7ff'
-        }       
+        white: {
+            DEFAULT: '#ffffff',
+            light: '#e0e6ed',
+            dark: '#888ea8',
+        }
 
       }
     },
