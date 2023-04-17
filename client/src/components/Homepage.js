@@ -1,5 +1,6 @@
 import Feature from "./Feature"
 import Testimonials from "./Testimonials"
+import About from "./About"
 
 export default function Homepage() {
   return (
@@ -51,6 +52,7 @@ export default function Homepage() {
     </div>
     <Feature/>
     <Testimonials/>
+    <About/>
     </>
   );
 }
