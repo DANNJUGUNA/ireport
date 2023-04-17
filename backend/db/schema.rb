@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_04_17_075743) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_153410) do
+>>>>>>> master
   create_table "admins", force: :cascade do |t|
     t.string "first_name"
     t.string "surname"
@@ -20,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_075743) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "report_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -37,6 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_075743) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> master
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "surname"
