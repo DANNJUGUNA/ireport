@@ -11,7 +11,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 // };
 const navigation = [
   { name: "Home", href: "#", current: true },
-  { name: "Public Reports", href: "#", current: false },
+  { name: "Public Reports", href: "/reports", current: false },
   { name: "About us", href: "#", current: false },
   { name: "Contact us", href: "#", current: false },
 ];
@@ -47,12 +47,12 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src="https://bit.ly/3GL4ZQk"
                     alt="Your Company"
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                    src="https://bit.ly/3GL4ZQk"
                     alt="Your Company"
                   />
                 </div>
