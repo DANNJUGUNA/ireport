@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get 'report_types/StatusTypes'
   resources :reports
   resources :admins
   resources :users
