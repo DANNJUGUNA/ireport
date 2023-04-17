@@ -1,12 +1,16 @@
+import Feature from "./Feature"
+import Testimonials from "./Testimonials"
+
 export default function Homepage() {
   return (
+    <>
     <div className="relative bg-white">
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="px-6 pt-10 pb-24 sm:pb-32 lg:col-span-7 lg:px-0 lg:pt-48 lg:pb-56 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <img
               className="h-11"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://bit.ly/3oakcnw"
               alt="iReporter"
             />
             <h1 className="mt-24 text-4xl font-medium font-body tracking-tight text-bodyText1 sm:mt-10 sm:text-6xl">
@@ -45,5 +49,8 @@ export default function Homepage() {
         </div>
       </div>
     </div>
+    <Feature/>
+    <Testimonials/>
+    </>
   );
 }
