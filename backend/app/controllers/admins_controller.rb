@@ -8,6 +8,8 @@ class AdminsController < ApplicationController
         render json: admin, status: :ok
     end
     def create
+        admin=Admin.create!(permited_params)
+        render json: admin,status: :created
         
     end
     def update
