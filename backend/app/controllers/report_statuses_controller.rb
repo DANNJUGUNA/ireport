@@ -12,9 +12,13 @@ class ReportStatusesController < ApplicationController
   end
 
   def destroy
-    report_status.destroy
-    head :no_content
+  if report_status.destroy
+    render json: { message: "Status deleted" }, status: :ok
+  else
+    render json: report_status.errors, status: :unprocessable_entity
   end
+end
+
 
   private
 
