@@ -10,6 +10,8 @@ import PublicReports from "./pages/PublicReports";
 import AdminLogin from "./components/Admin/AdminLogin";
 import Homepage from "./components/Homepage";
 import ViewReportDetails from "./pages/ViewReportDetails";
+import About from "./components/About";
+
 
 function App() {
   return (
@@ -18,13 +20,13 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-
           <Route path="/reports" element={<PublicReports />} />
           <Route path="/signup" element={<Signup/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/addreport" element={<AddReport/>} />
           <Route path="/adminlogin" element={<AdminLogin/>} />
           <Route path="/viewreportdetails" element={<ViewReportDetails />} />
+
 
         </Routes>
       </BrowserRouter>
