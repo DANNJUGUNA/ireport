@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
     def index
         admin=Admin.all 
-        render json: admin, status: :ok
+        render json: admin, status: :ok 
     end
     def show
         
