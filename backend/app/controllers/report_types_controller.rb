@@ -12,5 +12,11 @@ class ReportTypesController < ApplicationController
     @report_type = ReportType.find(params[:id])
   end
 
+  private
+
+  def report_type_params
+    params.require(:report_type).permit(:name)
+  end
+end
 
 end
