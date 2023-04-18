@@ -20,4 +20,7 @@ class AdminsController < ApplicationController
     def get_admin
         Admin.find(params[:id])
     end
+    def permited_params
+        params.permit(:first_name,:surname,:email,:password_digest)
+    end
 end
