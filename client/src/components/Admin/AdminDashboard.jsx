@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { DataTable, DataTableSortStatus } from 'mantine-datatable';
+import { DataTable } from 'mantine-datatable';
 import { sortBy } from 'lodash'; 
+import { UsersIcon } from '@heroicons/react/24/outline'
 import logo from '../../assets/images/logo.png'
+
+const stats = [
+    { id: 1, name: 'Under Investigation', stat: '71,897', icon: UsersIcon }
+     
+]
+  
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+ }
 
 function AdminDashboard() {
     // sample data
-  const tableData = [
-    {
-      id: 1,
-      date: '2023-04-05',
-      report_type: 'red-flag',
-      report_title: 'Traffic policeman demanding bribes',
-      description: 'For a long time, traffic police around the Nakuru round-about have been demanding bribes in order to cross into town.',
-      gps_coordinates: '-0.355462, 48.454842',
-      status: true      
-    }
-  ]
   const rowData = [
     {
         id: 1,
@@ -276,20 +275,18 @@ function AdminDashboard() {
     setRecordsData([...initialRecords.slice(from, to)]);
   }, [page, pageSize, initialRecords]);
 
-  // useEffect(() => {
-  //     setInitialRecords(() => {
-  //         return rowData.filter((item) => {
-  //             return (
-  //                 item.firstName.toLowerCase().includes(search.toLowerCase()) ||
-  //                 item.description.toLowerCase().includes(search.toLowerCase()) ||
-  //                 item.report_type.toLowerCase().includes(search.toLowerCase()) ||
-  //                 item.phone.toLowerCase().includes(search.toLowerCase()) ||
-  //                 item.address.toLowerCase().includes(search.toLowerCase())
-  //             );
-  //         });
-  //     });
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [search]);
+  useEffect(() => {
+      setInitialRecords(() => {
+          return rowData.filter((item) => {
+              return (
+                  item.firstName.toLowerCase().includes(search.toLowerCase()) ||
+                  item.description.toLowerCase().includes(search.toLowerCase()) ||
+                  item.phone.toLowerCase().includes(search.toLowerCase())
+              );
+          });
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
 
   useEffect(() => {
       const data = sortBy(initialRecords, sortStatus.columnAccessor);
@@ -297,16 +294,6 @@ function AdminDashboard() {
       setPage(1);
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortStatus]);
-
-  const formatDate = (date) => {
-    if (date) {
-        const dt = new Date(date);
-        const month = dt.getMonth() + 1 < 10 ? '0' + (dt.getMonth() + 1) : dt.getMonth() + 1;
-        const day = dt.getDate() < 10 ? '0' + dt.getDate() : dt.getDate();
-        return day + '/' + month + '/' + dt.getFullYear();
-    }
-    return '';
-  };
 
   const randomColor = () => {
       const color = ['bg-orange-400', 'bg-lime-400'];
@@ -326,6 +313,11 @@ function AdminDashboard() {
       return status[random];
   };
 
+  function redirectOnClick() {
+    // Redirect to another page
+    window.location.href = "/adminreportdetails";
+  }
+
   return (
     <div className='p-8 m-4 min-h-screen mx-auto px-4 sm:px-6 lg:px-8'>
       <div className=''>
@@ -336,7 +328,26 @@ function AdminDashboard() {
             <h1>Admin Dashboard</h1>
           </div>
         </div> 
-
+        <div>
+            <dl className="mt-5 mb-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {stats.map((item) => (
+                <div
+                    key={item.id}
+                    className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6"
+                >
+                    <dt>
+                    <div className="absolute rounded-md bg-indigo-500 p-3">
+                        <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                    </div>
+                    <p className="ml-16 truncate text-sm font-medium text-gray-500">{item.name}</p>
+                    </dt>
+                    <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
+                    <p className="text-2xl font-semibold text-gray-900">{item.stat}</p>
+                    </dd>
+                </div>
+                ))}
+            </dl>
+        </div>
         <div className="min-h-screen mx-auto px-4 sm:px-6 lg:px-8"> 
 
             {/* Data Table */}
@@ -348,11 +359,11 @@ function AdminDashboard() {
                 </p>
                 </div>
                 <div className="ltr:ml-auto rtl:mr-auto">
-                    <input type="text" className="form-input w-auto" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                    <input type="text" className="form-input w-auto" placeholder="Search by name" value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
                 
             </div>
-            <div className="min-w-full divide-y divide-gray-300 mt-6">
+            <div className="min-w-full divide-y divide-gray-300 mt-6 cursor-pointer">
                 <DataTable
                     className="whitespace-nowrap table-hover"
                     records={recordsData}
@@ -403,6 +414,7 @@ function AdminDashboard() {
                             ),
                         },
                     ]}
+                    onClick={() => redirectOnClick()}
                     totalRecords={initialRecords.length}
                     recordsPerPage={pageSize}
                     page={page}
