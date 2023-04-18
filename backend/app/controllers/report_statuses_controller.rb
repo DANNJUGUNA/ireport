@@ -10,5 +10,16 @@ class ReportStatusesController < ApplicationController
       render json: report_status.errors, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    report_status.destroy
+    head :no_content
+  end
+
+  private
+
+  def report_status
+    @report_status ||= ReportStatus.find(params[:id])
+  end
   
 end
