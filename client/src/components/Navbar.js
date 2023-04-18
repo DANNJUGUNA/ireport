@@ -10,11 +10,15 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 // };
 const navigation = [
-  { name: "Home", href: "#", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Public Reports", href: "/reports", current: false },
-  { name: "About us", href: "#", current: false },
+  { name: "About us", href: "/about-us", current: false },
   { name: "Contact us", href: "#", current: false },
+
   { name: "Admin", href: "/admindashboard", current: false },
+  { name: "View Report Details", href: "/viewreportdetails"},
+  { name: "Admin Report Details", href: "/adminreportdetails"},
+
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -80,7 +84,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >          
+                  >
                     <span>Login</span>
                   </button>
                 </div>
@@ -88,13 +92,11 @@ export default function Navbar() {
                   <button
                     type="button"
                     className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
-                  >          
+                  >
                     <span>Sign up</span>
                   </button>
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
-                  
-
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     {/* <div>
@@ -176,7 +178,6 @@ export default function Navbar() {
                     {user.email}
                   </div>
                 </div> */}
-                
               </div>
               <div className="mt-3 space-y-1 px-2 sm:px-3">
                 {userNavigation.map((item) => (
