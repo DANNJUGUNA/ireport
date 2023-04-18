@@ -13,11 +13,11 @@ class AdminsController < ApplicationController
         
     end
     def update
-        
+        admin=get_admin
+        admin.update!(permited_params)
+        render json:admin,status: :ok
     end
-    def destroy
-        
-    end
+  
     private
     def get_admin
         Admin.find(params[:id])
