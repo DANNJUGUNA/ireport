@@ -389,13 +389,13 @@ function AdminDashboard() {
                                 <div className="flex items-center w-max mx-auto">
                                      <button
                                         type="button"
-                                        className="inline-flex items-center rounded border border-transparent bg-orange-600 ml-2 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                                        className="inline-flex items-center rounded border border-transparent bg-main1 ml-2 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-main2 focus:outline-none focus:ring-2 focus:ring-main1 focus:ring-offset-2"
                                     >
                                         Delete
                                     </button>
                                     <button
                                         type="button"
-                                        className="inline-flex items-center rounded border border-transparent bg-indigo-600 ml-2 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        className="inline-flex items-center rounded border border-transparent bg-main4 ml-2 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-main4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
                                     > 
                                        Edit
                                     </button>
