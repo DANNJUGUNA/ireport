@@ -6,9 +6,9 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import AddReport from "./components/AddReport";
 import PublicReports from "./pages/PublicReports";
-
 import AdminLogin from "./components/Admin/AdminLogin";
 import Homepage from "./components/Homepage";
+import AdminSignup from "./components/Admin/AdminSignup";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/addreport" element={<AddReport/>} />
           <Route path="/adminlogin" element={<AdminLogin/>} />
+          <Route path="/adminsignup" element={<AdminSignup/>}/>
 
         </Routes>
       </BrowserRouter>
