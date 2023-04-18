@@ -21,5 +21,9 @@ class ReportStatusesController < ApplicationController
   def report_status
     @report_status ||= ReportStatus.find(params[:id])
   end
-  
+
+  def report_status_params
+    params.permit(:status)
+  end
 end
+
