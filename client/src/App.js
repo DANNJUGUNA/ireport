@@ -9,6 +9,7 @@ import PublicReports from "./pages/PublicReports";
 
 import AdminLogin from "./components/Admin/AdminLogin";
 import Homepage from "./components/Homepage";
+import ViewReportDetails from "./pages/ViewReportDetails";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/addreport" element={<AddReport/>} />
           <Route path="/adminlogin" element={<AdminLogin/>} />
+          <Route path="/viewreportdetails" element={<ViewReportDetails />} />
 
         </Routes>
       </BrowserRouter>
