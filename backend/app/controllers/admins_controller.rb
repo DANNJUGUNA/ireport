@@ -4,7 +4,8 @@ class AdminsController < ApplicationController
         render json: admin, status: :ok 
     end
     def show
-        
+        admin=get_admin
+        render json: admin, status: :ok
     end
     def create
         
