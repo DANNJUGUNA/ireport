@@ -27,7 +27,7 @@ export default function Homepage() {
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <a
-                href="#"
+                href="/signup"
                 className="rounded-md bg-main4 px-3.5 py-1.5 text-base font-semibold leading-7 text-bodyText1 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Report now
