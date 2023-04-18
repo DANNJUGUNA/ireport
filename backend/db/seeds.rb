@@ -10,13 +10,13 @@
 Admin.create(first_name: "Admin", surname: "User", email: "admin@example.com", password_digest: "password_digest")
 
 # Report types
-ReportType.create(name: "Accident")
-ReportType.create(name: "Crime")
-ReportType.create(name: "Fire")
+ReportType.create(name: "RedFlag")
+ReportType.create(name: "Intervention")
+
 
 # Report statuses
-ReportStatus.create(name: "Pending")
-ReportStatus.create(name: "In Progress")
+ReportStatus.create(name: "Investigation")
+ReportStatus.create(name: "Rejected")
 ReportStatus.create(name: "Resolved")
 
 # Users
