@@ -398,6 +398,7 @@ FOREIGN KEY ("report_type_id")
   [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
   [1m[36mReport Create (0.6ms)[0m  [1m[32mINSERT INTO "reports" ("description", "image", "video", "gps_coordinates", "user_id", "report_status_id", "report_type_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["description", "House fire on Elm Street"], ["image", "https://example.com/house-fire.jpg"], ["video", "https://example.com/house-fire.mp4"], ["gps_coordinates", "37.7749° N, 122.4194° W"], ["user_id", 1], ["report_status_id", 2], ["report_type_id", 3], ["created_at", "2023-04-17 18:59:22.575569"], ["updated_at", "2023-04-17 18:59:22.575569"]]
   [1m[36mTRANSACTION (7.0ms)[0m  [1m[36mcommit transaction[0m
+<<<<<<< HEAD
 Started GET "/reports" for 127.0.0.1 at 2023-04-18 18:10:35 +0300
   [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
 Processing by ReportsController#index as */*
@@ -709,9 +710,188 @@ Started GET "/report_status" for 127.0.0.1 at 2023-04-18 18:18:34 +0300
   
 ActionController::RoutingError (No route matches [GET] "/report_status"):
   
+=======
+>>>>>>> 856daf0f50c5f1fa85367299645d76e34ec22588
   [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+<<<<<<< HEAD
   [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+=======
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdmin Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE "admins"."email" = ? LIMIT ?[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReportType Create (0.4ms)[0m  [1m[32mINSERT INTO "report_types" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "RedFlag"], ["created_at", "2023-04-18 09:21:07.496301"], ["updated_at", "2023-04-18 09:21:07.496301"]]
+  [1m[36mTRANSACTION (81.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReportType Create (0.2ms)[0m  [1m[32mINSERT INTO "report_types" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Intervention"], ["created_at", "2023-04-18 09:21:07.581921"], ["updated_at", "2023-04-18 09:21:07.581921"]]
+  [1m[36mTRANSACTION (63.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReportStatus Create (0.3ms)[0m  [1m[32mINSERT INTO "report_statuses" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Investigation"], ["created_at", "2023-04-18 09:21:07.652966"], ["updated_at", "2023-04-18 09:21:07.652966"]]
+  [1m[36mTRANSACTION (58.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReportStatus Create (0.7ms)[0m  [1m[32mINSERT INTO "report_statuses" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Rejected"], ["created_at", "2023-04-18 09:21:07.716400"], ["updated_at", "2023-04-18 09:21:07.716400"]]
+  [1m[36mTRANSACTION (57.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mReportStatus Create (0.9ms)[0m  [1m[32mINSERT INTO "report_statuses" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Resolved"], ["created_at", "2023-04-18 09:21:07.784589"], ["updated_at", "2023-04-18 09:21:07.784589"]]
+  [1m[36mTRANSACTION (62.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "johndoe@example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "janedoe@example.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReport Create (0.4ms)[0m  [1m[32mINSERT INTO "reports" ("description", "image", "video", "gps_coordinates", "user_id", "report_status_id", "report_type_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["description", "Car accident on Main Street"], ["image", "https://example.com/car-accident.jpg"], ["video", "https://example.com/car-accident.mp4"], ["gps_coordinates", "37.7749° N, 122.4194° W"], ["user_id", 1], ["report_status_id", 1], ["report_type_id", 1], ["created_at", "2023-04-18 09:21:08.010569"], ["updated_at", "2023-04-18 09:21:08.010569"]]
+  [1m[36mTRANSACTION (75.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mReport Create (0.3ms)[0m  [1m[32mINSERT INTO "reports" ("description", "image", "video", "gps_coordinates", "user_id", "report_status_id", "report_type_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["description", "Theft at convenience store"], ["image", "https://example.com/theft.jpg"], ["video", nil], ["gps_coordinates", "37.7749° N, 122.4194° W"], ["user_id", 2], ["report_status_id", 1], ["report_type_id", 2], ["created_at", "2023-04-18 09:21:08.094028"], ["updated_at", "2023-04-18 09:21:08.094028"]]
+  [1m[36mTRANSACTION (75.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mReport Create (0.3ms)[0m  [1m[32mINSERT INTO "reports" ("description", "image", "video", "gps_coordinates", "user_id", "report_status_id", "report_type_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["description", "House fire on Elm Street"], ["image", "https://example.com/house-fire.jpg"], ["video", "https://example.com/house-fire.mp4"], ["gps_coordinates", "37.7749° N, 122.4194° W"], ["user_id", 1], ["report_status_id", 2], ["report_type_id", 3], ["created_at", "2023-04-18 09:21:08.177529"], ["updated_at", "2023-04-18 09:21:08.177529"]]
+  [1m[36mTRANSACTION (58.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/users" for 127.0.0.1 at 2023-04-18 12:22:18 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/dan/Development/projects/ireport/backend/app/controllers/users_controller.rb:12: syntax error, unexpected label, expecting `do' or '{' or '('
+...      render json: user status: :created
+...                        ^~~~~~~
+):
+  
+app/controllers/users_controller.rb:12: syntax error, unexpected label, expecting `do' or '{' or '('
+app/controllers/users_controller.rb:12: syntax error, unexpected label, expecting `do' or '{' or '('
+Started GET "/users" for 127.0.0.1 at 2023-04-18 12:23:25 +0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mReport Load (0.4ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mReport Load (0.4ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 2]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 3]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:4:in `index'
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 4]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (95.62ms)
+Completed 200 OK in 175ms (Views: 123.4ms | ActiveRecord: 3.8ms | Allocations: 78632)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-18 12:29:45 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fa2b0005cd0>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 200 OK in 137ms (Views: 2.7ms | ActiveRecord: 2.1ms | Allocations: 6145)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-18 12:30:22 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fa2ac0071b0>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}} }[0m
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 375)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'password' for User.):
+  
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-04-18 12:48:07 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fa2a4007398>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}} }[0m
+Completed 500 Internal Server Error in 1ms (Allocations: 301)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'password' for User.):
+  
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-04-18 12:48:08 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fa2a4200a78>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}} }[0m
+Completed 500 Internal Server Error in 1ms (Allocations: 295)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'password' for User.):
+  
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-04-18 13:56:24 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007ff5a86570e8>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com"}} }[0m
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.9ms | Allocations: 36991)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'password' for User.):
+  
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-04-18 14:03:25 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007ff59c088c68>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "dan@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "surname", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Dan"], ["surname", "Njuguna"], ["email", "dan@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-04-18 11:03:25.760598"], ["updated_at", "2023-04-18 11:03:25.760598"]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (118.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (31.85ms)
+Completed 201 Created in 190ms (Views: 48.9ms | ActiveRecord: 120.9ms | Allocations: 21024)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2023-04-18 14:19:34 +0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `get_user'
+[active_model_serializers]   [1m[36mReport Load (0.5ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:8:in `show'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (11.82ms)
+Completed 200 OK in 30ms (Views: 13.7ms | ActiveRecord: 1.4ms | Allocations: 10107)
+
+
+Started PATCH "/users/5" for 127.0.0.1 at 2023-04-18 14:23:31 +0300
+Processing by UsersController#update as */*
+  Parameters: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]", "id"=>"5", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:29:in `get_user'
+[31mUnpermitted parameters: :id, :user. Context: { controller: UsersController, action: update, request: #<ActionDispatch::Request:0x00007ff5a409f280>, params: {"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]", "controller"=>"users", "action"=>"update", "id"=>"5", "user"=>{"first_name"=>"Dan", "surname"=>"Njuguna", "email"=>"dan@gmail.com", "password_digest"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:20:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? AND "users"."id" != ? LIMIT ?[0m  [["email", "dan@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:20:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:20:in `update'
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 5]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:21:in `update'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (12.03ms)
+Completed 200 OK in 38ms (Views: 14.0ms | ActiveRecord: 4.6ms | Allocations: 11050)
+
+
+>>>>>>> 856daf0f50c5f1fa85367299645d76e34ec22588
