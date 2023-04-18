@@ -14,6 +14,7 @@ const navigation = [
   { name: "Public Reports", href: "/reports", current: false },
   { name: "About us", href: "/about-us", current: false },
   { name: "Contact us", href: "#", current: false },
+  { name: "View Report Details", href: "/viewreportdetails"},
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
