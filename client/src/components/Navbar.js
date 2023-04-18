@@ -15,6 +15,7 @@ const navigation = [
   { name: "About us", href: "/about-us", current: false },
   { name: "Contact us", href: "#", current: false },
   { name: "View Report Details", href: "/viewreportdetails"},
+  { name: "Admin Report Details", href: "/adminreportdetails"},
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },

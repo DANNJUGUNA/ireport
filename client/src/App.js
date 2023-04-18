@@ -11,6 +11,7 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import Homepage from "./components/Homepage";
 import ViewReportDetails from "./pages/ViewReportDetails";
 import About from "./components/About";
+import AdminReportDetails from "./pages/AdminReportDetails";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/addreport" element={<AddReport/>} />
           <Route path="/adminlogin" element={<AdminLogin/>} />
           <Route path="/viewreportdetails" element={<ViewReportDetails />} />
+          <Route path="/adminreportdetails" element={<AdminReportDetails />} />
 
 
         </Routes>
