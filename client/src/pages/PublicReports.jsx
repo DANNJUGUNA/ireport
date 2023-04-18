@@ -741,7 +741,7 @@ function PublicReports() {
           }
         />
       </div>
-      {/* End of Data Table */}
+      {/* End of Data Tables */}
     </div>
   );
 }
