@@ -8,4 +8,9 @@ class ReportTypesController < ApplicationController
     end
   end
 
+  def show
+    @report_type = ReportType.find(params[:id])
+  end
+
+
 end
