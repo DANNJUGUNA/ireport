@@ -14,8 +14,11 @@ const navigation = [
   { name: "Public Reports", href: "/reports", current: false },
   { name: "About us", href: "/about-us", current: false },
   { name: "Contact us", href: "#", current: false },
+
+  { name: "Admin", href: "/admindashboard", current: false },
   { name: "View Report Details", href: "/viewreportdetails"},
   { name: "Admin Report Details", href: "/adminreportdetails"},
+
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -29,7 +32,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-main1">
+    <Disclosure as="nav" className="bg-main1 text-poppins">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
