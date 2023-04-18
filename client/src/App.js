@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import "./App.css";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -12,6 +13,7 @@ import Homepage from "./components/Homepage";
 import ViewReportDetails from "./pages/ViewReportDetails";
 import About from "./components/About";
 import AdminReportDetails from "./pages/AdminReportDetails";
+import UserLandingPage from "./pages/UserLandingPage";
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/addreport" element={<AddReport/>} />
           <Route path="/adminlogin" element={<AdminLogin/>} />
+          <Route path="/userlandingpage" element={<UserLandingPage />} />
           <Route path="/viewreportdetails" element={<ViewReportDetails />} />
           <Route path="/adminreportdetails" element={<AdminReportDetails />} />
 
