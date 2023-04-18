@@ -15,4 +15,8 @@ class AdminsController < ApplicationController
     def destroy
         
     end
+    private
+    def get_admin
+        Admin.find(params[:id])
+    end
 end
