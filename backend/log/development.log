@@ -399,6 +399,9 @@ FOREIGN KEY ("report_type_id")
   [1m[36mReport Create (0.6ms)[0m  [1m[32mINSERT INTO "reports" ("description", "image", "video", "gps_coordinates", "user_id", "report_status_id", "report_type_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["description", "House fire on Elm Street"], ["image", "https://example.com/house-fire.jpg"], ["video", "https://example.com/house-fire.mp4"], ["gps_coordinates", "37.7749° N, 122.4194° W"], ["user_id", 1], ["report_status_id", 2], ["report_type_id", 3], ["created_at", "2023-04-17 18:59:22.575569"], ["updated_at", "2023-04-17 18:59:22.575569"]]
   [1m[36mTRANSACTION (7.0ms)[0m  [1m[36mcommit transaction[0m
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 79c6204224701a41e4ce3e33bb9525141ccfc84a
 Started GET "/reports" for 127.0.0.1 at 2023-04-18 18:10:35 +0300
   [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
 Processing by ReportsController#index as */*
@@ -710,6 +713,7 @@ Started GET "/report_status" for 127.0.0.1 at 2023-04-18 18:18:34 +0300
   
 ActionController::RoutingError (No route matches [GET] "/report_status"):
   
+<<<<<<< HEAD
 =======
 >>>>>>> 856daf0f50c5f1fa85367299645d76e34ec22588
   [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
@@ -895,3 +899,8 @@ Completed 200 OK in 38ms (Views: 14.0ms | ActiveRecord: 4.6ms | Allocations: 110
 
 
 >>>>>>> 856daf0f50c5f1fa85367299645d76e34ec22588
+=======
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+>>>>>>> 79c6204224701a41e4ce3e33bb9525141ccfc84a
