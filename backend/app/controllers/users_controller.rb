@@ -1,19 +1,26 @@
 class UsersController < ApplicationController
-    def index
-       user = User.all 
-       render json: user, status: :ok  
-    end
+    skip_before_action :authorized, only: [:create, :login]
     def show
       user=get_user
       render json: user, status: :ok  
     end
     def create
-        user=User.create!(permited_params)
-        if user.save
-            render json: user, status: :created
+        @user=User.new(permited_params)
+        if @user.save
+            token=encode_token({user_id: @user.id})
+            render json: {user: @user,token: token},status: :created
         else
-            render json: {errors: user.errors.full_messages}
+            render json: {errors: @user.errors.full_messages},status: :unprocessable_entity
         end
+    end
+    def login
+        @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      token = encode_token({ user_id: @user.id })
+      render json: { user:@user, token: token, authorized: true  },status: :ok
+    else
+      render json: { error: 'Invalid username or password' }, status: :unauthorized
+    end
     end
     def update
        user=get_user
@@ -21,16 +28,12 @@ class UsersController < ApplicationController
        render json: user, status: :ok
 
     end
-    def destroy
-      user=get_user
-      user.destroy
-      head :no_content  
-    end
+  
     private
     def get_user
         User.find(params[:id])
     end
     def permited_params
-        params.permit(:first_name,:surname,:email,:password_digest)
+        params.permit(:first_name,:surname,:email,:password)
     end
 end

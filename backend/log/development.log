@@ -949,3 +949,666 @@ Processing by ReportsController#index as */*
 Completed 200 OK in 258ms (Views: 177.4ms | ActiveRecord: 4.7ms | Allocations: 108720)
 
 
+Started POST "/users" for 127.0.0.1 at 2023-04-19 12:11:33 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca508994b0>, params: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "surname", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "James"], ["surname", "Njuguna"], ["email", "game@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-04-19 09:11:34.395995"], ["updated_at", "2023-04-19 09:11:34.395995"]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (93.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? AND "users"."id" != ? LIMIT ?[0m  [["email", "game@gmail.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 6]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:13:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (25.2ms)
+Completed 201 Created in 573ms (Views: 56.4ms | ActiveRecord: 96.2ms | Allocations: 58080)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 12:11:57 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca38006388>, params: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.71ms)
+Completed 422 Unprocessable Entity in 387ms (Views: 2.9ms | ActiveRecord: 0.4ms | Allocations: 5843)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:26:54 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca4c090240>, params: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+Completed 500 Internal Server Error in 275ms (ActiveRecord: 0.8ms | Allocations: 6028)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00000000006310>
+Did you mean?  @user):
+  
+app/controllers/users_controller.rb:16:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:27:24 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca4409ae78>, params: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 296ms (Views: 1.0ms | ActiveRecord: 1.9ms | Allocations: 4883)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:27:37 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca3c0073d8>, params: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "surname", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "bhf"], ["surname", "Njuguna"], ["email", "bhf@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-04-19 11:27:38.209878"], ["updated_at", "2023-04-19 11:27:38.209878"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (151.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.69ms)
+Completed 201 Created in 462ms (Views: 1.8ms | ActiveRecord: 151.9ms | Allocations: 3126)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:56:10 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 15ms (Views: 1.7ms | ActiveRecord: 0.9ms | Allocations: 4709)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 15:07:30 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms | Allocations: 1683)
+
+
+  
+NoMethodError (undefined method `logged_in?' for #<UsersController:0x0000000000a0c8>
+Did you mean?  logger):
+  
+app/controllers/application_controller.rb:18:in `authorize'
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:15:28 +0300
+Processing by UsersController#login as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 3172)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 15:15:53 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca50e95490>, params: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "surname", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "bhf2"], ["surname", "Njuguna"], ["email", "bhf2@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-04-19 12:15:54.214513"], ["updated_at", "2023-04-19 12:15:54.214513"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (134.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.38ms)
+Completed 201 Created in 414ms (Views: 1.0ms | ActiveRecord: 135.2ms | Allocations: 4896)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:16:36 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:16:37 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:16:38 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:17:08 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:17:09 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:17:10 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:17:10 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:19:12 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:19:13 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:19:14 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 200 OK in 6ms (Views: 1.6ms | ActiveRecord: 0.2ms | Allocations: 720)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:20:35 +0300
+  
+SyntaxError (/home/dan/Development/projects/ireport/backend/app/controllers/users_controller.rb:38: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:38: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:38: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:22:04 +0300
+  
+SyntaxError (/home/dan/Development/projects/ireport/backend/app/controllers/users_controller.rb:38: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/users_controller.rb:38: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/users_controller.rb:38: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:22:26 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 270ms (Views: 0.9ms | ActiveRecord: 1.1ms | Allocations: 2936)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:22:50 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.33ms)
+Completed 200 OK in 291ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 810)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:22:52 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 303ms (Views: 0.8ms | ActiveRecord: 0.3ms | Allocations: 810)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:24:00 +0300
+  
+ArgumentError (Before process_action callback :authorize has not been defined):
+  
+app/controllers/users_controller.rb:2:in `<class:UsersController>'
+app/controllers/users_controller.rb:1:in `<top (required)>'
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:24:18 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.42ms)
+Completed 200 OK in 271ms (Views: 1.2ms | ActiveRecord: 1.1ms | Allocations: 2925)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:24:51 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+Completed 500 Internal Server Error in 270ms (ActiveRecord: 1.2ms | Allocations: 2587)
+
+
+  
+ArgumentError (Unrecognized status code :authorized):
+  
+app/controllers/users_controller.rb:20:in `login'
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:26:41 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.36ms)
+Completed 200 OK in 271ms (Views: 0.9ms | ActiveRecord: 1.2ms | Allocations: 2905)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 15:52:58 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca50fc0090>, params: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 273ms (Views: 0.8ms | ActiveRecord: 0.7ms | Allocations: 4767)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:53:06 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.68ms)
+Completed 200 OK in 270ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 995)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:53:23 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 1.5ms | Allocations: 1684)
+
+
+  
+NoMethodError (undefined method `logged_in?' for #<UsersController:0x00000000016800>
+Did you mean?  logger):
+  
+app/controllers/application_controller.rb:26:in `authorize'
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:54:32 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.48ms)
+Completed 200 OK in 276ms (Views: 2.7ms | ActiveRecord: 1.4ms | Allocations: 4291)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:54:58 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.39ms)
+Completed 200 OK in 273ms (Views: 3.0ms | ActiveRecord: 1.8ms | Allocations: 3639)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:00 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 200 OK in 270ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 1411)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:01 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.46ms)
+Completed 200 OK in 273ms (Views: 2.9ms | ActiveRecord: 0.3ms | Allocations: 1413)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:48 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.33ms)
+Completed 200 OK in 278ms (Views: 2.4ms | ActiveRecord: 1.8ms | Allocations: 4227)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:49 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 285ms (Views: 2.0ms | ActiveRecord: 0.3ms | Allocations: 1962)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:50 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.55ms)
+Completed 200 OK in 274ms (Views: 3.2ms | ActiveRecord: 0.4ms | Allocations: 1962)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:51 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Completed 200 OK in 271ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 1962)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:55:52 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.36ms)
+Completed 200 OK in 273ms (Views: 2.5ms | ActiveRecord: 0.4ms | Allocations: 1962)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:56:13 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.35ms)
+Completed 200 OK in 277ms (Views: 2.5ms | ActiveRecord: 1.9ms | Allocations: 4208)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:56:15 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:28:in `current_user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.3ms)
+Completed 200 OK in 272ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 1961)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:56:50 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | ActiveRecord: 0.5ms | Allocations: 468)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 15:58:12 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 200 OK in 271ms (Views: 1.7ms | ActiveRecord: 1.3ms | Allocations: 2981)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-19 16:02:10 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 279)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:15:49 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.53ms)
+Completed 200 OK in 375ms (Views: 9.2ms | ActiveRecord: 1.1ms | Allocations: 39417)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:16:04 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 281ms (Views: 0.8ms | ActiveRecord: 0.1ms | Allocations: 831)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:16:05 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.31ms)
+Completed 200 OK in 286ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 827)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:16:06 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.41ms)
+Completed 200 OK in 286ms (Views: 1.0ms | ActiveRecord: 0.2ms | Allocations: 827)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:16:07 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.48ms)
+Completed 200 OK in 285ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 827)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:16:09 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.44ms)
+Completed 200 OK in 290ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 811)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:16:10 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.53ms)
+Completed 200 OK in 306ms (Views: 1.5ms | ActiveRecord: 0.2ms | Allocations: 811)
+
+
+Started POST "/login" for 127.0.0.1 at 2023-04-19 18:31:40 +0300
+Processing by UsersController#login as */*
+  Parameters: {"email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"bhf2@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `login'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.43ms)
+Completed 200 OK in 285ms (Views: 1.2ms | ActiveRecord: 0.9ms | Allocations: 1018)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-19 19:21:39 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.5ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.2ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.2ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (134.18ms)
+Completed 200 OK in 272ms (Views: 212.6ms | ActiveRecord: 5.0ms | Allocations: 71573)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-19 19:22:06 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.2ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.5ms | Allocations: 370)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-19 19:32:18 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.1ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (75.65ms)
+Completed 200 OK in 89ms (Views: 83.8ms | ActiveRecord: 4.0ms | Allocations: 38617)
+
+
