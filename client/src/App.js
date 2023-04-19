@@ -14,6 +14,7 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import ViewReportDetails from "./pages/ViewReportDetails";
 import About from "./components/About";
 import AdminReportDetails from "./pages/AdminReportDetails";
+import Homepage from "./components/Homepage";
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route />
+          <Route path="/" element={<Homepage/>}/>
 
           <Route path="/reports" element={<PublicReports />} />
           <Route path="/signup" element={<Signup/>} />
