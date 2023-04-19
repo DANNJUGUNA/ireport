@@ -2,8 +2,9 @@ import React from "react";
 
 function AddReport() {
   return (
-    <div>
-      <div className="p-10 m-12 border rounded-lg  border-slate-950">
+    <div className="min-h-full bg-gray-50 py-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="overflow-hidden rounded-lg bg-white shadow p-10 m-12 border  border-gray-300">
         <form className="space-y-8 divide-y divide-gray-200">
           <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div className="space-y-6 sm:space-y-5">
@@ -30,7 +31,7 @@ function AddReport() {
                       id="country"
                       name="country"
                       autoComplete="country-name"
-                      className="block w-full max-w-lg h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                      className="block w-full max-w-lg h-10 rounded-md border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:max-w-xs sm:text-sm"
                     >
                       <option>Incidence-type</option>
                       <option>Red-flag</option>
@@ -50,7 +51,7 @@ function AddReport() {
                     <input
                       name="title"
                       type="text"
-                      className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -67,7 +68,7 @@ function AddReport() {
                       id="about"
                       name="about"
                       rows={4}
-                      className="block w-full max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                       defaultValue={""}
                     />
                   </div>
@@ -100,7 +101,7 @@ function AddReport() {
                         <div className="flex text-sm text-gray-600">
                           <label
                             htmlFor="file-upload"
-                            className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                            className="relative cursor-pointer rounded-md bg-white font-medium text-main2 focus-within:outline-none focus-within:ring-2 focus-within:ring-main2 focus-within:ring-offset-2 hover:text-main1"
                           >
                             <span>Upload a file</span>
                             <input
@@ -131,7 +132,7 @@ function AddReport() {
                     <input
                       name="video_url"
                       type="text"
-                      className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -148,7 +149,7 @@ function AddReport() {
                       name="text"
                       type="latitude, longitude"
                       autoComplete=""
-                      className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                     />
                   </div>
                 </div>
@@ -160,19 +161,20 @@ function AddReport() {
             <div className="flex justify-end">
               <button
                 type="button"
-                className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-main2 focus:ring-offset-2"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-main2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-main1 focus:outline-none focus:ring-2 focus:ring-main2 focus:ring-offset-2"
               >
                 Send
               </button>
             </div>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );
