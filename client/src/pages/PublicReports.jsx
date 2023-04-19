@@ -2,35 +2,57 @@ import React, { useState, useEffect } from "react";
 import { DataTable, DataTableSortStatus } from "mantine-datatable";
 import { sortBy } from "lodash";
 import Tippy from "@tippyjs/react";
-import rowData from "./rowData";
+import { Link } from "react-router-dom";
 
 function PublicReports() {
   // sample data
   const tableData = [
     {
       id: 1,
-      date: "2023-04-05",
-      report_type: "red-flag",
-      report_title: "Traffic policeman demanding bribes",
-      description:
-        "For a long time, traffic police around the Nakuru round-about have been demanding bribes in order to cross into town.",
-      gps_coordinates: "-0.355462, 48.454842",
-      status: true,
+      description: "Car accident on Main Street",
+      image: "https://example.com/car-accident.jpg",
+      video: "https://example.com/car-accident.mp4",
+      gps_coordinates: "37.7749° N, 122.4194° W",
+      user_id: 1,
+      report_type_id: 1,
+      report_status_id: 1,
+      user: {
+        id: 1,
+        first_name: "Jane",
+        surname: "Doe",
+        email: "janedoe@example.com",
+        password_digest: "password"
+      },
+      report_status: {
+        id: 1,
+        name: "Under Investigation"
+      },
+      report_type: {
+        id: 1,
+        name: "Corruption"
+      }
     },
   ];
  
+  const[reports, setReports] = useState([])
+
+  // fetch all public reports
+  useEffect(() => {
+    fetch('/reports')
+    .then(res => res.json())
+    .then(data => setInitialRecords(data))
+  },[]) 
 
   const [page, setPage] = useState(1);
   const PAGE_SIZES = [10, 20, 30, 50, 100];
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
   const [initialRecords, setInitialRecords] = useState(
-    sortBy(rowData, "firstName")
+    sortBy(reports, "description")
   );
   const [recordsData, setRecordsData] = useState(initialRecords);
-
   const [search, setSearch] = useState("");
   const [sortStatus, setSortStatus] = useState({
-    columnAccessor: "firstName",
+    columnAccessor: "id",
     direction: "asc",
   });
 
@@ -46,14 +68,14 @@ function PublicReports() {
 
   useEffect(() => {
     setInitialRecords(() => {
-      return rowData.filter((item) => {
+      return reports.filter((item) => {
         return (
-          item.firstName.toLowerCase().includes(search.toLowerCase()) ||
-          item.company.toLowerCase().includes(search.toLowerCase()) ||
-          item.age.toString().toLowerCase().includes(search.toLowerCase()) ||
-          item.dob.toLowerCase().includes(search.toLowerCase()) ||
-          item.email.toLowerCase().includes(search.toLowerCase()) ||
-          item.phone.toLowerCase().includes(search.toLowerCase())
+          item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
+          item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+          item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
+          item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
+          item.user.email.toLowerCase().includes(search.toLowerCase()) ||
+          item.description.toLowerCase().includes(search.toLowerCase())
         );
       });
     });
@@ -165,67 +187,51 @@ function PublicReports() {
           records={recordsData}
           columns={[
             {
-              accessor: "firstName",
+              accessor: "user",
               title: "Name",
               sortable: true,
-              render: ({ firstName, lastName }) => (
+              render: (params) => (
                 <div className="flex items-center w-max">
-                  <div>{firstName + " " + lastName}</div>
+                  <div>{params.user.first_name + " " + params.user.surname}</div>
                 </div>
               ),
             },
-            { accessor: "company", title: "Company", sortable: true },
-            { accessor: "age", title: "Age", sortable: true },
+            { accessor: "description", title: "Description", sortable: true },
+            { accessor: "gps_coordinates", title: "GPS", sortable: true },
             {
-              accessor: "dob",
-              title: "Start Date",
+              accessor: "report_type",
+              title: "Report Type",
               sortable: true,
-              render: ({ dob }) => <div>{formatDate(dob)}</div>,
+              render: (params) => (
+                <div>{params.report_type.name}</div>
+              ),
             },
-            { accessor: "email", title: "Email", sortable: true },
-            { accessor: "phone", title: "Phone No.", sortable: true },
+            { accessor: "user.email", title: "Email", sortable: true },
+            // { accessor: "", title: "Phone No.", sortable: true },
             {
-              accessor: "status",
+              accessor: "report_status",
               title: "Status",
               sortable: true,
-              render: () => (
-                <span className={`badge bg-${randomColor()} `}>
-                  {randomStatus()}
-                </span>
+              render: (params) => (
+                <div>{params.report_status.name}</div>
               ),
             },
             {
-              accessor: "action",
+              accessor: "id",
               title: "Action",
               titleClassName: "!text-center",
-              render: () => (
-                <div className="flex items-center w-max mx-auto">
-                  <Tippy content="Delete">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5"
-                    >
-                      <circle
-                        opacity="0.5"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </Tippy>
-                </div>
+              render: ({id}) => ( 
+                <div>               
+                  <Link to={`/reports/${id}`} className="text-main2 hover:text-main1">                
+                  
+                    <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-main1">
+                      <svg className="mr-1.5 h-2 w-2 text-main2" fill="currentColor" viewBox="0 0 8 8">
+                        <circle cx={4} cy={4} r={3} />
+                      </svg>
+                      View
+                    </span>
+                  </Link>
+                </div>              
               ),
             },
           ]}
