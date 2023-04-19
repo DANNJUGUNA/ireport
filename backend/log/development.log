@@ -988,3 +988,51 @@ Processing by UsersController#create as */*
 Completed 422 Unprocessable Entity in 387ms (Views: 2.9ms | ActiveRecord: 0.4ms | Allocations: 5843)
 
 
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:26:54 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca4c090240>, params: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+Completed 500 Internal Server Error in 275ms (ActiveRecord: 0.8ms | Allocations: 6028)
+
+
+  
+NameError (undefined local variable or method `user' for #<UsersController:0x00000000006310>
+Did you mean?  @user):
+  
+app/controllers/users_controller.rb:16:in `create'
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:27:24 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca4409ae78>, params: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Completed 422 Unprocessable Entity in 296ms (Views: 1.0ms | ActiveRecord: 1.9ms | Allocations: 4883)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:27:37 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca3c0073d8>, params: {"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"bhf", "surname"=>"Njuguna", "email"=>"bhf@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "surname", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "bhf"], ["surname", "Njuguna"], ["email", "bhf@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-04-19 11:27:38.209878"], ["updated_at", "2023-04-19 11:27:38.209878"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (151.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.69ms)
+Completed 201 Created in 462ms (Views: 1.8ms | ActiveRecord: 151.9ms | Allocations: 3126)
+
+

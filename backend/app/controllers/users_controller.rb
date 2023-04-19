@@ -8,11 +8,12 @@ class UsersController < ApplicationController
       render json: user, status: :ok  
     end
     def create
-        user=User.create!(permited_params)
-        if user.save
-            render json: user, status: :created
+        @user=User.new(permited_params)
+        if @user.save
+            token=encode_token({user_id: @user.id})
+            render json: {user: @user,token: token},status: :created
         else
-            render json: {errors: user.errors.full_messages}
+            render json: {errors: @user.errors.full_messages},status: :unprocessable_entity
         end
     end
     def update
