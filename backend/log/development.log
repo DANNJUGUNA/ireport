@@ -949,3 +949,42 @@ Processing by ReportsController#index as */*
 Completed 200 OK in 258ms (Views: 177.4ms | ActiveRecord: 4.7ms | Allocations: 108720)
 
 
+Started POST "/users" for 127.0.0.1 at 2023-04-19 12:11:33 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca508994b0>, params: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "surname", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "James"], ["surname", "Njuguna"], ["email", "game@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-04-19 09:11:34.395995"], ["updated_at", "2023-04-19 09:11:34.395995"]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (93.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? AND "users"."id" != ? LIMIT ?[0m  [["email", "game@gmail.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 6]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:13:in `create'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (25.2ms)
+Completed 201 Created in 573ms (Views: 56.4ms | ActiveRecord: 96.2ms | Allocations: 58080)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-04-19 12:11:57 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: create, request: #<ActionDispatch::Request:0x00007fca38006388>, params: {"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"create", "user"=>{"first_name"=>"James", "surname"=>"Njuguna", "email"=>"game@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "game@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.71ms)
+Completed 422 Unprocessable Entity in 387ms (Views: 2.9ms | ActiveRecord: 0.4ms | Allocations: 5843)
+
+

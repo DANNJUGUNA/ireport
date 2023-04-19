@@ -31,6 +31,6 @@ class UsersController < ApplicationController
         User.find(params[:id])
     end
     def permited_params
-        params.permit(:first_name,:surname,:email,:password_digest)
+        params.permit(:first_name,:surname,:email,:password)
     end
 end
