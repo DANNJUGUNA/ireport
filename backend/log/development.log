@@ -1049,3 +1049,14 @@ Processing by UsersController#create as */*
 Completed 422 Unprocessable Entity in 15ms (Views: 1.7ms | ActiveRecord: 0.9ms | Allocations: 4709)
 
 
+Started POST "/users" for 127.0.0.1 at 2023-04-19 15:07:30 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms | Allocations: 1683)
+
+
+  
+NoMethodError (undefined method `logged_in?' for #<UsersController:0x0000000000a0c8>
+Did you mean?  logger):
+  
+app/controllers/application_controller.rb:18:in `authorize'
