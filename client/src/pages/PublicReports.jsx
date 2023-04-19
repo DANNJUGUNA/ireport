@@ -106,7 +106,9 @@ function PublicReports() {
   };
 
   return (
-    <div className="min-h-screen mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-full bg-gray-50 py-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      
       {/* Intro Banner */}
       <div className="bg-secondary-light my-6 rounded-lg">
         <div className="mx-auto px-6 py-8 sm:py-20 lg:flex lg:items-center lg:justify-between lg:px-8">
@@ -136,6 +138,7 @@ function PublicReports() {
       {/* End of Intro Banner */}
 
       {/* Data Table */}
+      <div className="overflow-hidden rounded-lg bg-white shadow p-6  border  border-gray-300">
       <div className="sm:flex sm:items-center ">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold text-gray-900">
@@ -242,6 +245,9 @@ function PublicReports() {
       </div>
       {/* End of Data Tables */}
     </div>
+    </div>
+    </div>
+    
   );
 }
 
