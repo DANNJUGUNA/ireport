@@ -1036,3 +1036,16 @@ Processing by UsersController#create as */*
 Completed 201 Created in 462ms (Views: 1.8ms | ActiveRecord: 151.9ms | Allocations: 3126)
 
 
+Started POST "/users" for 127.0.0.1 at 2023-04-19 14:56:10 +0300
+Processing by UsersController#create as */*
+  Parameters: {"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com", "password"=>"[FILTERED]", "user"=>{"first_name"=>"bhf2", "surname"=>"Njuguna", "email"=>"bhf2@gmail.com"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "bhf2@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 422 Unprocessable Entity in 15ms (Views: 1.7ms | ActiveRecord: 0.9ms | Allocations: 4709)
+
+
