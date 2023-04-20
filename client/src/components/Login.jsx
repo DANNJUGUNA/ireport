@@ -18,11 +18,13 @@ function Login() {
             <div className="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                 <img
-                    className="h-12 w-auto flex items-center"
-                    src="https://bit.ly/3GL4ZQk"
+
+                    className="h-12 w-auto"
+                    src={require('../assets/images/logo-icon.png')}
+
                     alt="Your Company"
                 />
-                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in to your account</h2>
+                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in </h2>
                 </div>
 
                 <div className="mt-8">
