@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {Link} from 'react-router-dom'
 // import { PlusIcon } from "@heroicons/react/20/solid";
 
 // const user = {
@@ -10,16 +11,16 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 // };
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Public Reports", href: "/reports", current: false },
-  { name: "About us", href: "/about-us", current: false },
-  { name: "Contact us", href: "#", current: false },
+  { name: "Home", href: '/', current: true },
+  { name: "Public Reports", href: '/reports', current: false },
+  { name: "About us", href: '/about-us', current: false },
+  { name: "Contact us", href: '#', current: false },
 
-  { name: "My Dashboard", href: "/userlandingpage"},
+  { name: "My Dashboard", href: '/userlandingpage'},
 
-  { name: "Admin", href: "/admindashboard", current: false },
-  { name: "View Report Details", href: "/viewreportdetails"},
-  { name: "Admin Report Details", href: "/adminreportdetails"},
+  { name: "Admin", href: '/admindashboard', current: false },
+  { name: "View Report Details", href: '/viewreportdetails'},
+  { name: "Admin Report Details", href: '/adminreportdetails'},
 
 ];
 const userNavigation = [
@@ -65,9 +66,9 @@ export default function Navbar() {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
-                    <a
+                    < a
                       key={item.name}
-                      href={item.href}
+                     href={item.href}
                       className={classNames(
                         item.current
                           ? "bg-main3 text-white"
@@ -83,20 +84,20 @@ export default function Navbar() {
               </div>
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
-                  <button
+                  <a href="/login"
                     type="button"
                     className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span>Login</span>
-                  </button>
+                  </a>
                 </div>
                 <div className="flex-shrink-0">
-                  <button
+                  <a href="/signup"
                     type="button"
                     className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span>Sign up</span>
-                  </button>
+                  </a>
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   {/* Profile dropdown */}

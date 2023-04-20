@@ -19,10 +19,12 @@ import AdminReportDetails from "./pages/AdminReportDetails";
 import UserLandingPage from "./pages/UserLandingPage";
 
 import Homepage from "./components/Homepage";
+import AuthProvider from "./context/AuthContext";
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <Navbar />
 
       <BrowserRouter>
@@ -45,6 +47,7 @@ function App() {
       </BrowserRouter>
 
       <Footer />
+      </AuthProvider>
     </div>
   );
 }
