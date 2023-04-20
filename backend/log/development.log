@@ -1612,3 +1612,120 @@ Processing by ReportsController#index as */*
 Completed 200 OK in 89ms (Views: 83.8ms | ActiveRecord: 4.0ms | Allocations: 38617)
 
 
+Started GET "/main.f41aa19876a0fd0efc13.hot-update.json" for 127.0.0.1 at 2023-04-19 21:48:49 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/main.f41aa19876a0fd0efc13.hot-update.json"):
+  
+Started GET "/reports" for 127.0.0.1 at 2023-04-19 21:48:50 +0300
+Processing by ReportsController#index as */*
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-19 21:48:50 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.2ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (108.77ms)
+Completed 200 OK in 276ms (Views: 186.3ms | ActiveRecord: 3.8ms | Allocations: 112651)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-19 21:48:50 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.2ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.1ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportStatus Load (0.1ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportStatus Load (0.0ms)[0m  [1m[34mSELECT "report_statuses".* FROM "report_statuses" WHERE "report_statuses"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE ReportType Load (0.0ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types" WHERE "report_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/reports_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (77.82ms)
+Completed 200 OK in 81ms (Views: 79.1ms | ActiveRecord: 1.6ms | Allocations: 19600)
+
+
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 07:34:06 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 07:34:42 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 07:35:36 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 07:37:06 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 07:37:56 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  
