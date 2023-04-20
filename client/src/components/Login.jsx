@@ -19,10 +19,10 @@ function Login() {
                 <div>
                 <img
                     className="h-12 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src={require('../assets/images/logo-icon.png')}
                     alt="Your Company"
                 />
-                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in to your account</h2>
+                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in </h2>
                 </div>
 
                 <div className="mt-8">

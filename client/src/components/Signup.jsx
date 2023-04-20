@@ -26,7 +26,7 @@ function Signup() {
             <div>
               <img
                 className="h-12 w-auto block"
-                src="https://bit.ly/3GL4ZQk"
+                src={require('../assets/images/logo-icon.png')}
                 alt="Your Company"
               />
               <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
