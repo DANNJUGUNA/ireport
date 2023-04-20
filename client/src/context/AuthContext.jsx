@@ -2,6 +2,8 @@ import React from 'react'
 import { useContext,useState,createContext,useEffect } from 'react'
 import{useNavigate} from'react-router-dom'
 import Swal from 'sweetalert2';
+
+
 function loginUser(email, password) {
     return fetch('/login', {
       method: 'POST',
@@ -32,16 +34,23 @@ export const AuthContext =createContext({
 const AuthProvider=({children})=>{
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-   // const navigate = useNavigate();
+    const navigate = useNavigate();
   
-    useEffect(() => {
-      const storedToken = localStorage.getItem('token');
-      const storedUser = JSON.parse(localStorage.getItem('user'));
-      if (storedToken && storedUser) {
-        setUser(storedUser);
+   useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+  
+    if (storedToken && storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
         setToken(storedToken);
+      } catch (error) {
+        console.error(error);
+        // Handle the error here
       }
-    }, []);
+    }
+  }, []);
+  
     const login = async (email, password) => {
         if (user) {
             console.log(user)
@@ -64,7 +73,9 @@ const AuthProvider=({children})=>{
             icon: 'success',
             title: 'Logged in successfully',
           });
-    //    <a href='/signup'/>
+
+          navigate('/userlandingpage')
+          
         } catch (error) {
           console.error(error.message);
     
@@ -102,7 +113,8 @@ const AuthProvider=({children})=>{
               icon: 'success',
               title: 'User created successfully',
             });
-            // navigate("/login");
+
+            navigate("/login");
           }
         } catch (error) {
           console.error(error.message);
