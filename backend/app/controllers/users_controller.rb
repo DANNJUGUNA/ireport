@@ -30,9 +30,9 @@ class UsersController < ApplicationController
     end
   
     private
-    def get_user
-        User.find(params[:id])
-    end
+    def authorized
+        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+      end
     def permited_params
         params.permit(:first_name,:surname,:email,:password)
     end
