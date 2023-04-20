@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :login]
+    skip_before_action :authorized, only: [:signup, :login, :index]
     def show
       user=get_user
       render json: user, status: :ok  
     end
-    def create
+    def index
+        users=User.all 
+        render json: users
+    end
+    def signup
         @user=User.new(permited_params)
         if @user.save
             token=encode_token({user_id: @user.id})

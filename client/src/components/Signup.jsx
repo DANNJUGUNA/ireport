@@ -1,6 +1,23 @@
+import { create } from 'lodash'
 import React from 'react'
-
+import { useContext,useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
 function Signup() {
+  const{signup}=useContext(AuthContext)
+  const[first_name,setFirstname]=useState("")
+  const[surname,setSurname]=useState("")
+  const[email,setEmail]=useState("")
+  const[password,setPassword]=useState("")
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (first_name.trim() === ''||surname.trim() === '' || email.trim() === '' || password.trim() === '') {
+      alert('Please enter all required fields');
+      return;
+    }
+    const userData = {first_name,surname, email, password, };
+    signup(userData);
+  };
   return (
     <div>
         <div className="flex min-h-full p-10">
@@ -17,7 +34,7 @@ function Signup() {
 
             <div className="mt-8">
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       First name
@@ -26,8 +43,8 @@ function Signup() {
                       <input
                         id="first_name"
                         name="first_name"
+                        onChange={e=>setFirstname(e.target.value)}
                         type="text"
-                        autoComplete="email"
                         required
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
@@ -36,14 +53,14 @@ function Signup() {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                      Last name
+                      Surname
                     </label>
                     <div className="mt-1">
                       <input
                         id="last_name"
                         name="last_name"
+                        onChange={e=>setSurname(e.target.value)}
                         type="text"
-                        autoComplete="email"
                         required
                         className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       />
@@ -58,6 +75,7 @@ function Signup() {
                       <input
                         id="email"
                         name="email"
+                        onChange={e=>setEmail(e.target.value)}
                         type="email"
                         autoComplete="email"
                         required
@@ -74,6 +92,7 @@ function Signup() {
                       <input
                         id="password"
                         name="password"
+                        onChange={e=>setPassword(e.target.value)}
                         type="password"
                         autoComplete="current-password"
                         required
@@ -86,7 +105,7 @@ function Signup() {
                       type="submit"
                       className="flex w-full justify-center rounded-md border border-transparent bg-main1 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                      Sign in
+                      Sign up
                     </button>
                   </div>
                 </form>

@@ -1,6 +1,15 @@
 import React from 'react'
-
+import { useState,useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
 function Login() {
+    const{login}=useContext(AuthContext)
+    const[email,setEmail]=useState('')
+    const[password,setPassword]=useState('')
+    const handleSubmit = (e)=>{
+        // send Data to rails
+        e.preventDefault()
+        login(email, password)
+    }
   return (
     <div>
         <div>
@@ -13,13 +22,13 @@ function Login() {
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                     alt="Your Company"
                 />
-                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+                <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in to your account</h2>
                 </div>
 
                 <div className="mt-8">
 
                 <div className="mt-6">
-                    <form action="#" method="POST" className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                         Email address
@@ -29,6 +38,7 @@ function Login() {
                             id="email"
                             name="email"
                             type="email"
+                            onChange={e => setEmail(e.target.value)}
                             autoComplete="email"
                             required
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -45,6 +55,7 @@ function Login() {
                             id="password"
                             name="password"
                             type="password"
+                            onChange={e => setPassword(e.target.value)}
                             autoComplete="current-password"
                             required
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -57,7 +68,7 @@ function Login() {
                         type="submit"
                         className="flex w-full justify-center rounded-md border border-transparent bg-main1 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                        Sign in
+                        Log in
                         </button>
                     </div>
                     </form>
