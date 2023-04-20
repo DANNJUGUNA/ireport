@@ -40,6 +40,7 @@ function App() {
           <Route path="/adminsignup" element={<AdminSignup />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
 
+          <Route path="/reports/:reportId" element={<ViewReportDetails />} />
           <Route path="/viewreportdetails" element={<ViewReportDetails />} />
           <Route path="/adminreportdetails" element={<AdminReportDetails />} />
           <Route path="/about-us" element={<About />} />
