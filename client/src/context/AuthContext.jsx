@@ -25,3 +25,15 @@ export const AuthContext =createContext({
   token:nill
 
 })
+
+const AuthProvider=({children})=>{
+
+    
+    return(
+        <AuthContext.Provider >
+        {children}
+      </AuthContext.Provider>
+    )
+
+}
+export default AuthProvider
