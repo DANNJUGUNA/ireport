@@ -108,6 +108,7 @@ function Signup() {
                       Sign up
                     </button>
                   </div>
+                  <p>Have an account? <a href='/login' className=' font-sm text-blue-700 underline'>Log in</a></p>
                 </form>
               </div>
             </div>
