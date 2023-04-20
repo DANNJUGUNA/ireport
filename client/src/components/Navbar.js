@@ -14,7 +14,7 @@ const navigation = [
   { name: "Home", href: '/', current: true },
   { name: "Public Reports", href: '/reports', current: false },
   { name: "About us", href: '/about-us', current: false },
-  { name: "Contact us", href: '#', current: false },
+  
 
   { name: "My Dashboard", href: '/userlandingpage'},
 
@@ -86,7 +86,7 @@ export default function Navbar() {
                 <div className="flex-shrink-0">
                   <a href="/login"
                     type="button"
-                    className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span>Login</span>
                   </a>
@@ -94,7 +94,7 @@ export default function Navbar() {
                 <div className="flex-shrink-0">
                   <a href="/signup"
                     type="button"
-                    className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-primary shadow-sm hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span>Sign up</span>
                   </a>
