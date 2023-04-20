@@ -83,11 +83,11 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-main1" aria-labelledby="footer-heading">
+    <footer className="bg-main1 " aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pb-3 pt-3 sm:pt-2 lg:px-8 lg:pt-4">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <img
@@ -98,7 +98,7 @@ export default function Footer() {
             <p className="text-sm leading-6 text-gray-300">
               Making the world a better place with less corruption.
             </p>
-            <div className="flex space-x-6">
+            <div className="flex space-x-1">
               {navigation.social.map((item) => (
                 <a
                   key={item.name}
@@ -117,7 +117,7 @@ export default function Footer() {
                 <h3 className="text-sm font-semibold leading-6 text-white">
                   Reports
                 </h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <ul role="list" className="mt-1 space-y-1">
                   {navigation.reports.map((item) => (
                     <li key={item.name}>
                       <a
@@ -134,7 +134,7 @@ export default function Footer() {
                 <h3 className="text-sm font-semibold leading-6 text-white">
                   Organization
                 </h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <ul role="list" className="mt-1 space-y-1">
                   {navigation.organization.map((item) => (
                     <li key={item.name}>
                       <a
@@ -149,11 +149,11 @@ export default function Footer() {
               </div>
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div className="mt-10 md:mt-0">
+              <div className="mt-4 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-white">
                   Legal
                 </h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <ul role="list" className="mt-1 space-y-1">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
                       <a
@@ -169,8 +169,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-300 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-300">
+        <div className="mt-5 border-t border-gray-300 pt-2 sm:mt-20 lg:mt-5 flex items-center justify-center">
+          <p className="text-lg leading-5 text-gray-300">
             &copy; 2023 iReporter. All rights reserved.
           </p>
         </div>

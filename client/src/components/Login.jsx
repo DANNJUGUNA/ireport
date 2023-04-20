@@ -18,8 +18,10 @@ function Login() {
             <div className="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                 <img
+
                     className="h-12 w-auto"
                     src={require('../assets/images/logo-icon.png')}
+
                     alt="Your Company"
                 />
                 <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in </h2>
@@ -71,6 +73,7 @@ function Login() {
                         Log in
                         </button>
                     </div>
+                    <p>Don't have an account? <a href='/signup' className=' font-sm text-blue-700 underline'>Sign up</a></p>
                     </form>
                 </div>
                 </div>
