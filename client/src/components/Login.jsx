@@ -18,8 +18,8 @@ function Login() {
             <div className="mx-auto w-full max-w-sm lg:w-96">
                 <div>
                 <img
-                    className="h-12 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    className="h-12 w-auto flex items-center"
+                    src="https://bit.ly/3GL4ZQk"
                     alt="Your Company"
                 />
                 <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in to your account</h2>
@@ -71,6 +71,7 @@ function Login() {
                         Log in
                         </button>
                     </div>
+                    <p>Don't have an account? <a href='/signup' className=' font-sm text-blue-700 underline'>Sign up</a></p>
                     </form>
                 </div>
                 </div>
