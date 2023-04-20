@@ -2821,3 +2821,7 @@ Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 12:50:42 +0300
   
 ActionController::RoutingError (No route matches [GET] "/logo192.png"):
   
+Started GET "/logo192.png" for 127.0.0.1 at 2023-04-20 14:14:19 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/logo192.png"):
+  

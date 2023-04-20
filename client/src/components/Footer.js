@@ -98,7 +98,7 @@ export default function Footer() {
             <p className="text-sm leading-6 text-gray-300">
               Making the world a better place with less corruption.
             </p>
-            <div className="flex space-x-1">
+            <div className="flex space-x-6">
               {navigation.social.map((item) => (
                 <a
                   key={item.name}
