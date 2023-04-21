@@ -1,436 +1,193 @@
-import React, { useState, useEffect } from 'react';
-import { DataTable } from 'mantine-datatable';
-import { sortBy } from 'lodash'; 
-import { UsersIcon } from '@heroicons/react/24/outline'
+import React, { useEffect, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom';
+import { DataTable, DataTableSortStatus } from 'mantine-datatable';
+import sortBy from 'lodash/sortBy';
 import logo from '../../assets/images/logo.png'
+import { UsersIcon } from '@heroicons/react/24/outline'
 
-const stats = [
-    { id: 1, name: 'Under Investigation', stat: '71,897', icon: UsersIcon }
-     
-]
-  
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
- }
 
 function AdminDashboard() {
-    // sample data
-  const rowData = [
-    {
-        id: 1,
-        firstName: 'Caroline',
-        lastName: 'Jensen',
-        geo: '23.806115, 164.677197',
-        phone: '+1 (821) 447-3782',
-        isActive: true,
-        description: 'POLARAX',
-    },
-    {
-        id: 2,
-        firstName: 'Celeste',
-        lastName: 'Grant',
-        geo: '65.954483, 98.906478',
-        phone: '+1 (838) 515-3408',
-        isActive: false,
-        description: 'MANGLO',
-    },
-    {
-        id: 3,
-        firstName: 'Tillman',
-        lastName: 'Forbes', 
-        geo: '-34.949388, -82.958111',
-        phone: '+1 (969) 496-2892',
-        isActive: false,
-        description: 'APPLIDECK',
-    },
-    {
-        id: 4,
-        firstName: 'Daisy',
-        lastName: 'Whitley', 
-        geo: '-54.458809, -127.476556',
-        phone: '+1 (861) 564-2877',
-        isActive: true,
-        description: 'VOLAX',
-    },
-    {
-        id: 5,
-        firstName: 'Weber',
-        lastName: 'Bowman',
-        geo: '54.501351, -167.47138',
-        phone: '+1 (962) 466-3483',
-        isActive: false,
-        description: 'ORBAXTER',
-    },
-    {
-        id: 6,
-        firstName: 'Buckley',
-        lastName: 'Townsend', 
-        geo: '-2.681655, 3.528942',
-        phone: '+1 (884) 595-2643',
-        isActive: true,
-        description: 'OPPORTECH',
-    },
-    {
-        id: 7,
-        firstName: 'Latoya',
-        lastName: 'Bradshaw',
-        geo: '36.026423, 130.412198',
-        phone: '+1 (906) 474-3155',
-        isActive: true,
-        description: 'GORGANIC',
-    },
-    {
-        id: 8,
-        firstName: 'Kate',
-        lastName: 'Lindsay',
-        geo: '42.464724, -12.948403',
-        phone: '+1 (930) 546-2952',
-        isActive: true,
-        description: 'AVIT',
-    },
-    {
-        id: 9,
-        firstName: 'Marva',
-        lastName: 'Sandoval',
-        geo: '-52.206169, 74.19452', 
-        phone: '+1 (927) 566-3600',
-        isActive: false,
-        description: 'QUILCH',
-    },
-    {
-        id: 10,
-        firstName: 'Decker',
-        lastName: 'Russell', 
-        geo: '-41.550295, -146.598075',
-        phone: '+1 (846) 535-3283',
-        isActive: false,
-        description: 'MEMORA',
-    },
-    {
-        id: 11,
-        firstName: 'Odom',
-        lastName: 'Mills', 
-        geo: '-56.061694, -130.238523',
-        phone: '+1 (995) 525-3402',
-        isActive: true,
-        description: 'ZORROMOP',
-    },
-    {
-        id: 12,
-        firstName: 'Sellers',
-        lastName: 'Walters', 
-        geo: '11.732587, 96.118099',
-        phone: '+1 (830) 430-3157',
-        isActive: true,
-        description: 'ORBOID',
-    },
-    {
-        id: 13,
-        firstName: 'Wendi',
-        lastName: 'Powers', 
-        geo: '-78.159578, -9.835103',
-        phone: '+1 (863) 457-2088',
-        isActive: true,
-        description: 'SNORUS',
-    },
-    {
-        id: 14,
-        firstName: 'Sophie',
-        lastName: 'Horn', 
-        geo: '65.484087, 137.413998',
-        phone: '+1 (885) 418-3948',
-        isActive: true,
-        
-        description: 'XTH',
-    },
-    {
-        id: 15,
-        firstName: 'Levine',
-        lastName: 'Rodriquez', 
-        geo: '-63.185586, 117.327808',
-        phone: '+1 (999) 565-3239',
-        isActive: true,
-          
-        description: 'COMTRACT',
-    },
-    {
-        id: 16,
-        firstName: 'Little',
-        lastName: 'Hatfield', 
-        geo: '47.480837, 6.085909', 
-        phone: '+1 (812) 488-3011',
-        isActive: false,
-        description: 'ZIDANT',
-    },
-    {
-        id: 17,
-        firstName: 'Larson',
-        lastName: 'Kelly', 
-        geo: '-71.766732, 150.854345',
-        phone: '+1 (892) 484-2162',
-        isActive: true,
+    const[reports, setReports] = useState([])
+
+    // fetch all user specific reports
+    useEffect(() => {
+        fetch('/reports')
+        .then(res => res.json())
+        .then(data => setInitialRecords(data))
+    },[]) 
+
+    const [page, setPage] = useState(1);
+    const PAGE_SIZES = [10, 20, 30, 50, 100];
+    const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
+    const [initialRecords, setInitialRecords] = useState(
+        sortBy(reports, "description")
+    );
+    const [recordsData, setRecordsData] = useState(initialRecords);
+    const [search, setSearch] = useState("");
+    const [sortStatus, setSortStatus] = useState({
+        columnAccessor: "id",
+        direction: "asc",
+    });
+
+    useEffect(() => {
+        setPage(1);
+    }, [pageSize]);
+
+    useEffect(() => {
+        const from = (page - 1) * pageSize;
+        const to = from + pageSize;
+        setRecordsData([...initialRecords.slice(from, to)]);
+    }, [page, pageSize, initialRecords]);
+
+    useEffect(() => {
+        setInitialRecords(() => {
+        return reports.filter((item) => {
+            return (
+            item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
+            item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+            item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
+            item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
+            item.user.email.toLowerCase().includes(search.toLowerCase()) ||
+            item.description.toLowerCase().includes(search.toLowerCase())
+            );
+        });
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [search]);
+
+    useEffect(() => {
+        const data = sortBy(initialRecords, sortStatus.columnAccessor);
+        setInitialRecords(sortStatus.direction === "desc" ? data.reverse() : data);
+        setPage(1);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sortStatus]);
+
+    function redirectOnclick(id) {
+        window.location.href = `/adminreportdetails/${id}`;
+    }
       
-        description: 'SUREPLEX',
-    },
-    {
-        id: 18,
-        firstName: 'Kendra',
-        lastName: 'Molina', 
-        geo: '50.765816, -117.106499',
-        phone: '+1 (920) 528-3330',
-        isActive: false,
-          
-        description: 'DANJA',
-    },
-    {
-        id: 19,
-        firstName: 'Ebony',
-        lastName: 'Livingston', 
-        geo: '65.271256, -83.064729',
-        phone: '+1 (970) 591-3039',
-        isActive: false,
-        
-        description: 'EURON',
-    },
-    {
-        id: 20,
-        firstName: 'Kaufman',
-        lastName: 'Rush', 
-        geo: '41.513153, 54.821641',
-        phone: '+1 (924) 463-2934',
-        isActive: false,
-        
-        description: 'ILLUMITY',
-    },
-    {
-        id: 21,
-        firstName: 'Frank',
-        lastName: 'Hays', 
-        geo: '63.314988, -138.771323',
-        phone: '+1 (930) 577-2670',
-        isActive: false,
-    
-        description: 'SYBIXTEX',
-    },
-    {
-        id: 22,
-        firstName: 'Carmella',
-        lastName: 'Mccarty', 
-        geo: '9.198597, -138.809971', 
-        phone: '+1 (876) 456-3218',
-        isActive: true,
-        
-        description: 'ZEDALIS',
-    },
-    {
-        id: 23,
-        firstName: 'Massey',
-        lastName: 'Owen', 
-        geo: '-74.648318, 99.620699',
-        phone: '+1 (917) 567-3786',
-        isActive: false,
-      
-        description: 'DYNO',
-    },
-    {
-        id: 24,
-        firstName: 'Lottie',
-        lastName: 'Lowery', 
-        geo: '54.811546, -20.996515',
-        phone: '+1 (912) 539-3498',
-        isActive: true,
-      
-        description: 'MULTIFLEX',
-    },
-    {
-        id: 25,
-        firstName: 'Addie',
-        lastName: 'Luna', 
-        geo: '-12.762766, -39.924497',
-        phone: '+1 (962) 537-2981',
-        isActive: true,
-        description: 'PHARMACON',
-    },
-  ];
-
-  const [page, setPage] = useState(1);
-  const PAGE_SIZES = [10, 20, 30, 50, 100];
-  const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  const [initialRecords, setInitialRecords] = useState(sortBy(rowData, 'firstName'));
-  const [recordsData, setRecordsData] = useState(initialRecords);
-
-  const [search, setSearch] = useState('');
-  const [sortStatus, setSortStatus] = useState({
-      columnAccessor: 'firstName',
-      direction: 'asc',
-  });
-
-  useEffect(() => {
-    setPage(1);
-  }, [pageSize]);
-
-  useEffect(() => {
-    const from = (page - 1) * pageSize;
-    const to = from + pageSize;
-    setRecordsData([...initialRecords.slice(from, to)]);
-  }, [page, pageSize, initialRecords]);
-
-  useEffect(() => {
-      setInitialRecords(() => {
-          return rowData.filter((item) => {
-              return (
-                  item.firstName.toLowerCase().includes(search.toLowerCase()) ||
-                  item.description.toLowerCase().includes(search.toLowerCase()) ||
-                  item.phone.toLowerCase().includes(search.toLowerCase())
-              );
-          });
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
-
-  useEffect(() => {
-      const data = sortBy(initialRecords, sortStatus.columnAccessor);
-      setInitialRecords(sortStatus.direction === 'desc' ? data.reverse() : data);
-      setPage(1);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortStatus]);
-
-  const randomColor = () => {
-      const color = ['bg-orange-400', 'bg-lime-400'];
-      const random = Math.floor(Math.random() * color.length);
-      return color[random];
-  };
-
-  const randomReportType = () => {
-      const color = ['red-flag', 'intervention'];
-      const random = Math.floor(Math.random() * color.length);
-      return color[random];
-  };
-
-  const randomStatus = () => {
-      const status = ['REJECTED', 'UNDER INVESTIGATION', 'SOLVED'];
-      const random = Math.floor(Math.random() * status.length);
-      return status[random];
-  };
-
-  function redirectOnClick() {
-    // Redirect to another page
-    window.location.href = "/adminreportdetails";
-  }
-
   return (
-    <div className='p-8 m-4 min-h-screen mx-auto px-4 sm:px-6 lg:px-8'>
-      <div className=''>
-          <div className='p-8 m-6 mb-0 w-96'>
-            <img src={logo} alt="" />
+    <>
+    <div className="min-h-screen bg-gray-50 py-6">
+      <div className="py-10">
+        <header>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <img
+              className="h-7"
+              src={logo}
+              alt="Company name"
+            />
+            <div className='text-center p-4 m-6 text-main1 text-3xl font-bold font-poppins'>
+                <h1>Admin Dashboard</h1>
+           </div>
           </div>
-          <div className='text-center p-4 m-6 text-main1 text-3xl font-bold font-poppins'>
-            <h1>Admin Dashboard</h1>
+        </header>
+        <main>
+          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            
+          {/* User Dashboard Content */}
+          {/* Data Table */}
+      <div className="mt-6 overflow-hidden rounded-lg bg-white shadow p-6  border  border-gray-300">
+      <div className="sm:flex sm:items-center ">
+        <div className="sm:flex-auto">
+          <h1 className="text-xl font-semibold text-gray-900">
+            Public Records{" "}
+          </h1>
+          <p className="mt-2 text-sm text-gray-700">
+            Here's a list of all red-flags and interventions posted on our
+            platform
+          </p>
+        </div>
+        <div className="ltr:ml-auto rtl:mr-auto">
+          <input
+            type="text"
+            className="form-input w-auto"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className="min-w-full divide-y divide-gray-300 mt-6">
+        <DataTable
+          className="whitespace-nowrap table-hover cursor-pointer"
+          records={recordsData}
+          columns={[
+            {
+              accessor: "user",
+              title: "Name",
+              sortable: true,
+              render: (params) => (
+                <div className="flex items-center w-max">
+                  <div>{params.user.first_name + " " + params.user.surname}</div>
+                </div>
+              ),
+            },
+            { accessor: "description", title: "Description", sortable: true },
+            { accessor: "gps_coordinates", title: "GPS", sortable: true },
+            {
+              accessor: "report_type",
+              title: "Report Type",
+              sortable: true,
+              render: (params) => (
+                <div>{params.report_type.name}</div>
+              ),
+            },
+            { accessor: "user.email", title: "Email", sortable: true },
+            // { accessor: "", title: "Phone No.", sortable: true },
+            {
+              accessor: "report_status",
+              title: "Status",
+              sortable: true,
+              render: (params) => (
+                <div>{params.report_status.name}</div>
+              ),
+            },
+            {
+              accessor: "id",
+              title: "Action",
+              titleClassName: "!text-center",
+              render: ({id, params}) => ( 
+                <div>               
+                  <Link to={`/reports/${id}`} className="text-main2 hover:text-main1">   
+                  <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
+                    Edit
+                  </span>
+                  </Link>
+                  <Link
+                    to={`/adminreportdetails/${params}`}
+                    className="text-main1 hover:text-main1-light font-semibold"
+                  >
+                    <span className="inline-flex items-center rounded bg-blue-100 m-1 px-2 py-0.5 text-xs font-medium text-blue-800">
+                        View 
+                    </span>
+                  </Link>
+                </div>              
+              ),
+            },
+          ]}
+          totalRecords={initialRecords.length}
+          recordsPerPage={pageSize}
+          page={page}
+          onPageChange={(p) => setPage(p)}
+          recordsPerPageOptions={PAGE_SIZES}
+          onRecordsPerPageChange={setPageSize}
+          sortStatus={sortStatus}
+          onSortStatusChange={setSortStatus}
+          minHeight={200}
+          paginationText={({ from, to, totalRecords }) =>
+            `Showing  ${from} to ${to} of ${totalRecords} entries`
+          }
+        />
+      </div>
+      {/* End of Data Tables */}
+    </div>
+
           </div>
-        </div> 
-        <div>
-            <dl className="mt-5 mb-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {stats.map((item) => (
-                <div
-                    key={item.id}
-                    className="relative overflow-hidden rounded-lg bg-white px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6"
-                >
-                    <dt>
-                    <div className="absolute rounded-md bg-indigo-500 p-3">
-                        <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                    </div>
-                    <p className="ml-16 truncate text-sm font-medium text-gray-500">{item.name}</p>
-                    </dt>
-                    <dd className="ml-16 flex items-baseline pb-6 sm:pb-7">
-                    <p className="text-2xl font-semibold text-gray-900">{item.stat}</p>
-                    </dd>
-                </div>
-                ))}
-            </dl>
+        </main>
         </div>
-        <div className="min-h-screen mx-auto px-4 sm:px-6 lg:px-8"> 
-
-            {/* Data Table */}
-            <div className="sm:flex sm:items-center ">
-                <div className="sm:flex-auto">
-                <h1 className="text-xl font-semibold text-gray-900">Reports</h1>
-                <p className="mt-2 text-sm text-gray-700">
-                    Here's a list of all red-flags and interventions posted on our platform
-                </p>
-                </div>
-                <div className="ltr:ml-auto rtl:mr-auto">
-                    <input type="text" className="form-input w-auto" placeholder="Search by name" value={search} onChange={(e) => setSearch(e.target.value)} />
-                </div>
-                
-            </div>
-            <div className="min-w-full divide-y divide-gray-300 mt-6 cursor-pointer">
-                <DataTable
-                    className="whitespace-nowrap table-hover"
-                    records={recordsData}
-                    columns={[
-                        {
-                            accessor: 'firstName',
-                            title: 'Name',
-                            sortable: true,
-                            render: ({ firstName, lastName}) => (
-                                <div className="flex items-center w-max">
-                                    <div>{firstName + ' ' + lastName}</div>
-                                </div>
-                            ),
-                        },
-                        { 
-                            accessor: 'report_type', 
-                            title: 'Report Type', 
-                            sortable: true, 
-                            render: () => <span className={`badge bg-${randomColor()} `}>{randomReportType()}</span>,
-                        },
-                        { accessor: 'description', title: 'Description', sortable: true },
-                        { accessor: 'geo', title: 'Location', sortable: true },
-                        {
-                            accessor: 'status',
-                            title: 'Status',
-                            sortable: true,
-                            render: () => <span className={`badge bg-${randomColor()} `}>{randomStatus()}</span>,
-                        },
-                        {
-                            accessor: 'action',
-                            title: 'Action',
-                            titleClassName: '!text-center',
-                            render: () => (
-                                <div className="flex items-center w-max mx-auto">
-                                     <button
-                                        type="button"
-                                        className="inline-flex items-center rounded border border-transparent bg-main1 ml-2 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-main2 focus:outline-none focus:ring-2 focus:ring-main1 focus:ring-offset-2"
-                                    >
-                                        Delete
-                                    </button>
-                                    <button
-                                        type="button"
-                                        className="inline-flex items-center rounded border border-transparent bg-main4 ml-2 px-2.5 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-main4 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-                                    > 
-                                       Edit
-                                    </button>
-                                </div>
-                            ),
-                        },
-                    ]}
-                    onClick={() => redirectOnClick()}
-                    totalRecords={initialRecords.length}
-                    recordsPerPage={pageSize}
-                    page={page}
-                    onPageChange={(p) => setPage(p)}
-                    recordsPerPageOptions={PAGE_SIZES}
-                    onRecordsPerPageChange={setPageSize}
-                    sortStatus={sortStatus}
-                    onSortStatusChange={setSortStatus}
-                    minHeight={200}
-                    paginationText={({ from, to, totalRecords }) => `Showing  ${from} to ${to} of ${totalRecords} entries`}
-                />
-            </div>
-            {/* End of Data Table */}
-
-        </div>
-    </div>  
+      </div>
+    </>
   )
 }
 
