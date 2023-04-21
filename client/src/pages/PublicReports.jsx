@@ -196,7 +196,7 @@ function PublicReports() {
                 </div>
               ),
             },
-            { accessor: "description", title: "Description", sortable: true },
+            { accessor: "description_summary", title: "Description", sortable: true },
             { accessor: "gps_coordinates", title: "GPS", sortable: true },
             {
               accessor: "report_type",
