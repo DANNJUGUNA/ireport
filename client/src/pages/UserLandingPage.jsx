@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import sortBy from 'lodash/sortBy';
+import StatsDashboard from '../components/StatsDashboard';
 
 
 function UserLandingPage() {
@@ -117,6 +118,12 @@ function UserLandingPage() {
         <main>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
             
+            {/* Stats Section */}        
+                
+            <StatsDashboard/>
+            
+            {/* End of Stats Section */}  
+
           {/* User Dashboard Content */}
           {/* Data Table */}
       <div className="mt-6 overflow-hidden rounded-lg bg-white shadow p-6  border  border-gray-300">
