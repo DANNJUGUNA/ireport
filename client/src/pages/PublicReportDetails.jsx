@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef}from 'react'
 import { useParams } from 'react-router-dom'
 
 
-function ViewReportDetails() {
+function PublicReportDetails() {
   const { reportId }  = useParams()
 
   const[report, setReport] = useState([])
   const[reportStatus, setReportStatus] = useState([])
   const[reportType, setReportType] = useState([]) 
+  const[user, SetUser] = useState([])
 
   const shouldLog = useRef(true)
   useEffect(() => {    
@@ -15,7 +16,7 @@ function ViewReportDetails() {
       shouldLog.current = false
       fetch(`/reports/${reportId}`)
       .then(r => r.json())
-      .then((data) => {setReport(data); setReportStatus(data.report_status); setReportType(data.report_type) })
+      .then((data) => {setReport(data); setReportStatus(data.report_status); setReportType(data.report_type); SetUser(data.user) })
     }
   }, [reportId])
 
@@ -37,7 +38,7 @@ function ViewReportDetails() {
             </div>
             <div className="mt-5 flex justify-center sm:mt-0">
               <a
-                href="/home"
+                href="/reports"
                 className="flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
               >
                 BACK
@@ -48,10 +49,10 @@ function ViewReportDetails() {
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">report.date_created</span>
+              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{report.created_at}</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">report.date_updated</span>
+              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{report.updated_at}</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
               <span className="text-gray-900">Report Status: </span> <span className="text-gray-600">{reportStatus.name}</span>
@@ -61,7 +62,7 @@ function ViewReportDetails() {
       </div>
       {/* 2-Column Section */}
       <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
-            <div className="space-y-6 lg:col-span-2 lg:col-start-1">
+            <div className="space-y-6 lg:col-span-3 lg:col-start-1">
               {/* Description list*/}
               <section aria-labelledby="applicant-information-title">
                 <div className="bg-white shadow sm:rounded-lg">
@@ -69,7 +70,7 @@ function ViewReportDetails() {
                     <h2 id="applicant-information-title" className="text-lg font-medium leading-6 text-gray-900">
                       {report.title}
                     </h2>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500">report.location</p>
+                    <p className="mt-1 max-w-2xl text-sm text-gray-500">{report.location_name}</p>
                   </div>
                   <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                     <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -82,14 +83,22 @@ function ViewReportDetails() {
                             alt="Phone Camera"
                             className=" rounded-lg shadow ring-1 ring-gray-900/10"                            
                           />                          
-                      </div>                      
-                      
+                      </div>  
                       <div className="sm:col-span-2">
                         <dt className="text-sm font-medium text-gray-500">Description</dt>
                         <dd className="mt-1 text-sm text-gray-900">
                           {report.description}
                         </dd>
+                      </div>                    
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">Reported By</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{user.first_name} {user.surname}</dd>
                       </div>
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">Email address</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{user.email}</dd>
+                      </div>
+                      
                       
                     </dl>
                   </div>
@@ -126,35 +135,8 @@ function ViewReportDetails() {
               </section>
             </div>
 
-              {/*USER ACTION SECTION  */}
-            <section aria-labelledby="user-actions" className="lg:col-span-1 lg:col-start-3">
-              <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
-                <h2 id="timeline-title" className="text-lg font-medium text-gray-900">
-                  Actions:
-                </h2>
-
-                {/* Buttons for Editing and Delete */}
-                <div className="mt-6 flow-root">
-                  
-                </div>
-                <div className="justify-stretch mt-3 flex flex-col">
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-main4 px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                  >
-                    EDIT
-                  </button>
-                </div>
-                <div className="justify-stretch mt-3 flex flex-col">
-                  <button
-                    type="button"
-                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-danger px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-danger focus:outline-none focus:ring-2 focus:ring-danger focus:ring-offset-2"
-                  >
-                    DELETE
-                  </button>
-                </div>
-              </div>
-            </section>
+              
+            
           </div>
 
     </div>
@@ -163,4 +145,4 @@ function ViewReportDetails() {
   )
 }
 
-export default ViewReportDetails
+export default PublicReportDetails
