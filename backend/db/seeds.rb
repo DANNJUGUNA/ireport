@@ -24,6 +24,6 @@ User.create(first_name: "John", surname: "Doe", email: "johndoe@example.com", pa
 User.create(first_name: "Jane", surname: "Doe", email: "janedoe@example.com", password_digest: "password_digest")
 
 # Reports
-Report.create(description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1)
-Report.create(description: "Theft at convenience store", image: "https://example.com/theft.jpg", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 2, report_status_id: 1, report_type_id: 2)
-Report.create(description: "House fire on Elm Street", image: "https://example.com/house-fire.jpg", video: "https://example.com/house-fire.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 2, report_type_id: 3)
+Report.create(description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, title:"Big man", location_name:"Juja")
+Report.create(description: "Theft at convenience store", image: "https://example.com/theft.jpg", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 2, report_status_id: 1, report_type_id: 2, title:"Small man", location_name:"Ruiru")
+Report.create(description: "House fire on Elm Street", image: "https://example.com/house-fire.jpg", video: "https://example.com/house-fire.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 2, report_type_id: 3, title:"Middle man", location_name:"Kasa")
