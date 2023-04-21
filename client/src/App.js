@@ -23,33 +23,33 @@ import AuthProvider from "./context/AuthContext";
 
 function App() {
   return (
-    <div className="App">
-      <AuthProvider>
-      <Navbar />
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+      
+        <AuthProvider>
+          <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/reports" element={<PublicReports />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/addreport" element={<AddReport />} />
+              <Route path="/adminlogin" element={<AdminLogin />} />
+              <Route path="/userlandingpage" element={<UserLandingPage />} />
+              <Route path="/adminsignup" element={<AdminSignup />} />
+              <Route path="/admindashboard" element={<AdminDashboard />} />
+              <Route path="/viewreportdetails" element={<ViewReportDetails />} />
+              <Route path="/adminreportdetails" element={<AdminReportDetails />} />
+              <Route path="/about-us" element={<About />} />
+          </Routes>
+        </AuthProvider>
 
-          <Route path="/reports" element={<PublicReports />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/addreport" element={<AddReport />} />
-          <Route path="/adminlogin" element={<AdminLogin />} />
-          <Route path="/userlandingpage" element={<UserLandingPage />} />
-          <Route path="/adminsignup" element={<AdminSignup />} />
-          <Route path="/admindashboard" element={<AdminDashboard />} />
 
-          <Route path="/reports/:reportId" element={<ViewReportDetails />} />
-          <Route path="/viewreportdetails" element={<ViewReportDetails />} />
-          <Route path="/adminreportdetails" element={<AdminReportDetails />} />
-          <Route path="/about-us" element={<About />} />
-        </Routes>
-      </BrowserRouter>
+        <Footer />
+      </div>
+  </BrowserRouter>
 
-      <Footer />
-      </AuthProvider>
-    </div>
   );
 }
 
