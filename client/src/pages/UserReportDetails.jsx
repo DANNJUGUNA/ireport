@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef}from 'react'
+import React, { useState, useEffect, useRef, Fragment}from 'react'
 import { useParams } from 'react-router-dom'
+import { Dialog, Transition } from '@headlessui/react';
 
 function UserReportDetails() {
   const { reportId }  = useParams()
@@ -18,7 +19,45 @@ function UserReportDetails() {
     }
   }, [reportId])
 
-  console.log(reportId)
+  const saveUser = () => {   
+
+    if (params.id) {
+        //update user
+        let user = report.find((d) => d.id === params.id);
+        user.name = params.name;
+        user.email = params.email;
+        user.phone = params.phone;
+        user.role = params.role;
+        user.location = params.location;
+    } 
+
+    // showMessage('User has been saved successfully.');
+    setAddContactModal(false);
+  };
+  const [addContactModal, setAddContactModal] = useState(false);
+  const [defaultParams] = useState({
+    id: null,
+    title: '',
+    location_name: '',
+    phone: '',
+    role: '',
+    description: '',
+  });
+  
+  const [params, setParams] = useState(JSON.parse(JSON.stringify(defaultParams)));
+  const changeValue = (e) => {
+    const { value, id } = e.target;
+    setParams({ ...params, [id]: value });
+  };
+  const editUser = (user) => {
+    const json = JSON.parse(JSON.stringify(defaultParams));
+    setParams(json);
+    if (user) {
+        let json1 = JSON.parse(JSON.stringify(user));
+        setParams(json1);
+    }
+    setAddContactModal(true);
+  };
 
   return (
     <>
@@ -140,6 +179,7 @@ function UserReportDetails() {
                 </div>
                 <div className="justify-stretch mt-3 flex flex-col">
                   <button
+                    onClick={() => editUser(reportId)}
                     type="button"
                     className="inline-flex items-center justify-center rounded-md border border-transparent bg-main4 px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
@@ -160,6 +200,160 @@ function UserReportDetails() {
 
     </div>
     </div>
+
+    {/* Edit Report Modal */}
+    <Transition appear show={addContactModal} as={Fragment}>
+                <Dialog as="div" open={addContactModal} onClose={() => setAddContactModal(false)} className="relative z-50">
+                    <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
+                        <div className="fixed inset-0 bg-[black]/60" />
+                    </Transition.Child>
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center px-4 py-8">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel className="bg-white p-0 rounded-lg overflow-hidden w-full max-w-lg text-black">
+                                    
+                                    <div className="text-lg flex justify-center font-medium bg-gray-300 py-3 ">
+                                        Update Report
+                                    </div>
+                                    
+                                    <div className="p-5">
+                                        <form>
+                                            <div className="mb-5">                                            
+                                              <label
+                                                htmlFor=""
+                                                className="block text-sm font-medium sm:mt-px sm:pt-2"
+                                              >
+                                                Report title
+                                              </label>
+                                              <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                                <input
+                                                  name="title"
+                                                  type="text"
+                                                  className="block w-full h-10 max-w-lg rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div className="mb-5">
+                                            <label
+                                                  htmlFor="description"
+                                                  className="block text-sm font-medium sm:mt-px sm:pt-2"
+                                                >
+                                                  Description
+                                              </label>
+                                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                                  <textarea
+                                                    id="about"
+                                                    name="about"
+                                                    rows={4}
+                                                    className="block w-full max-w-lg rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                                                    defaultValue={""}
+                                                  />
+                                                </div>
+                                            </div>
+                                            <div className="mb-5">                                            
+                                              <label
+                                                htmlFor=""
+                                                className="block text-sm font-medium sm:mt-px sm:pt-2"
+                                              >
+                                                Location Name
+                                              </label>
+                                              <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                                <input
+                                                  name="location_name"
+                                                  type="text"
+                                                  className="block w-full h-10 max-w-lg rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div className="mb-5">                                            
+                                              <label
+                                                htmlFor="gps_coordinate"
+                                                className="block text-sm font-medium sm:mt-px sm:pt-2"
+                                              >
+                                                GPS Coordinates
+                                              </label>
+                                              <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                                <input
+                                                  name="gps_coordinates"
+                                                  type="text"
+                                                  className="block w-full h-10 max-w-lg rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div className="mb-5">
+                                              <label
+                                                  htmlFor="gps_coordinate"
+                                                  className="block text-sm font-medium sm:mt-px sm:pt-2"
+                                                >
+                                                  Image
+                                              </label>
+                                                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                                                <div className="flex max-w-lg justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                                  <div className="space-y-1 text-center">
+                                                    <svg
+                                                      className="mx-auto h-12 w-12 text-gray-400"
+                                                      stroke="currentColor"
+                                                      fill="none"
+                                                      viewBox="0 0 48 48"
+                                                      aria-hidden="true"
+                                                    >
+                                                      <path
+                                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                        strokeWidth={2}
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                      />
+                                                    </svg>
+                                                    <div className="flex text-sm text-gray-600">
+                                                      <label
+                                                        htmlFor="file-upload"
+                                                        className="relative cursor-pointer rounded-md bg-white font-medium text-main2 focus-within:outline-none focus-within:ring-2 focus-within:ring-main2 focus-within:ring-offset-2 hover:text-main1"
+                                                      >
+                                                        <span>Upload a file</span>
+                                                        <input
+                                                          id="file-upload"
+                                                          name="file-upload"
+                                                          type="file"
+                                                          className="sr-only"
+                                                        />
+                                                      </label>
+                                                      <p className="pl-1">or drag and drop</p>
+                                                    </div>
+                                                    <p className="text-xs text-gray-500">
+                                                      PNG, JPG, GIF up to 10MB
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            
+                                            
+                                            
+                                            <div className="flex justify-end items-center mt-8">
+                                                <button type="button" className="btn btn-outline-danger mx-3" onClick={() => setAddContactModal(false)}>
+                                                    Cancel
+                                                </button>
+                                                <button type="button" className="btn bg-success " onClick={saveUser}>
+                                                    Update
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
+    {/* End of Edit Report Modal */}
     </>    
   )
 }
