@@ -39,7 +39,7 @@ function App() {
               <Route path="/adminsignup" element={<AdminSignup />} />
               <Route path="/admindashboard" element={<AdminDashboard />} />
               <Route path="/viewreportdetails" element={<ViewReportDetails />} />
-              <Route path="/adminreportdetails" element={<AdminReportDetails />} />
+              <Route path="/adminreportdetails/:id" element={<AdminReportDetails />} />
               <Route path="/about-us" element={<About />} />
           </Routes>
         </AuthProvider>
