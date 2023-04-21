@@ -24,12 +24,13 @@ function loginUser(email, password) {
     }
   });
 }
-export const AuthContext =createContext({
-    user: null,
-    token: null,
-    login: () => {},
-    signup: () => {}
-})
+export const AuthContext = createContext({
+  user: null,
+  token: null,
+  login: () => {},
+  // logout: () => {},
+  signup: () => {},
+});
 
 const AuthProvider=({children})=>{
     const [user, setUser] = useState(null);
