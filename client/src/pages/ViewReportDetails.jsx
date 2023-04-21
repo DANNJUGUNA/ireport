@@ -1,22 +1,24 @@
-import React from 'react'
-
-const report = {
-  id: 156,
-  report_type: "Red-Flag",
-  title: 'Corrupt Police Man',
-  role: 'Product Designer',
-  gps_coordinates: '-0.3845125, 38.545246',
-  image_url:
-    'https://postamate.com/wp-content/uploads/2021/07/Corrupt-police.jpg',
-  date_created: '05/04/2023',
-  date_updated: '07/04/2023',
-  report_status: '(blank)',
-  description: 'For a long time, traffic police around the Nakuru round-about have been demanding bribes in order to cross into town. They look for all manner of mistakes in your vehicle in attempt to corner you. This is outright harassment and violation of the law to demand bribes.',
-  location: 'Nakuru, CBC'
-}
+import React, { useState, useEffect, useRef}from 'react'
+import { useParams } from 'react-router-dom'
 
 
 function ViewReportDetails() {
+  const { reportId }  = useParams()
+
+  const[report, setReport] = useState([])
+  const[reportStatus, setReportStatus] = useState([])
+  const[reportType, setReportType] = useState([]) 
+
+  const shouldLog = useRef(true)
+  useEffect(() => {    
+    if(shouldLog.current) {
+      shouldLog.current = false
+      fetch(`/reports/${reportId}`)
+      .then(r => r.json())
+      .then((data) => {setReport(data); setReportStatus(data.report_status); setReportType(data.report_type) })
+    }
+  }, [reportId])
+
   return (
     <>
     <div className="min-h-full bg-gray-100 py-6">
@@ -29,7 +31,7 @@ function ViewReportDetails() {
               
               <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                 <p className="text-sm font-medium text-gray-600">Report No: {report.id}</p>
-                <p className="text-xl font-bold text-gray-900 sm:text-2xl">{report.report_type}</p>
+                <p className="text-xl font-bold text-gray-900 sm:text-2xl">{reportType.name}</p>
                 <p className="text-sm font-medium text-gray-600">{report.title}</p>
               </div>
             </div>
@@ -46,13 +48,13 @@ function ViewReportDetails() {
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{report.date_created}</span>
+              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">report.date_created</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{report.date_updated}</span>
+              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">report.date_updated</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Report Status: </span> <span className="text-gray-600">{report.report_status}</span>
+              <span className="text-gray-900">Report Status: </span> <span className="text-gray-600">{reportStatus.name}</span>
             </div>
          
         </div>
@@ -67,7 +69,7 @@ function ViewReportDetails() {
                     <h2 id="applicant-information-title" className="text-lg font-medium leading-6 text-gray-900">
                       {report.title}
                     </h2>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500">{report.location}</p>
+                    <p className="mt-1 max-w-2xl text-sm text-gray-500">report.location</p>
                   </div>
                   <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                     <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -76,7 +78,7 @@ function ViewReportDetails() {
                       {/* Image/Video Section */}
                       <div className="sm:col-span-2">                    
                           <img
-                            src={report.image_url}
+                            src={report.image}
                             alt="Phone Camera"
                             className=" rounded-lg shadow ring-1 ring-gray-900/10"                            
                           />                          

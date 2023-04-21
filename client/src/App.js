@@ -23,6 +23,7 @@ import AuthProvider from "./context/AuthContext";
 
 function App() {
   return (
+
     <BrowserRouter>
       <div className="App">
         <Navbar />
@@ -48,6 +49,7 @@ function App() {
         <Footer />
       </div>
   </BrowserRouter>
+
   );
 }
 
