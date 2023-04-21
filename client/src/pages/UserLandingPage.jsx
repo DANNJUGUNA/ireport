@@ -181,7 +181,7 @@ function UserLandingPage() {
               titleClassName: "!text-center",
               render: ({id}) => ( 
                 <div>               
-                  <Link to={`/reports/${id}`} className="text-main2 hover:text-main1">   
+                  <Link to={`/userreportdetails/${id}`} className="text-main2 hover:text-main1">   
                   <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
                     Edit
                 </span>
