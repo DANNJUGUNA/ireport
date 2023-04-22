@@ -28,7 +28,7 @@ export default function Homepage() {
               </p>
               <div className="mt-10 flex items-center gap-x-6">
                 <a
-                  href="#"
+                  href="/addreport"
                   className="rounded-md bg-main4 px-3.5 py-1.5 text-base font-semibold leading-7 text-bodyText1 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Report now
@@ -40,7 +40,6 @@ export default function Homepage() {
                   View reports <span aria-hidden="true">→</span>
                 </a>
               </div>
-
             </div>
           </div>
           <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
