@@ -25,11 +25,9 @@ class ReportsController < ApplicationController
 
   # PATCH/PUT /reports/:id
   def update
-    if @report.update(report_params)
-      render json: @report
-    else
-      render json: @report.errors, status: :unprocessable_entity
-    end
+    report = Report.find_by!(id: params[:id])
+    report.update(report_params)
+    render json: report, status: :accepted
   end
 
   # DELETE /reports/:id
