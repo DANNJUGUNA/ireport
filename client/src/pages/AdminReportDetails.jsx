@@ -1,7 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef}from 'react'
+import { useParams } from 'react-router-dom'
 
 function AdminReportDetails({ match }) {
+  const { reportId }  = useParams()
+
   const [report, setReport] = useState({});
+  
+  const[reportStatus, setReportStatus] = useState([])
+  const[reportType, setReportType] = useState([])
+  const[user, SetUser] = useState([])
+
+  const shouldLog = useRef(true)
+  useEffect(() => {    
+    if(shouldLog.current) {
+      shouldLog.current = false
+      fetch(`/reports/${reportId}`)
+      .then(r => r.json())
+      .then((data) => { setReport(data); setReportStatus(data.report_status); setReportType(data.report_type); SetUser(data.user) })
 
   useEffect(() => {
     // Add a check to see if match exists
@@ -10,7 +25,9 @@ function AdminReportDetails({ match }) {
         .then((response) => response.json())
         .then((data) => setReport(data));
     }
-  }, [match]);
+  }, [reportId])
+
+  console.log(reportId)
 
   // Add a check to see if report exists
   if (!report) {
