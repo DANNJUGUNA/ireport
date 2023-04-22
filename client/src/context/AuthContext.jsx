@@ -62,10 +62,8 @@ const AuthProvider = ({ children }) => {
   
   const login =async(email,password)=>{
       if(user){
-        Swal.fire({
-          icon: 'warning',
-          title: 'You are already logged in',
-        });
+        console.log("already logged in")
+        console.log(token)
         return;
       }
       try{
