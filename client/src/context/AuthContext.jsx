@@ -3,37 +3,31 @@ import { useContext, useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const loginUser=(email,password)=>{
-return fetch('/login',
-    {
-      method: "POST",
-      headers: 
-     {
-      'content-Type': "application/json"
-     } ,
-     body: JSON.stringify({email: email, password: password})
-    }
-    )
-    .then(response=>response.json())
-    .then(data=>{
-      if(data.authorized){
-        const token=data.token
-        
-        return {user: data.user,token:token}
-      }
-      else{
-        throw new Error("Invalid email or password")
-      }
-    })
+function loginUser(email, password) {
+  return fetch("/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: email, password: password }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.authorized) {
+        const token = data.token;
 
+        // save the token in localStorage or sessionStorage for future use
+        return { user: data.user, token: token };
+      } else {
+        throw new Error("Invalid email or password");
+      }
+    });
 }
-
 export const AuthContext = createContext({
   user: null,
   token: null,
   login: () => {},
   signup: () => {},
-  logout: ()=>{}
 });
 
 const AuthProvider = ({ children }) => {
@@ -43,52 +37,53 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    const storedUser =JSON.parse(localStorage.getItem("user"));
+    const storedUser = localStorage.getItem("user");
 
     if (storedToken && storedUser) {
-     setUser(storedUser)
-     setToken(storedToken)
+      try {
+        setUser(JSON.parse(storedUser));
+        setToken(storedToken);
+      } catch (error) {
+        console.error(error);
+        // Handle the error here
+      }
     }
   }, []);
- 
- 
-  const logout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    setUser(null);
-    setToken(null);
-    console.log(token)
-  };
-  
-  const login =async(email,password)=>{
-      if(user){
-        console.log("already logged in")
-        console.log(token)
-        return;
-      }
-      try{
-        const {user,token}=await loginUser(email,password)
-        setUser(user)
-        setToken(token)
-      localStorage.setItem('token',token)
-      localStorage.setItem('user',JSON.stringify(user))
-      Swal.fire({
-        icon: 'success',
-        title: 'Logged in successfully',
-      });
-      }
-      catch(error){
-        console.error(error.message);
 
-      Swal.fire(
-      {
-        icon: 'error',
-        title: 'Error logging in',
+  const login = async (email, password) => {
+    if (user) {
+      console.log(user);
+      console.log(token);
+      Swal.fire({
+        icon: "warning",
+        title: "You are already logged in",
+      });
+      // <a href='/signup'/>
+      return;
+    }
+    try {
+      const { user, token } = await loginUser(email, password);
+      setUser(user);
+      setToken(token);
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      Swal.fire({
+        icon: "success",
+        title: "Logged in successfully",
+      });
+
+      navigate("/userlandingpage");
+    } catch (error) {
+      console.error(error.message);
+
+      Swal.fire({
+        icon: "error",
+        title: "Error logging in",
         text: error.message,
       });
       throw error;
-      }
-  }
+    }
+  };
 
   const signup = async (userData) => {
     if (
@@ -135,7 +130,7 @@ const AuthProvider = ({ children }) => {
     }
   };
   return (
-    <AuthContext.Provider value={{ user, token, login, logout,signup }}>
+    <AuthContext.Provider value={{ user, token, login, signup }}>
       {children}
     </AuthContext.Provider>
   );
