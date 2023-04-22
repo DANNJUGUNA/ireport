@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:signup, :login, :index]
+    skip_before_action :authorize, only: [:signup, :login, :index]
     def show
       user=get_user
       render json: user, status: :ok  
@@ -18,12 +18,13 @@ class UsersController < ApplicationController
         end
     end
     def login
-        @user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
-      token = encode_token({ user_id: @user.id })
-      render json: { user:@user, token: token, authorized: true  },status: :ok
-    else
-      render json: { error: 'Invalid username or password' }, status: :unauthorized
+      @user = User.find_by(email: params[:email])
+      if @user && @user.authenticate(params[:password])
+        token = encode_token({ user_id: @user.id })
+        render json: { user: @user.as_json(except: [:created_at, :updated_at]), token: token, authorized: true  }
+      else
+        render json: { error: 'Invalid email or password' }, status: :unauthorized
+      end
     end
     end
     def update
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
     end
   
     private
-    def authorized
+    def authorize
         render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
       end
     def permited_params

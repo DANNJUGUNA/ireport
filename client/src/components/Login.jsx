@@ -3,13 +3,15 @@ import { useState,useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 function Login() {
     const{login}=useContext(AuthContext)
-    const[email,setEmail]=useState('')
-    const[password,setPassword]=useState('')
-    const handleSubmit = (e)=>{
-        // send Data to rails
-        e.preventDefault()
-        login(email, password)
-    }
+  const[email,setEmail]=useState('')
+  const[password,setPassword]=useState('')
+     console.log(email)
+      console.log(password)
+  const handleSubmit = (e)=>{
+    // send Data to rails
+    e.preventDefault()
+    login(email, password)
+}
   return (
     <div>
         <div>
@@ -40,7 +42,7 @@ function Login() {
                             id="email"
                             name="email"
                             type="email"
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value)} 
                             autoComplete="email"
                             required
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"

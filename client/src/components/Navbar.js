@@ -1,7 +1,10 @@
-import { Fragment } from "react";
+import { Fragment,useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {Link} from 'react-router-dom'
+import { AuthContext } from "../context/AuthContext";
+import Swal from 'sweetalert2'
+
 // import { PlusIcon } from "@heroicons/react/20/solid";
 
 // const user = {
@@ -34,6 +37,20 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const{user,logout}=useContext(AuthContext)
+  
+  const handleOnclick = () => {
+   Swal.fire({
+    icon: 'success',
+    title: 'Thank you for using Ireporer',
+    text: 'We are greatful for the opportunity to have had to report',
+    confirmButtonText: 'OK'
+   }).then(()=>{
+    logout();
+    // Redirect to the homepage
+    window.location.href = '/';
+   }); 
+  };
   return (
     <Disclosure as="nav" className="bg-main1 text-poppins">
       {({ open }) => (
@@ -97,6 +114,14 @@ export default function Navbar() {
                     className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span>Sign up</span>
+                  </a>
+                </div>
+                <div className="flex-shrink-0">
+                  <a href="/login"
+                    
+                    className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
+                  >
+                    <button onClick={handleOnclick}>log out</button>
                   </a>
                 </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
