@@ -6,7 +6,7 @@ function AdminReportDetails({ match }) {
   useEffect(() => {
     // Add a check to see if match exists
     if (match?.params?.id) {
-      fetch(`http://localhost:3000/reports/${match.params.id}`)
+      fetch(`/reports/${match.params.id}`)
         .then((response) => response.json())
         .then((data) => setReport(data));
     }

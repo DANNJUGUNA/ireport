@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function loginUser(email, password) {
-  return fetch("http://localhost:3000/login", {
+  return fetch("/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

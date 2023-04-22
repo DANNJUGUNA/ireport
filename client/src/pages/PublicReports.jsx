@@ -38,7 +38,7 @@ function PublicReports() {
 
   // fetch all public reports
   useEffect(() => {
-    fetch("http://localhost:3000/reports")
+    fetch("/reports")
       .then((res) => res.json())
       .then((data) => setInitialRecords(data));
   }, []);

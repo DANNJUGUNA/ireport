@@ -12,7 +12,7 @@ function ViewReportDetails() {
   useEffect(() => {
     if (shouldLog.current) {
       shouldLog.current = false;
-      fetch(`http://localhost:3000/reports/${reportId}`)
+      fetch(`/reports/${reportId}`)
         .then((r) => r.json())
         .then((data) => {
           setReport(data);
