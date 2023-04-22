@@ -34,14 +34,15 @@ class ReportsController < ApplicationController
 
   # DELETE /reports/:id
   def destroy
-    @report.destroy
+    report = Report.find_by!(id: params[:id])
+    report.destroy
     head :no_content
   end
 
   private
 
   def set_report
-    @report = Report.find(params[:id])
+    @report = Report.find_by!(id: params[:id])
   end
 
   def report_params

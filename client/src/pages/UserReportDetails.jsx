@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, Fragment}from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react';
+import Swal from 'sweetalert2';
 
 function UserReportDetails() {
   const { reportId }  = useParams()
@@ -8,6 +9,43 @@ function UserReportDetails() {
   const[report, setReport] = useState([])
   const[reportStatus, setReportStatus] = useState([])
   const[reportType, setReportType] = useState([]) 
+
+  const navigate = useNavigate()
+
+  // Success Message function
+  const showMessage = (msg = '', type = 'success') => {
+    const toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        // customClass: { container: 'toast' },
+    });
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: '10px 20px',
+    });
+  };
+
+  // Delete 
+  function handleDelete(){
+    fetch(`/reports/${reportId}`, {
+        method: 'DELETE'
+    })
+    .then(resp => {
+      if (resp.ok) {
+        showMessage('Deleted Report')
+        navigate('/userlandingpage')
+      }
+      else {
+        resp.json()
+        .then(errors => showMessage(errors.message, 'error'))
+      }
+    })
+    
+    
+  }
 
   const shouldLog = useRef(true)
   useEffect(() => {    
@@ -188,6 +226,7 @@ function UserReportDetails() {
                 </div>
                 <div className="justify-stretch mt-3 flex flex-col">
                   <button
+                    onClick={handleDelete}
                     type="button"
                     className="inline-flex items-center justify-center rounded-md border border-transparent bg-danger px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-danger focus:outline-none focus:ring-2 focus:ring-danger focus:ring-offset-2"
                   >
