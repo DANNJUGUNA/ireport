@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import sortBy from 'lodash/sortBy';
+import StatsDashboard from '../components/StatsDashboard';
 
 
 function UserLandingPage() {
@@ -117,6 +118,12 @@ function UserLandingPage() {
         <main>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
             
+            {/* Stats Section */}        
+                
+            <StatsDashboard/>
+            
+            {/* End of Stats Section */}  
+
           {/* User Dashboard Content */}
           {/* Data Table */}
       <div className="mt-6 overflow-hidden rounded-lg bg-white shadow p-6  border  border-gray-300">
@@ -155,7 +162,7 @@ function UserLandingPage() {
                 </div>
               ),
             },
-            { accessor: "description", title: "Description", sortable: true },
+            { accessor: "description_summary", title: "Description", sortable: true },
             { accessor: "gps_coordinates", title: "GPS", sortable: true },
             {
               accessor: "report_type",
@@ -181,7 +188,7 @@ function UserLandingPage() {
               titleClassName: "!text-center",
               render: ({id}) => ( 
                 <div>               
-                  <Link to={`/reports/${id}`} className="text-main2 hover:text-main1">   
+                  <Link to={`/userreportdetails/${id}`} className="text-main2 hover:text-main1">   
                   <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
                     Edit
                 </span>

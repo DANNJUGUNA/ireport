@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect, useRef}from 'react'
+import { useParams } from 'react-router-dom'
 
 function AdminReportDetails({ match }) {
-  const [report, setReport] = useState({});
+  const { reportId }  = useParams()
 
-  useEffect(() => {
-    // Add a check to see if match exists
-    if (match?.params?.id) {
-      fetch(`/reports/${match.params.id}`)
-        .then(response => response.json())
-        .then(data => setReport(data));
+  const [report, setReport] = useState({});
+  
+  const[reportStatus, setReportStatus] = useState([])
+  const[reportType, setReportType] = useState([])
+  const[user, SetUser] = useState([])
+
+  const shouldLog = useRef(true)
+  useEffect(() => {    
+    if(shouldLog.current) {
+      shouldLog.current = false
+      fetch(`/reports/${reportId}`)
+      .then(r => r.json())
+      .then((data) => { setReport(data); setReportStatus(data.report_status); setReportType(data.report_type); SetUser(data.user) })
     }
-  }, [match]);
+  }, [reportId])
+
+  console.log(reportId)
 
     // Add a check to see if report exists
     if (!report) {
@@ -29,7 +39,7 @@ function AdminReportDetails({ match }) {
               
               <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
                 <p className="text-sm font-medium text-gray-600">Report No: {report.id}</p>
-                <p className="text-xl font-bold text-gray-900 sm:text-2xl">{report.report_type}</p>
+                <p className="text-xl font-bold text-gray-900 sm:text-2xl">{reportType.name}</p>
                 <p className="text-sm font-medium text-gray-600">{report.title}</p>
               </div>
             </div>
@@ -46,13 +56,13 @@ function AdminReportDetails({ match }) {
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{report.date_created}</span>
+              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{report.created_at}</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{report.date_updated}</span>
+              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{report.updated_at}</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Report Status: </span> <span className="text-gray-600">{report.report_status}</span>
+              <span className="text-gray-900">Report Status: </span> <span className="text-gray-600">{reportStatus.name}</span>
             </div>
          
         </div>
@@ -67,7 +77,7 @@ function AdminReportDetails({ match }) {
                     <h2 id="applicant-information-title" className="text-lg font-medium leading-6 text-gray-900">
                       {report.title}
                     </h2>
-                    <p className="mt-1 max-w-2xl text-sm text-gray-500">{report.gps_coordinates}</p>
+                    <p className="mt-1 max-w-2xl text-sm text-gray-500">{report.location_name}</p>
                   </div>
                   <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
                     <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -87,6 +97,14 @@ function AdminReportDetails({ match }) {
                         <dd className="mt-1 text-sm text-gray-900">
                           {report.description}
                         </dd>
+                      </div>
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">Reported By</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{user.first_name} {user.surname}</dd>
+                      </div>
+                      <div className="sm:col-span-1">
+                        <dt className="text-sm font-medium text-gray-500">Email address</dt>
+                        <dd className="mt-1 text-sm text-gray-900">{user.email}</dd>
                       </div>
                       
                     </dl>

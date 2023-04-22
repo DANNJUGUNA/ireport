@@ -196,7 +196,7 @@ function PublicReports() {
                 </div>
               ),
             },
-            { accessor: "description", title: "Description", sortable: true },
+            { accessor: "description_summary", title: "Description", sortable: true },
             { accessor: "gps_coordinates", title: "GPS", sortable: true },
             {
               accessor: "report_type",
@@ -222,7 +222,7 @@ function PublicReports() {
               titleClassName: "!text-center",
               render: ({id}) => ( 
                 <div>               
-                  <Link to={`/reports/${id}`} className="text-main2 hover:text-main1">                
+                  <Link to={`/publicreportdetails/${id}`} className="text-main2 hover:text-main1">                
                   
                     <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-main1">
                       <svg className="mr-1.5 h-2 w-2 text-main2" fill="currentColor" viewBox="0 0 8 8">
