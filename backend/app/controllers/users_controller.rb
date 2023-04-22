@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:signup, :login, :index]
+    skip_before_action :authorized, only: [:signup, :login]
     def show
       user=get_user
       render json: user, status: :ok  
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       token = encode_token({ user_id: @user.id })
       render json: { user:@user, token: token, authorized: true  },status: :ok
     else
-      render json: { error: 'Invalid username or password' }, status: :unauthorized
+      render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
     end
     def update
@@ -32,7 +32,10 @@ class UsersController < ApplicationController
        render json: user, status: :ok
 
     end
-  
+  def logout
+    session.delete(:user_id)
+    render json: {error: "logged out"}, status: :ok
+    end
     private
     def authorized
         render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
