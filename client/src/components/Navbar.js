@@ -43,7 +43,7 @@ export default function Navbar() {
     confirmButtonText: 'OK'
    }).then(()=>{
     logout();
-
+    window.location.href = '/';
    }); 
   };
   return (
