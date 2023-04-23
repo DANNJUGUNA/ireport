@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_report, only: [:show, :edit, :update, :destroy, :change_status]
-  
+  skip_before_action :authorize, only: [:index, :show, :user_reports]
+  before_action :check_admin, only: [:change_status]
+
   # GET /reports.
   def index
     @reports = Report.all
@@ -40,10 +40,16 @@ class ReportsController < ApplicationController
 
   # CHANGE /reports_status/:id
   def change_status
-    @report_status = ReportStatus.find(params[:report_status_id])
-    @report.update(report_status: @report_status)
+    if current_user.admin?
+      @report = Report.find(params[:id])
+      @report_status = ReportStatus.find(params[:report_status_id])
+      @report.update(report_status: @report_status)
     # send email notification to user
-    redirect_to @report, notice: "Status changed successfully."
+      UserMailer.report_status_changed(@report.user, @report).deliver_now
+      render json: @report, status: :accepted
+    else
+    render json: { error: "You are not authorized to perform this action." }, status: :unauthorized
+    end
   end
 
   # Fetch User Specific Reports
@@ -62,4 +68,11 @@ class ReportsController < ApplicationController
   def report_params
     params.require(:report).permit(:description, :image, :video, :gps_coordinates, :user_id, :report_status_id, :report_type_id, :title, :location_name)
   end
+
+  def check_admin
+    unless current_user && current_user.admin?
+      render json: { error: "Only admin users can perform this action." }, status: :unauthorized
+    end
+  end
+
 end
