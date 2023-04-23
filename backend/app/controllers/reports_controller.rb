@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  skip_before_action :authorize, only: [:index, :show, :user_reports]
+  skip_before_action :authorize, only: [:index, :show, :user_reports, :update, :create]
 
   # GET /reports.
   def index
