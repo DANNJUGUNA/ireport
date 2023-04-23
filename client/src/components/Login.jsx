@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
+import Swal from 'sweetalert2'
 function Login() {
     const{login}=useContext(AuthContext)
   const[email,setEmail]=useState('')
@@ -12,6 +13,7 @@ function Login() {
     e.preventDefault()
     login(email, password)
 }
+
   return (
     <div>
         <div>
@@ -77,6 +79,7 @@ function Login() {
                     </div>
                     <p>Don't have an account? <a href='/signup' className=' font-sm text-blue-700 underline'>Sign up</a></p>
                     </form>
+                    
                 </div>
                 </div>
             </div>
