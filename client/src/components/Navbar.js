@@ -22,7 +22,7 @@ const navigation = [
 ];
 const userNavigation = [
   { name: "Home", href: '/', current: true },
-  { name: "Public Reports", href: '/reports', current: false },
+  // { name: "Public Reports", href: '/reports', current: false },
   { name: "About us", href: '/about-us', current: false },
   { name: "User Dashboard", href: '/userlandingpage'},
   { name: "Add Report", href: '/addreport'},
