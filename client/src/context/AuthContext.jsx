@@ -39,6 +39,7 @@ export const AuthContext = createContext({
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,6 +49,8 @@ const AuthProvider = ({ children }) => {
     if (storedToken && storedUser) {
       setUser(storedUser);
       setToken(storedToken);
+     
+   
     }
   }, []);
 
@@ -86,6 +89,7 @@ const AuthProvider = ({ children }) => {
         });
 
         navigate("/login");
+        
       }
     } catch (error) {
       console.error(error.message);
@@ -103,17 +107,34 @@ const AuthProvider = ({ children }) => {
 
   const login=async(email,password)=>{
    if(user){
-    console.log("already logged in")
-    console.log(token)
+    Swal.fire({
+      icon: 'warning',
+      title: 'You are already logged in',
+    });
+    navigate('/userlandingpage')
     return;
+    
    }try{
     const {user,token}=await loginUser(email,password)
     setUser(user)
     setToken(token)
   localStorage.setItem('token',token)
-  localStorage.setItem('user',JSON.stringify(user))}
+  localStorage.setItem('user',JSON.stringify(user))
+  Swal.fire({
+    icon: 'success',
+    title: 'Logged in successfully',
+  });
+ 
+  navigate('/userlandingpage')
+}
   catch(error){
   console.error(error.message)
+  Swal.fire({
+    icon: 'error',
+    title: 'Error logging in',
+    text: error.message,
+  });
+  throw error;
   }
   }
   return (
