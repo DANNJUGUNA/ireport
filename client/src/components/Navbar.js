@@ -79,8 +79,11 @@ export default function Navbar() {
                     alt="Your Company"
                   />
                 </div>
-                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-                  {navigation.map((item) => (
+                
+                  {
+                    user ? 
+                    userNavigation.map((item) => (
+                      <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                     < a
                       key={item.name}
                      href={item.href}
@@ -94,8 +97,30 @@ export default function Navbar() {
                     >
                       {item.name}
                     </a>
-                  ))}
-                </div>
+                    </div>
+                  )) :
+                  navigation.map((item) => (
+                    <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                    < a
+                      key={item.name}
+                     href={item.href}
+                      className={classNames(
+                        item.current
+                          ? "bg-main3 text-white"
+                          : "text-gray-300 hover:bg-main3 hover:text-white",
+                        "px-3 py-2 rounded-md text-sm font-medium"
+                      )}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item.name}
+                    </a>
+                    </div>
+                    
+                  )) 
+                  
+                  
+                  }
+                
               </div>
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
