@@ -1,49 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { XCircleIcon } from '@heroicons/react/20/solid'
-import Swal from 'sweetalert2';
-import {  useNavigate } from 'react-router-dom'
 
 function AddReport() {
-  const[reportTypes, setReportTypes] = useState([])
-  const [errors, setErrors] = useState([])
-
-  const navigate = useNavigate()
-
-  // Success Submit Message function
-  const showMessage = (msg = '', type = 'success') => {
-    const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        customClass: { container: 'toast' },
-    });
-    toast.fire({
-        icon: type,
-        title: msg,
-        padding: '10px 20px',
-    });
-};
   const [formData, setFormData] = useState({
     description: "",
     image: "",
     video: "",
-    gps_coordinates: "-0.2802724, 36.0712048",
-    user_id: "1",
+    gps_coordinates: "",
+    user_id: "",
     report_type_id: "",
-    report_status_id: "1",
+    report_status_id: "",
     title: "",
-    location_name: "",
+    location: "",
   });
-  // console.log(formData)
-  // fetch all Report Types
-  useEffect(() => {
-    fetch('/report_types')
-    .then(r => r.json())
-    .then((data) => setReportTypes(data))
-    
-  }, [])
-
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -55,28 +23,13 @@ function AddReport() {
       },
       body: JSON.stringify(formData),
     })
-    .then( resp => {
-      if (resp.ok) {
-        resp.json()
-        .then((data) => console.log(data))
-        showMessage('Report has been saved successfully.');
-        navigate("/userlandingpage")
-      }
-      else {
-        resp.json()
-        .then(errorData => setErrors(errorData))
-        showMessage('Report has NOT been saved!', 'error');
-      }
-    })
-
-
-      // .then((response) => response.json())
-      // .then((data) => {
-      //   console.log("Success:", data);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
 
   function handleChange(e) {
@@ -108,41 +61,39 @@ function AddReport() {
                 <div className="space-y-6 sm:space-y-5">
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
-                      htmlFor="report_type_id"
+                      htmlFor="username"
                       className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                     >
-                      Report Type
+                      Incidence type
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <select
-                        id="report_type_id"
+                        id="country"
                         name="report_type_id"
                         autoComplete="off"
                         className="block w-full max-w-lg h-10 rounded-md border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:max-w-xs sm:text-sm"
                         onChange={handleChange}
                         value={formData.report_type_id}
-                      > 
-                        <option>Select Report Type</option>                       
-                        {reportTypes.map((type) => (
-                          <option key={type.id} value={type.id}>{type.name}</option>
-                        ))}
+                      >
+                        <option>Incidence-type</option>
+                        <option>Red-flag</option>
+                        <option>Intervention</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
-                      htmlFor="title"
+                      htmlFor="about"
                       className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                     >
-                      Report title
+                      Incidence title
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <input
-                        id="title"
                         name="title"
                         type="text"
-                        className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                        className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                         onChange={handleChange}
                         value={formData.title}
                       />
@@ -151,17 +102,17 @@ function AddReport() {
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
-                      htmlFor="description"
+                      htmlFor="about"
                       className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                     >
                       Description
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <textarea
-                        id="description"
+                        id="about"
                         name="description"
                         rows={4}
-                        className="block w-full max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                        className="block w-full max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                         defaultValue={""}
                         onChange={handleChange}
                         value={formData.description}
@@ -220,92 +171,58 @@ function AddReport() {
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
-                      htmlFor="video"
+                      htmlFor="cover-photo"
                       className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                     >
                       Add video
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <input
-                        id="video"
                         name="video"
                         type="text"
-                        className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                        className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                         onChange={handleChange}
                         value={formData.video}
                       />
                     </div>
                   </div>
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label
-                      htmlFor="location_name"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      Location Name
-                    </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
-                      <input
-                        id="location_name"
-                        name="location_name"
-                        type="text"
-                        className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
-                        onChange={handleChange}
-                        
-                      />
-                    </div>
-                  </div>
 
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
-                      htmlFor="gps_coordinates"
+                      htmlFor="email"
                       className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                     >
-                      GPS Coordinates
+                      GeoLocation co-ordinates
                     </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
+                    <div className="mt-1 sm:col-span-2 sm:mt-1 px-8">
                       <input
-                        id="gps_coordinates"
                         name="gps_coordinates"
-                        type="text"
-                        className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                        type="string"
+                        autoComplete=""
+                        placeholder="latitude,longitude"
+                        className="block w-full h-10 max-w-lg rounded-md bg-gray-200 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
                         onChange={handleChange}
-                        defaultValue="-0.2802724, 36.0712048"
+                        value={formData.gps_coordinates}
                       />
                     </div>
                   </div>
-                  {/* Alert for Displaying Submission Errors */}
-                  {/* { errors.length > 0 && */}
-                    {/* <div className="rounded-md bg-red-50 p-4 mt-3 w-2/3">
-                      <div className="flex">
-                        <div className="flex-shrink-0">
-                          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
-                        </div>
-                        <div className="ml-3">
-                          <h3 className="text-sm font-medium text-red-800">There were {errors.length} error(s) with your submission</h3>
-                          <div className="mt-2 text-sm text-red-700">
-                            <ul role="list" className="list-disc space-y-1 pl-5">
-                              {errors.map((error) => (
-                                <li>{error}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
-                  {/* } */}
-
                 </div>
               </div>
             </div>
 
             <div className="pt-5">
               <div className="flex justify-end">
-                
+                <button
+                  type="button"
+                  className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-main2 focus:ring-offset-2"
+                >
+                  Cancel
+                </button>
                 <button
                   type="submit"
                   className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-main2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-main1 focus:outline-none focus:ring-2 focus:ring-main2 focus:ring-offset-2"
                 >
-                  Submit
+                  Send
                 </button>
               </div>
             </div>

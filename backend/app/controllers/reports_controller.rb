@@ -25,22 +25,23 @@ class ReportsController < ApplicationController
 
   # PATCH/PUT /reports/:id
   def update
-    report = Report.find_by!(id: params[:id])
-    report.update(report_params)
-    render json: report, status: :accepted
+    if @report.update(report_params)
+      render json: @report
+    else
+      render json: @report.errors, status: :unprocessable_entity
+    end
   end
 
   # DELETE /reports/:id
   def destroy
-    report = Report.find_by!(id: params[:id])
-    report.destroy
+    @report.destroy
     head :no_content
   end
 
   private
 
   def set_report
-    @report = Report.find_by!(id: params[:id])
+    @report = Report.find(params[:id])
   end
 
   def report_params
