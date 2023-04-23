@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   get 'report_types/StatusTypes'
-  resources :reports
+  resources :reports do
+    member do
+      put :change_status
+    end
+  end
   resources :admins
   resources :users ,only: [ :index,:show]
   resources :report_statuses, only: [:index]

@@ -4712,3 +4712,416 @@ Started GET "/logo192.png" for 127.0.0.1 at 2023-04-21 23:49:07 +0300
   
 ActionController::RoutingError (No route matches [GET] "/logo192.png"):
   
+Started GET "/report_types" for 127.0.0.1 at 2023-04-23 17:55:22 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReportTypesController#index as */*
+  [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types"[0m
+  ↳ app/controllers/report_types_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.23ms)
+Completed 200 OK in 83ms (Views: 43.3ms | ActiveRecord: 1.0ms | Allocations: 43894)
+
+
+Started GET "/report_types" for 127.0.0.1 at 2023-04-23 17:55:22 +0300
+Processing by ReportTypesController#index as */*
+  [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types"[0m
+  ↳ app/controllers/report_types_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.01ms)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.2ms | Allocations: 1300)
+
+
+Started GET "/userreport/2" for 127.0.0.1 at 2023-04-23 17:55:23 +0300
+Processing by ReportsController#user_reports as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reports_controller.rb:42:in `user_reports'
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/controllers/reports_controller.rb:44:in `user_reports'
+No serializer found for resource: #<Report id: 2, description: "Theft at convenience store", image: "https://example.com/theft.jpg", video: nil, gps_coordinates: "37.7749° N, 122.4194° W", user_id: 2, report_status_id: 1, report_type_id: 2, created_at: "2023-04-21 20:38:53.027000000 +0000", updated_at: "2023-04-21 20:38:53.027000000 +0000", title: "Small man", location_name: "Ruiru">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Associations_CollectionProxy (0.75ms)
+Completed 200 OK in 80ms (Views: 29.1ms | ActiveRecord: 2.3ms | Allocations: 47646)
+
+
+Started GET "/userreport/2" for 127.0.0.1 at 2023-04-23 17:55:23 +0300
+Processing by ReportsController#user_reports as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reports_controller.rb:42:in `user_reports'
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/controllers/reports_controller.rb:44:in `user_reports'
+No serializer found for resource: #<Report id: 2, description: "Theft at convenience store", image: "https://example.com/theft.jpg", video: nil, gps_coordinates: "37.7749° N, 122.4194° W", user_id: 2, report_status_id: 1, report_type_id: 2, created_at: "2023-04-21 20:38:53.027000000 +0000", updated_at: "2023-04-21 20:38:53.027000000 +0000", title: "Small man", location_name: "Ruiru">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Associations_CollectionProxy (0.61ms)
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 0.4ms | Allocations: 1732)
+
+
+Started GET "/report_types" for 127.0.0.1 at 2023-04-23 17:55:26 +0300
+Processing by ReportTypesController#index as */*
+  [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types"[0m
+  ↳ app/controllers/report_types_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.23ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.2ms | Allocations: 1283)
+
+
+Started GET "/report_types" for 127.0.0.1 at 2023-04-23 17:55:26 +0300
+Processing by ReportTypesController#index as */*
+  [1m[36mReportType Load (0.2ms)[0m  [1m[34mSELECT "report_types".* FROM "report_types"[0m
+  ↳ app/controllers/report_types_controller.rb:5:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.03ms)
+Completed 200 OK in 11ms (Views: 10.6ms | ActiveRecord: 0.2ms | Allocations: 1281)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 17:55:28 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.3ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Relation (1.57ms)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.3ms | Allocations: 1789)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 17:55:28 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Relation (1.48ms)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.2ms | Allocations: 1691)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 17:55:33 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.3ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Relation (1.69ms)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 1691)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 17:55:33 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.3ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Relation (11.54ms)
+Completed 200 OK in 17ms (Views: 16.2ms | ActiveRecord: 0.3ms | Allocations: 1706)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 17:55:43 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Relation (1.9ms)
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 1691)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 17:55:43 +0300
+Processing by ReportsController#index as */*
+  [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports"[0m
+  ↳ app/controllers/reports_controller.rb:7:in `index'
+No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Report::ActiveRecord_Relation (2.43ms)
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.2ms | Allocations: 1691)
+
+
+Started GET "/reports/1" for 127.0.0.1 at 2023-04-23 18:13:03 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20230423150225_add_report_status_to_reports.rb
+
+
+):
+  
+activerecord (7.0.4.3) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.4.3) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.4.3) lib/active_support/file_update_checker.rb:83:in `execute'
+activesupport (7.0.4.3) lib/active_support/file_update_checker.rb:93:in `execute_if_updated'
+activerecord (7.0.4.3) lib/active_record/migration.rb:599:in `block in call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:13:35 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCACHE ActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 1 pending migration:
+
+20230423150225_add_report_status_to_reports.rb
+
+
+):
+  
+activerecord (7.0.4.3) lib/active_record/migration.rb:627:in `check_pending!'
+activerecord (7.0.4.3) lib/active_record/migration.rb:592:in `block (2 levels) in call'
+activesupport (7.0.4.3) lib/active_support/file_update_checker.rb:83:in `execute'
+activerecord (7.0.4.3) lib/active_record/migration.rb:597:in `block in call'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4.3) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4.3) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4.3) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4.3) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.6.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.6.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4.3) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+railties (7.0.4.3) lib/rails/engine.rb:530:in `call'
+rack-cors (2.0.1) lib/rack/cors.rb:102:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddReportStatusToReports (20230423150225)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areports" ("id" integer NOT NULL PRIMARY KEY, "description" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "video" varchar DEFAULT NULL, "gps_coordinates" varchar DEFAULT NULL, "user_id" integer NOT NULL, "report_status_id" integer NOT NULL, "report_type_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "title" varchar DEFAULT NULL, "location_name" varchar DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "tindex_areports_on_user_id" ON "areports" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areports_on_report_type_id" ON "areports" ("report_type_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areports_on_report_status_id" ON "areports" ("report_status_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "areports" ("id","description","image","video","gps_coordinates","user_id","report_status_id","report_type_id","created_at","updated_at","title","location_name")
+                     SELECT "id","description","image","video","gps_coordinates","user_id","report_status_id","report_type_id","created_at","updated_at","title","location_name" FROM "reports"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "reports"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddReportStatusToReports (20230423150225)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "areports" ("id" integer NOT NULL PRIMARY KEY, "description" varchar DEFAULT NULL, "image" varchar DEFAULT NULL, "video" varchar DEFAULT NULL, "gps_coordinates" varchar DEFAULT NULL, "user_id" integer NOT NULL, "report_status_id" integer NOT NULL, "report_type_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "title" varchar DEFAULT NULL, "location_name" varchar DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areports_on_user_id" ON "areports" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areports_on_report_type_id" ON "areports" ("report_type_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_areports_on_report_status_id" ON "areports" ("report_status_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "areports" ("id","description","image","video","gps_coordinates","user_id","report_status_id","report_type_id","created_at","updated_at","title","location_name")
+                     SELECT "id","description","image","video","gps_coordinates","user_id","report_status_id","report_type_id","created_at","updated_at","title","location_name" FROM "reports"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "reports"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:19:55 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 7.5ms | ActiveRecord: 0.0ms | Allocations: 647)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:20:11 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.32ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:20:11 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 200)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-04-23 18:21:08 +0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:9:in `index'
+[active_model_serializers]   [1m[36mReport Load (0.5ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:9:in `index'
+[active_model_serializers] No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers]   [1m[36mReport Load (0.2ms)[0m  [1m[34mSELECT "reports".* FROM "reports" WHERE "reports"."user_id" = ?[0m  [["user_id", 2]]
+[active_model_serializers]   ↳ app/controllers/users_controller.rb:9:in `index'
+[active_model_serializers] No serializer found for resource: #<Report id: 2, description: "Theft at convenience store", image: "https://example.com/theft.jpg", video: nil, gps_coordinates: "37.7749° N, 122.4194° W", user_id: 2, report_status_id: 1, report_type_id: 2, created_at: "2023-04-21 20:38:53.027000000 +0000", updated_at: "2023-04-21 20:38:53.027000000 +0000", title: "Small man", location_name: "Ruiru">
+[active_model_serializers] No serializer found for resource: #<Report id: 1, description: "Car accident on Main Street", image: "https://example.com/car-accident.jpg", video: "https://example.com/car-accident.mp4", gps_coordinates: "37.7749° N, 122.4194° W", user_id: 1, report_status_id: 1, report_type_id: 1, created_at: "2023-04-21 20:38:53.011483000 +0000", updated_at: "2023-04-21 20:38:53.011483000 +0000", title: "Big man", location_name: "Juja">
+[active_model_serializers] No serializer found for resource: #<Report id: 2, description: "Theft at convenience store", image: "https://example.com/theft.jpg", video: nil, gps_coordinates: "37.7749° N, 122.4194° W", user_id: 2, report_status_id: 1, report_type_id: 2, created_at: "2023-04-21 20:38:53.027000000 +0000", updated_at: "2023-04-21 20:38:53.027000000 +0000", title: "Small man", location_name: "Ruiru">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (20.37ms)
+Completed 200 OK in 42ms (Views: 35.8ms | ActiveRecord: 1.3ms | Allocations: 15757)
+
+
+Started GET "/reports/1" for 127.0.0.1 at 2023-04-23 18:21:15 +0300
+Processing by ReportsController#show as */*
+  Parameters: {"id"=>"1"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 195)
+
+
+Started PUT "/reports/:id/change_status" for 127.0.0.1 at 2023-04-23 18:22:59 +0300
+Processing by ReportsController#change_status as */*
+  Parameters: {"id"=>":id"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 194)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:29:28 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:29:28 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 10ms (Views: 9.3ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:30:15 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.7ms | Allocations: 201)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:30:15 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:31:50 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | Allocations: 201)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:31:50 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.7ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:33:31 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:33:32 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.5ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:33:43 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:33:43 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:34:16 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.3ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:34:16 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.1ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.7ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:35:00 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.8ms | Allocations: 200)
+
+
+Started GET "/reports" for 127.0.0.1 at 2023-04-23 18:35:00 +0300
+Processing by ReportsController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Filter chain halted as :authorize rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | Allocations: 200)
+
+

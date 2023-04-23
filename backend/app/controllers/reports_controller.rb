@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
-  skip_before_action :authorize, only: [:index, :show, :user_reports]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_report, only: [:show, :edit, :update, :destroy, :change_status]
+  
   # GET /reports.
   def index
     @reports = Report.all
@@ -35,6 +36,14 @@ class ReportsController < ApplicationController
     report = Report.find_by!(id: params[:id])
     report.destroy
     head :no_content
+  end
+
+  # CHANGE /reports_status/:id
+  def change_status
+    @report_status = ReportStatus.find(params[:report_status_id])
+    @report.update(report_status: @report_status)
+    # send email notification to user
+    redirect_to @report, notice: "Status changed successfully."
   end
 
   # Fetch User Specific Reports
