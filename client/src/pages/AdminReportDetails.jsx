@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef}from 'react'
 import { useParams } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 function AdminReportDetails({ match }) {
   const { reportId }  = useParams()
@@ -20,10 +21,79 @@ function AdminReportDetails({ match }) {
     }
   }, [reportId])
 
-  console.log(reportId)
+  // Success Message function
+  const showMessage = (msg = '', type = 'success') => {
+    const toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        // customClass: { container: 'toast' },
+    });
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: '10px 20px',
+    });
+  };
+
+  const [updateFormData, setUpdateFormData] = useState({});  
+
+  function handleUpdateChange(e) {
+    setUpdateFormData({
+      ...updateFormData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  console.log(updateFormData)
+  const [reportStatuses, setReportStatuses] = useState([])
+  
+  // fetch all Report Statuses
+  useEffect(() => {
+    if(reportStatus && reportStatus.id && typeof reportStatus.id === 'number') {
+    fetch('/report_statuses')
+    .then(r => r.json())
+    .then((data) => {
+      const filteredData = data.filter((name) => name.id > reportStatus.id);
+      setReportStatuses(filteredData);
+    })
+  }
+    
+  }, [reportStatus])
+  
+
+  // UPDATE functionality
+  function handleSubmitUpdate(e) {
+    fetch(`/reports/${reportId}`, {
+      method: "PATCH",
+      headers: {
+          "content-type": "application/json",
+          "accept": "application/json"
+      },
+      body: JSON.stringify(updateFormData)
+    })
+    .then(resp => {
+      if (resp.ok) {
+        resp.json()
+        .then((data) => {
+          setReportStatus(data.report_status)
+          showMessage('Report has been updated successfully.');
+          
+        })
+      }
+      else {
+        resp.json()
+        .then(errors => showMessage(errors.message, 'error'))
+
+      }
+  })
+    showMessage('Report has been updated successfully.');
+   
+  }
 
     // Add a check to see if report exists
-    if (!report) {
+    if (!reportStatus) {
       return <div>Loading.....</div>;
     }
 
@@ -159,14 +229,17 @@ function AdminReportDetails({ match }) {
               </label>
               <div className="mt-1">
                 <select
-                  id="status"
-                  name="status"
+                  id="report_status_id"
+                  name="report_status_id"                  
                   autoComplete="status-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                  onChange={handleUpdateChange}
+                  // defaultValue={reportStatuses.id}
                 >
-                  <option>Under Investigation</option>
-                  <option>Resolved</option>
-                  <option>Removed</option>
+                  <option>Select Status Update</option>
+                  {reportStatuses.map((type) => (
+                    <option key={type.id} value={type.id}>{type.name}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -176,6 +249,7 @@ function AdminReportDetails({ match }) {
                   <button
                     type="button"
                     className="inline-flex items-center justify-center rounded-md border border-transparent bg-success px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-success-300 focus:outline-none focus:ring-2 focus:ring-success focus:ring-offset-2"
+                    onClick={handleSubmitUpdate}
                   >
                     Save
                   </button>
