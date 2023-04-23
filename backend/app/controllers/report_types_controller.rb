@@ -1,5 +1,5 @@
 class ReportTypesController < ApplicationController
-  skip_before_action :authorized, only: :index
+  skip_before_action :authorize, only: :index
   def index
     report_types = ReportType.all
     render json: report_types, include: ['report_types'], status: :ok

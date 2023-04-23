@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         render json: users
     end
     def signup
-        @user=User.new(permited_params)
+        @user=User.create(permited_params)
         if @user.save
             token=encode_token({user_id: @user.id})
             render json: {user: @user,token: token},status: :created
