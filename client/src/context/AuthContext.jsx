@@ -39,6 +39,7 @@ export const AuthContext = createContext({
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,6 +49,8 @@ const AuthProvider = ({ children }) => {
     if (storedToken && storedUser) {
       setUser(storedUser);
       setToken(storedToken);
+     
+   
     }
   }, []);
 
@@ -86,6 +89,7 @@ const AuthProvider = ({ children }) => {
         });
 
         navigate("/login");
+        
       }
     } catch (error) {
       console.error(error.message);
@@ -120,6 +124,7 @@ const AuthProvider = ({ children }) => {
     icon: 'success',
     title: 'Logged in successfully',
   });
+ 
   navigate('/userlandingpage')
 }
   catch(error){
