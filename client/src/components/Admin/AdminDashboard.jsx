@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import sortBy from 'lodash/sortBy';
-import logo from '../../assets/images/logo.png'
-import { UsersIcon } from '@heroicons/react/24/outline'
+
+import StatsDashboard from '../StatsDashboard';
+
 
 
 function AdminDashboard() {
@@ -65,25 +66,31 @@ function AdminDashboard() {
     function redirectOnclick(id) {
         window.location.href = `/adminreportdetails/${id}`;
     }
+   
       
   return (
     <>
     <div className="min-h-screen bg-gray-50 py-6">
       <div className="py-10">
-        <header>
+      <header>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <img
+            <img
               className="h-7"
-              src={logo}
+              src={require('../../assets/images/i-reporter_adminDashboard.png')}
               alt="Company name"
             />
-            <div className='text-center p-4 m-6 text-main1 text-3xl font-bold font-poppins'>
-                <h1>Admin Dashboard</h1>
-           </div>
           </div>
-        </header>
-        <main>
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                     
+
+      </header>
+      <main>
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+          {/* Stats Section */}        
+                
+               <StatsDashboard/>
+            
+          {/* End of Stats Section */}   
             
           {/* User Dashboard Content */}
           {/* Data Table */}
@@ -123,7 +130,11 @@ function AdminDashboard() {
                 </div>
               ),
             },
-            { accessor: "description", title: "Description", sortable: true },
+            { 
+              accessor: "description_summary", 
+              title: "Description", 
+              sortable: true 
+            },
             { accessor: "gps_coordinates", title: "GPS", sortable: true },
             {
               accessor: "report_type",
@@ -149,19 +160,12 @@ function AdminDashboard() {
               titleClassName: "!text-center",
               render: ({id, params}) => ( 
                 <div>               
-                  <Link to={`/reports/${id}`} className="text-main2 hover:text-main1">   
+                  <Link to={`/adminreportdetails/${id}`} className="text-main2 hover:text-main1">   
                   <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
-                    Edit
+                    Review
                   </span>
                   </Link>
-                  <Link
-                    to={`/adminreportdetails/${params}`}
-                    className="text-main1 hover:text-main1-light font-semibold"
-                  >
-                    <span className="inline-flex items-center rounded bg-blue-100 m-1 px-2 py-0.5 text-xs font-medium text-blue-800">
-                        View 
-                    </span>
-                  </Link>
+                  
                 </div>              
               ),
             },

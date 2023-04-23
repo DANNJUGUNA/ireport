@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -43,11 +44,13 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     const storedUser = JSON.parse(localStorage.getItem('user'));
+
     if (storedToken && storedUser) {
       setUser(storedUser);
       setToken(storedToken);
     }
   }, []);
+
 
   const logout = () => {
     localStorage.removeItem('user');
@@ -88,13 +91,16 @@ const AuthProvider = ({ children }) => {
       console.error(error.message);
 
       Swal.fire({
-        icon: 'error',
-        title: 'Error creating user',
+
+        icon: "error",
+        title: "Error creating user",
+
         text: error.message,
       });
       throw error;
     }
   };
+
 
   const login=async(email,password)=>{
    if(user){
@@ -113,6 +119,7 @@ const AuthProvider = ({ children }) => {
   }
   return (
     <AuthContext.Provider value={{ user, token, login,logout, signup }}>
+
       {children}
     </AuthContext.Provider>
   );
