@@ -7,24 +7,13 @@ import {AuthContext} from '../context/AuthContext'
 
 
 function UserLandingPage() {
-  const{user} = useContext(AuthContext)
+  const {user} = useContext(AuthContext)
   // const[currentUser, setCurrentUser] = useState({})
   // setCurrentUser(user)
   // console.log(user.id)
     const[reports, setReports] = useState([])
-
     // fetch all user specific reports
-    useEffect(() => {
-        fetch(`/userreport/2`
-        // , {
-        //   headers: {
-        //     'Authorization': `Bearer ${token}`
-        //   }
-        // }
-        )
-        .then(res => res.json())
-        .then(data => setInitialRecords(data))
-    },[]) 
+    
     
     
 
@@ -111,8 +100,20 @@ function UserLandingPage() {
         const random = Math.floor(Math.random() * status.length);
         return status[random];
     };
-  
 
+    useEffect(() => {
+      if (user && user.id && typeof user.id === 'number') {
+        fetch(`/userreport/${user.id}`)
+          .then(res => res.json())
+          .then(data => setInitialRecords(data))
+      }
+    }, [user])
+    // console.log(user.id)
+
+  
+    if (!user) {
+      return <div>Loading...</div>;
+    }  
 
   
   return (
