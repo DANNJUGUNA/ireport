@@ -7,24 +7,20 @@ import {AuthContext} from '../context/AuthContext'
 
 
 function UserLandingPage() {
-  const{user} = useContext(AuthContext)
+  const{user,currentUser} = useContext(AuthContext)
   // const[currentUser, setCurrentUser] = useState({})
   // setCurrentUser(user)
-  // console.log(user.id)
+
     const[reports, setReports] = useState([])
 
     // fetch all user specific reports
     useEffect(() => {
-        fetch(`/userreport/2`
-        // , {
-        //   headers: {
-        //     'Authorization': `Bearer ${token}`
-        //   }
-        // }
-        )
-        .then(res => res.json())
-        .then(data => setInitialRecords(data))
-    },[]) 
+      if (user && user.id && typeof user.id === 'number') {
+        fetch(`/userreport/${user.id}`)
+          .then(res => res.json())
+          .then(data => setInitialRecords(data))
+      }
+    }, [user])
     
     
 
@@ -97,24 +93,6 @@ function UserLandingPage() {
         const random = Math.floor(Math.random() * color.length);
         return color[random];
     };
-
-    const randomStatus = () => {
-        const status = [
-        "PAID",
-        "APPROVED",
-        "FAILED",
-        "CANCEL",
-        "SUCCESS",
-        "PENDING",
-        "COMPLETE",
-        ];
-        const random = Math.floor(Math.random() * status.length);
-        return status[random];
-    };
-  
-
-
-  
   return (
     <>
     <div className="min-h-screen bg-gray-50 py-6">
