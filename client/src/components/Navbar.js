@@ -17,18 +17,15 @@ const navigation = [
   { name: "Home", href: '/', current: true },
   { name: "Public Reports", href: '/reports', current: false },
   { name: "About us", href: '/about-us', current: false },
-  
-
-  { name: "User Dashboard", href: '/userlandingpage'},
-  { name: "Add Report", href: '/addreport'},
-
   { name: "Admin Dashboard", href: '/admindashboard', current: false }
 
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  // { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Home", href: '/', current: true },
+  { name: "Public Reports", href: '/reports', current: false },
+  { name: "About us", href: '/about-us', current: false },
+  { name: "User Dashboard", href: '/userlandingpage'},
+  { name: "Add Report", href: '/addreport'},
 ];
 
 function classNames(...classes) {
@@ -123,6 +120,14 @@ export default function Navbar() {
                 
               </div>
               <div className="flex items-center space-x-4">
+                <div>
+                  { 
+                  user?  <div className="flex-shrink-0">
+                  <button onClick={handleOnclick}
+                className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
+
+                  >log out</button>
+           </div>:<div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
                   <a href="/login"
                     type="button"
@@ -139,22 +144,13 @@ export default function Navbar() {
                     <span>Sign up</span>
                   </a>
                 </div>
-                <div className="flex-shrink-0">
-                         <button onClick={handleOnclick}>log out</button>
-                  </div>
+                </div>
+                }
+              </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
-                    {/* <div>
-                      <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src={user.imageUrl}
-                          alt=""
-                        />
-                      </Menu.Button>
-                    </div> */}
+                   
                     <Transition
                       as={Fragment}
                       enter="transition ease-out duration-200"
@@ -187,7 +183,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
+      
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               {navigation.map((item) => (
