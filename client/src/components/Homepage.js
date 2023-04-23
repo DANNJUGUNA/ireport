@@ -4,7 +4,7 @@ import About from "./About";
 
 export default function Homepage() {
   return (
-    <>
+    <div>
       <div className="relative bg-white">
         <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
           <div className="px-6 pt-5 pb-24 sm:pb-32 lg:col-span-7 lg:px-0 lg:pt-20 lg:pb-40 xl:col-span-6">
@@ -44,15 +44,15 @@ export default function Homepage() {
           </div>
           <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
             <img
-              className=" w-full mt-3 bg-main1 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-[70%]"
+              className=" w-full mt-3 bg-main1 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-[75%]"
               src="https://bit.ly/3mBgOSt"
               alt=""
             />
           </div>
         </div>
       </div>
-      <Feature />
+      <Feature/>
       <Testimonials />
-    </>
+    </div>
   );
 }
