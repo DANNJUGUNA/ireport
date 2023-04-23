@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post'/signup',to:"users#signup"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  get '/userreport/:user_id', to: 'reports#user_reports'
   # Defines the root path route ("/")
   # root "articles#index"
 end

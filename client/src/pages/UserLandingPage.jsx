@@ -1,19 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import sortBy from 'lodash/sortBy';
 import StatsDashboard from '../components/StatsDashboard';
+import {AuthContext} from '../context/AuthContext'
 
 
 function UserLandingPage() {
+  const{user} = useContext(AuthContext)
+  // const[currentUser, setCurrentUser] = useState({})
+  // setCurrentUser(user)
+  // console.log(user.id)
     const[reports, setReports] = useState([])
 
     // fetch all user specific reports
     useEffect(() => {
-        fetch('/reports')
+        fetch(`/userreport/2`
+        // , {
+        //   headers: {
+        //     'Authorization': `Bearer ${token}`
+        //   }
+        // }
+        )
         .then(res => res.json())
         .then(data => setInitialRecords(data))
     },[]) 
+    
+    
 
     const [page, setPage] = useState(1);
     const PAGE_SIZES = [10, 20, 30, 50, 100];
@@ -27,7 +40,7 @@ function UserLandingPage() {
         columnAccessor: "id",
         direction: "asc",
     });
-
+    
     useEffect(() => {
         setPage(1);
     }, [pageSize]);

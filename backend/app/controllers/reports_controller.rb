@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  skip_before_action :authorize, only: [:index, :show]
+  skip_before_action :authorize, only: [:index, :show, :user_reports]
 
   # GET /reports.
   def index
@@ -35,6 +35,13 @@ class ReportsController < ApplicationController
     report = Report.find_by!(id: params[:id])
     report.destroy
     head :no_content
+  end
+
+  # Fetch User Specific Reports
+  def user_reports
+    user = User.find_by!(id: params[:user_id])
+    reports = Report.all
+    render json: user.reports, status: :ok
   end
 
   private
