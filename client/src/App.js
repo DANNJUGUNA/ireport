@@ -27,9 +27,10 @@ function App() {
 
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+      
       
         <AuthProvider>
+        <Navbar />
           <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/reports" element={<PublicReports />} />

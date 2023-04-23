@@ -1,7 +1,10 @@
-import { Fragment } from "react";
+import { Fragment,useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {Link} from 'react-router-dom'
+import { AuthContext } from "../context/AuthContext";
+import Swal from 'sweetalert2'
+
 // import { PlusIcon } from "@heroicons/react/20/solid";
 
 // const user = {
@@ -33,6 +36,19 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const{user,logout}=useContext(AuthContext)
+
+  const handleOnclick = () => {
+   Swal.fire({
+    icon: 'success',
+    title: 'Thank you for using Ireporer',
+    text: 'We are greatful for the opportunity to have had to report',
+    confirmButtonText: 'OK'
+   }).then(()=>{
+    logout();
+
+   }); 
+  };
   return (
     <Disclosure as="nav" className="bg-main1 text-poppins">
       {({ open }) => (
@@ -63,8 +79,11 @@ export default function Navbar() {
                     alt="Your Company"
                   />
                 </div>
-                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-                  {navigation.map((item) => (
+                
+                  {
+                    user ? 
+                    userNavigation.map((item) => (
+                      <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                     < a
                       key={item.name}
                      href={item.href}
@@ -78,8 +97,30 @@ export default function Navbar() {
                     >
                       {item.name}
                     </a>
-                  ))}
-                </div>
+                    </div>
+                  )) :
+                  navigation.map((item) => (
+                    <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                    < a
+                      key={item.name}
+                     href={item.href}
+                      className={classNames(
+                        item.current
+                          ? "bg-main3 text-white"
+                          : "text-gray-300 hover:bg-main3 hover:text-white",
+                        "px-3 py-2 rounded-md text-sm font-medium"
+                      )}
+                      aria-current={item.current ? "page" : undefined}
+                    >
+                      {item.name}
+                    </a>
+                    </div>
+                    
+                  )) 
+                  
+                  
+                  }
+                
               </div>
               <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
@@ -98,6 +139,9 @@ export default function Navbar() {
                     <span>Sign up</span>
                   </a>
                 </div>
+                <div className="flex-shrink-0">
+                         <button onClick={handleOnclick}>log out</button>
+                  </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">

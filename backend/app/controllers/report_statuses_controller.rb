@@ -1,5 +1,11 @@
 class ReportStatusesController < ApplicationController
-    def show
+  skip_before_action :authorize, only: :index
+  def index
+    report_statuses = ReportStatus.all
+    render json: report_statuses, include: ['report_statuses'], status: :ok
+  end
+
+  def show
     render json: report_status
   end
 

@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  skip_before_action :authorized, only: [:index, :show, :create]
+  skip_before_action :authorize, only: [:index, :show, :user_reports]
 
   # GET /reports.
   def index
@@ -25,23 +25,29 @@ class ReportsController < ApplicationController
 
   # PATCH/PUT /reports/:id
   def update
-    if @report.update(report_params)
-      render json: @report
-    else
-      render json: @report.errors, status: :unprocessable_entity
-    end
+    report = Report.find_by!(id: params[:id])
+    report.update(report_params)
+    render json: report, status: :accepted
   end
 
   # DELETE /reports/:id
   def destroy
-    @report.destroy
+    report = Report.find_by!(id: params[:id])
+    report.destroy
     head :no_content
+  end
+
+  # Fetch User Specific Reports
+  def user_reports
+    user = User.find_by!(id: params[:user_id])
+    reports = Report.all
+    render json: user.reports, status: :ok
   end
 
   private
 
   def set_report
-    @report = Report.find(params[:id])
+    @report = Report.find_by!(id: params[:id])
   end
 
   def report_params
