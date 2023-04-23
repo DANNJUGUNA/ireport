@@ -38,7 +38,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const{user,logout}=useContext(AuthContext)
-
+  
   const handleOnclick = () => {
    Swal.fire({
     icon: 'success',
@@ -47,7 +47,8 @@ export default function Navbar() {
     confirmButtonText: 'OK'
    }).then(()=>{
     logout();
-
+    // Redirect to the homepage
+    window.location.href = '/';
    }); 
   };
   return (
@@ -116,8 +117,13 @@ export default function Navbar() {
                   </a>
                 </div>
                 <div className="flex-shrink-0">
-                         <button onClick={handleOnclick}>log out</button>
-                  </div>
+                  <a href="/login"
+                    
+                    className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
+                  >
+                    <button onClick={handleOnclick}>log out</button>
+                  </a>
+                </div>
                 <div className="hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">

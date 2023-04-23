@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         render json: { error: 'Invalid email or password' }, status: :unauthorized
       end
     end
-    
+    end
     def update
        user=get_user
        user.update!(permited_params)
