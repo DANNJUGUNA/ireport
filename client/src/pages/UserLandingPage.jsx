@@ -144,7 +144,7 @@ function UserLandingPage() {
             
             {/* Stats Section */}        
                 
-            <StatsDashboard/>
+            <StatsDashboard records={recordsData}/>
             
             {/* End of Stats Section */}  
 
