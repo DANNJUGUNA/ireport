@@ -7,5 +7,7 @@
  .map {
     border: 0.2rem solid grey;
     border-radius: 0.2rem;
+    position: relative;
+    z-index: 1;
  }
  
