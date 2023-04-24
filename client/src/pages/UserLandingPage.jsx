@@ -178,7 +178,7 @@ function UserLandingPage() {
           columns={[
             {
               accessor: "user",
-              title: "Name",
+              title: "Reporter",
               sortable: true,
               render: (params) => (
                 <div className="flex items-center w-max">
@@ -194,10 +194,10 @@ function UserLandingPage() {
               sortable: true,
               render: (params) => (
                 <div
-                    className={`whitespace-nowrap ${
+                    className={`text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded border ${
                       params.report_type.name === 'Red Flag'
-                      ? 'bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded border border-red-400'                      
-                      : 'bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded border border-blue-400'
+                      ? 'bg-red-100 text-red-800 border-red-400'                      
+                      : 'bg-blue-100 text-blue-800 border-blue-400'
                     }`}
                 >
                   {params.report_type.name}
@@ -212,15 +212,15 @@ function UserLandingPage() {
               sortable: true,
               render: (params) => (
                 <span
-                    className={
+                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       params.report_status.name === 'Resolved'
-                      ? 'inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800'
+                      ? 'bg-green-100 text-green-800'
                       : params.report_status.name === 'Under Investigation'
-                      ? 'inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800'                            
+                      ? 'bg-yellow-100 text-yellow-800'                            
                       : params.report_status.name === 'Rejected'
-                      ? 'inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800'
-                      : 'inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800'
-                    }
+                      ? 'bg-red-100 text-red-800'
+                      : 'bg-gray-100 text-gray-800'
+                    }`}
                 >
                   {
                     params.report_status.name === 'Resolved'
@@ -229,18 +229,16 @@ function UserLandingPage() {
                       </svg>
                     : params.report_status.name === 'Under Investigation'
                     ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                  </svg>
-                  
-                  
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                      </svg>              
                     : params.report_status.name === 'Rejected'
                     ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                  
-                    : null
-                  }
-                  
+                      </svg>                  
+                    : <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                      </svg>                  
+                  }                  
                   {params.report_status.name}
                 </span>
               ),
