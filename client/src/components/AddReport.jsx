@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { XCircleIcon } from '@heroicons/react/20/solid'
 import Swal from 'sweetalert2';
 import {  useNavigate } from 'react-router-dom'
+import {AuthContext} from '../context/AuthContext'
+
 
 function AddReport() {
+  // access logged in user details
+  const {user} = useContext(AuthContext)
+
+
   const[reportTypes, setReportTypes] = useState([])
   const [errors, setErrors] = useState([])
 
@@ -23,19 +29,30 @@ function AddReport() {
         title: msg,
         padding: '10px 20px',
     });
-};
+  };
+
   const [formData, setFormData] = useState({
     description: "",
     image: "",
     video: "",
     gps_coordinates: "-0.2802724, 36.0712048",
-    user_id: "1",
+    user_id: "",
     report_type_id: "",
     report_status_id: "1",
     title: "",
     location_name: "",
   });
-  // console.log(formData)
+
+  // watches for changes in the user object, then once available, update the formData
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        ...formData,
+        user_id: user.id,
+      });
+    }
+  }, [user]);
+  
   // fetch all Report Types
   useEffect(() => {
     fetch('/report_types')
@@ -44,7 +61,7 @@ function AddReport() {
     
   }, [])
 
-
+  // POST Report
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/reports", {
@@ -68,15 +85,6 @@ function AddReport() {
         showMessage('Report has NOT been saved!', 'error');
       }
     })
-
-
-      // .then((response) => response.json())
-      // .then((data) => {
-      //   console.log("Success:", data);
-      // })
-      // .catch((error) => {
-      //   console.log(error);
-      // });
   }
 
   function handleChange(e) {
@@ -85,6 +93,11 @@ function AddReport() {
       [e.target.name]: e.target.value,
     });
   }
+
+  if(!user) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="min-h-full bg-gray-50 py-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
