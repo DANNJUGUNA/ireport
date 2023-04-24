@@ -193,7 +193,15 @@ function UserLandingPage() {
               title: "Report Type",
               sortable: true,
               render: (params) => (
-                <div>{params.report_type.name}</div>
+                <div
+                    className={`whitespace-nowrap ${
+                      params.report_type.name === 'Red Flag'
+                      ? 'bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded border border-red-400'                      
+                      : 'bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded border border-blue-400'
+                    }`}
+                >
+                  {params.report_type.name}
+                  </div>
               ),
             },
             { accessor: "user.email", title: "Email", sortable: true },
@@ -203,7 +211,38 @@ function UserLandingPage() {
               title: "Status",
               sortable: true,
               render: (params) => (
-                <div>{params.report_status.name}</div>
+                <span
+                    className={
+                      params.report_status.name === 'Resolved'
+                      ? 'inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800'
+                      : params.report_status.name === 'Under Investigation'
+                      ? 'inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800'                            
+                      : params.report_status.name === 'Rejected'
+                      ? 'inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800'
+                      : 'inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800'
+                    }
+                >
+                  {
+                    params.report_status.name === 'Resolved'
+                    ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    : params.report_status.name === 'Under Investigation'
+                    ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                  
+                  
+                    : params.report_status.name === 'Rejected'
+                    ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                  
+                    : null
+                  }
+                  
+                  {params.report_status.name}
+                </span>
               ),
             },
             {

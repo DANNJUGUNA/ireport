@@ -140,7 +140,10 @@ function UserReportDetails() {
     const { value, id } = e.target;
     setParams({ ...params, [id]: value });
   };
+
+  
   const editUser = (user) => {
+    
     const json = JSON.parse(JSON.stringify(defaultParams));
     setParams(json);
     if (user) {
@@ -148,15 +151,27 @@ function UserReportDetails() {
         setParams(json1);
     }
     setAddContactModal(true);
+  
   };
+
+  const handleClick = (reportId, event) => {
+    console.log('handleClick called');
+    if (event.currentTarget.disabled) {
+      // display popup message here
+      showMessage('Edit Button has been disabled!', 'error');
+    } else {
+      // handle button click here
+      editUser(reportId);
+    }
+  }
   
   if (!report || !report.gps_coordinates) {
-    console.log('Error: report or report.gps_coordinates is undefined');
+    // console.log('Error: report or report.gps_coordinates is undefined');
     return;
   }
   
   const gpsCoordinates = report.gps_coordinates.split(',').map(coord => Number(coord.trim()));
-  console.log(gpsCoordinates);
+  // console.log(gpsCoordinates);
   
   return (
     <>
@@ -237,6 +252,7 @@ function UserReportDetails() {
               </section>
 
               {/* GPS Map Card Section*/}
+              {/* { !addContactModal && */}
               <section aria-labelledby="gps-map-section">
                 <div className="bg-white shadow sm:overflow-hidden sm:rounded-lg">
                   <div className="divide-y divide-gray-200">
@@ -269,6 +285,7 @@ function UserReportDetails() {
                   
                 </div>
               </section>
+              {/* } */}
             </div>
 
               {/*USER ACTION SECTION  */}
@@ -282,17 +299,20 @@ function UserReportDetails() {
                 <div className="mt-6 flow-root">
                   
                 </div>
+                
                 <div className="justify-stretch mt-3 flex flex-col">
                   <button
-                    onClick={() => editUser(reportId)}
+                    onClick={(event) => handleClick(reportId, event)}
+                    disabled={reportStatus.id > 1}
                     type="button"
-                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-main4 px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="inline-flex items-center justify-center rounded-md border border-transparent bg-main4 px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main2 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     EDIT
                   </button>
                 </div>
                 <div className="justify-stretch mt-3 flex flex-col">
                   <button
+                    disabled={reportStatus.id > 1}
                     onClick={handleDelete}
                     type="button"
                     className="inline-flex items-center justify-center rounded-md border border-transparent bg-danger px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-danger focus:outline-none focus:ring-2 focus:ring-danger focus:ring-offset-2"
@@ -309,7 +329,7 @@ function UserReportDetails() {
 
     {/* Edit Report Modal */}
     <Transition appear show={addContactModal} as={Fragment}>
-                <Dialog as="div" open={addContactModal} onClose={() => setAddContactModal(false)} className="relative z-50">
+                <Dialog as="div" open={addContactModal} onClose={() => setAddContactModal(false)} className="absolute z-50">
                     <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                         <div className="fixed inset-0 bg-[black]/60" />
                     </Transition.Child>
