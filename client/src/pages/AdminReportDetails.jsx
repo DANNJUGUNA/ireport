@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef}from 'react'
 import { useParams } from 'react-router-dom'
 import Swal from 'sweetalert2';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 function AdminReportDetails({ match }) {
   const { reportId }  = useParams()
@@ -21,8 +22,8 @@ function AdminReportDetails({ match }) {
     }
   }, [reportId])
 
-  // Success Message function
-  const showMessage = (msg = '', type = 'success') => {
+   // Success Message function
+   const showMessage = (msg = '', type = 'success') => {
     const toast = Swal.mixin({
         toast: true,
         position: 'top',
@@ -91,6 +92,19 @@ function AdminReportDetails({ match }) {
     showMessage('Report has been updated successfully.');
    
   }
+
+
+  // =======> Map <========
+
+  if (!report || !report.gps_coordinates) {
+    console.log('Error: report or report.gps_coordinates is undefined');
+    return;
+  }
+  
+  const gpsCoordinates = report.gps_coordinates.split(',').map(coord => Number(coord.trim()));
+  console.log(gpsCoordinates);
+
+  // =======> Map <========
 
     // Add a check to see if report exists
     if (!reportStatus) {
@@ -197,13 +211,19 @@ function AdminReportDetails({ match }) {
                     <div className=" py-3 sm:px-3">
 
                       {/* MAP IMAGE WITH MARKER GOES HERE!!! */}
-                                         
-                          <img
-                            src="https://i.stack.imgur.com/t1Rfo.jpg"
-                            alt="Phone Camera"
-                            className=" rounded-lg "                            
-                          />                          
-                      
+                      <div className="map">
+                        <MapContainer center={gpsCoordinates} zoom={13} scrollWheelZoom={false}>
+                           <TileLayer
+                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                           />
+                           <Marker position={gpsCoordinates}>
+                             <Popup>
+                              {report.location_name}
+                             </Popup>
+                           </Marker>
+                         </MapContainer>
+                       </div>  
 
                     </div>
                   </div>
