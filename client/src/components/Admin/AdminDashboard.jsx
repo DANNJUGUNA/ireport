@@ -88,7 +88,7 @@ function AdminDashboard() {
 
           {/* Stats Section */}        
                 
-               <StatsDashboard/>
+               <StatsDashboard records={recordsData}/>
             
           {/* End of Stats Section */}   
             
