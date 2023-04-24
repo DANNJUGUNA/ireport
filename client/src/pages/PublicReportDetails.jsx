@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef}from 'react'
 import { useParams } from 'react-router-dom'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 
 function PublicReportDetails() {
@@ -19,6 +20,18 @@ function PublicReportDetails() {
       .then((data) => {setReport(data); setReportStatus(data.report_status); setReportType(data.report_type); SetUser(data.user) })
     }
   }, [reportId])
+
+  // =======> Map <========
+
+  if (!report || !report.gps_coordinates) {
+    console.log('Error: report or report.gps_coordinates is undefined');
+    return;
+  }
+  
+  const gpsCoordinates = report.gps_coordinates.split(',').map(coord => Number(coord.trim()));
+  console.log(gpsCoordinates);
+
+  // =======> Map <========
 
   return (
     <>
@@ -120,13 +133,19 @@ function PublicReportDetails() {
                     <div className=" py-3 sm:px-3">
 
                       {/* MAP IMAGE WITH MARKER GOES HERE!!! */}
-                                         
-                          <img
-                            src="https://i.stack.imgur.com/t1Rfo.jpg"
-                            alt="Phone Camera"
-                            className=" rounded-lg "                            
-                          />                          
-                      
+                      <div className="map">
+                        <MapContainer center={gpsCoordinates} zoom={13} scrollWheelZoom={false}>
+                           <TileLayer
+                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                           />
+                           <Marker position={gpsCoordinates}>
+                             <Popup>
+                              {report.location_name}
+                             </Popup>
+                           </Marker>
+                         </MapContainer>
+                       </div>  
 
                     </div>
                   </div>
