@@ -27,13 +27,33 @@ const loginUser=(email,password)=>{
         }
       })
 }
-
+const adminlogin=(email,password)=>{
+  return fetch('/admin',{
+    method: "POST",
+        headers: 
+       {
+        'content-Type': "application/json"
+       } ,
+       body: JSON.stringify({email: email, password: password})
+  })
+  .then(response=>response.json())
+      .then(data=>{
+        if(data.authorized){
+          const token=data.token
+  
+          return {user: data.user,token:token}
+        }
+        else{
+          throw new Error("Invalid email or password")
+        }})
+}
 export const AuthContext = createContext({
   user: null,
   token: null,
   login: () => {},
   signup: () => {},
-  logout: ()=>{}
+  logout: ()=>{},
+  adminlog:()=>{}
 });
 
 const AuthProvider = ({ children }) => {
@@ -100,7 +120,37 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   };
-
+ const adminlog= async(email,password)=>{
+  if(user){
+    Swal.fire({
+      icon: 'warning',
+      title: 'Admin is already logged in',
+    });
+    navigate('/admindashboard')
+    return;
+  }
+  try{
+    const{user,token}=await adminlogin(email,password)
+    setUser(user)
+    setToken(token)
+    localStorage.setItem('token',token)
+  localStorage.setItem('user',JSON.stringify(user))
+  Swal.fire({
+    icon: 'success',
+    title: 'Logged in successfully',
+  });
+ 
+  navigate('/admindashboard')
+  }catch(error){
+    console.error(error.message)
+  Swal.fire({
+    icon: 'error',
+    title: 'Error logging in',
+    text: error.message,
+  });
+  throw error;
+  }
+ }
   const login=async(email,password)=>{
    if(user){
     console.log("already logged in")
@@ -125,7 +175,7 @@ const AuthProvider = ({ children }) => {
   }
   }
   return (
-    <AuthContext.Provider value={{ user, token, login,logout, signup }}>
+    <AuthContext.Provider value={{ user, token, login,logout, signup,adminlog }}>
 
       {children}
     </AuthContext.Provider>

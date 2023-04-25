@@ -21,6 +21,7 @@ import UserLandingPage from "./pages/UserLandingPage";
 import Homepage from "./components/Homepage";
 import AuthProvider from "./context/AuthContext";
 import UserReportDetails from "./pages/UserReportDetails";
+import AdminAuthProvider from "./context/AdminContext";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       
       
         <AuthProvider>
+          <AdminAuthProvider>
         <Navbar />
           <Routes>
               <Route path="/" element={<Homepage />} />
@@ -46,6 +48,7 @@ function App() {
               <Route path="/adminreportdetails/:reportId" element={<AdminReportDetails />} />
               <Route path="/about-us" element={<About />} />
           </Routes>
+          </AdminAuthProvider>
         </AuthProvider>
 
 
