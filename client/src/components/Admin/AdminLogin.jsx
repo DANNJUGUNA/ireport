@@ -1,7 +1,18 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
 import logo1 from '../../assets/images/logo-icon.png'
-
+import { AuthContext } from '../../context/AuthContext'
 function AdminLogin() {
+    const{adminlog}=useContext(AuthContext)
+    const[email,setEmail]=useState('')
+    const[password,setPassword]=useState('')
+    console.log(email)
+    console.log(password)
+    const handleSubmit = (e)=>{
+      // send Data to rails
+      e.preventDefault()
+      adminlog(email, password)
+  }
+  
   return (
     <div>
         <div className="flex min-h-full p-10">
@@ -19,7 +30,7 @@ function AdminLogin() {
                 <div className="mt-8">
 
                 <div className="mt-6">
-                    <form action="#" method="POST" className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                         Email address
@@ -29,6 +40,7 @@ function AdminLogin() {
                             id="email"
                             name="email"
                             type="email"
+                            onChange={e => setEmail(e.target.value)} 
                             autoComplete="email"
                             required
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -45,6 +57,7 @@ function AdminLogin() {
                             id="password"
                             name="password"
                             type="password"
+                            onChange={e => setPassword(e.target.value)} 
                             autoComplete="current-password"
                             required
                             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
