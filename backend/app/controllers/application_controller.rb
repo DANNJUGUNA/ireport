@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
     before_action :authorize
-
+   
     def encode_token(payload)
       # should store secret in env variable
       JWT.encode(payload, 'my_s3cr3t')
@@ -25,6 +25,8 @@ class ApplicationController < ActionController::API
       def current_user
         if decoded_token
           user_id = decoded_token[0]['user_id']
+          admin_id=decoded_token[0]['admin_id']
+          @admin=Admin.find_by(id: admin_id)
           @user = User.find_by(id: user_id)
         end
       end
