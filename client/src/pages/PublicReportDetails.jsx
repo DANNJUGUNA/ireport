@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef}from 'react'
 import { useParams } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import ReportDetailsHeader from '../components/ReportDetailsHeader';
+
 
 
 function PublicReportDetails() {
+  const back_url = "/reports"
+
   const { reportId }  = useParams()
 
   const[report, setReport] = useState([])
@@ -37,42 +41,7 @@ function PublicReportDetails() {
     <>
     <div className="min-h-full bg-gray-100 py-6">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="overflow-hidden rounded-lg bg-white shadow">
-        
-        <div className="bg-white p-6">
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <div className="sm:flex sm:space-x-5">
-              
-              <div className="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-                <p className="text-sm font-medium text-gray-600">Report No: {report.id}</p>
-                <p className="text-xl font-bold text-gray-900 sm:text-2xl">{reportType.name}</p>
-                <p className="text-sm font-medium text-gray-600">{report.title}</p>
-              </div>
-            </div>
-            <div className="mt-5 flex justify-center sm:mt-0">
-              <a
-                href="/reports"
-                className="flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-              >
-                BACK
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
-          
-            <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{report.created_at}</span>
-            </div>
-            <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{report.updated_at}</span>
-            </div>
-            <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Report Status: </span> <span className="text-gray-600">{reportStatus.name}</span>
-            </div>
-         
-        </div>
-      </div>
+      <ReportDetailsHeader report={report} reportType={reportType} reportStatus={reportStatus} back_url={back_url}/>
       {/* 2-Column Section */}
       <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-3 lg:col-start-1">
