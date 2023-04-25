@@ -111,7 +111,15 @@ const AuthProvider = ({ children }) => {
     setUser(user)
     setToken(token)
   localStorage.setItem('token',token)
-  localStorage.setItem('user',JSON.stringify(user))}
+  localStorage.setItem('user',JSON.stringify(user))
+  Swal.fire({
+    icon: 'success',
+    title: 'Logged in successfully',
+  });
+
+  navigate('/userlandingpage')
+}
+  
   catch(error){
   console.error(error.message)
   }
