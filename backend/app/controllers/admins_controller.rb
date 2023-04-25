@@ -1,4 +1,15 @@
 class AdminsController < ApplicationController
+    skip_before_action :authorize,only: [:admin]
+    def admin
+        @admin = Admin.find_by(email: params[:email])
+      if @admin && @admin.authenticate(params[:password])
+        token = encode_token({ admin_id: @admin.id })
+        render json: { admin: @admin.as_json(except: [:created_at, :updated_at]), token: token, authorized: true  }
+      else
+        render json: { error: 'Invalid email or password' }, status: :unauthorized
+      end
+    end
+
     def index
         admin=Admin.all 
         render json: admin, status: :ok 
@@ -23,6 +34,6 @@ class AdminsController < ApplicationController
         Admin.find(params[:id])
     end
     def permited_params
-        params.permit(:first_name,:surname,:email,:password_digest)
+        params.permit(:first_name,:surname,:email,:password)
     end
 end
