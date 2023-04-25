@@ -3,12 +3,43 @@ import { XCircleIcon } from '@heroicons/react/20/solid'
 import Swal from 'sweetalert2';
 import {  useNavigate } from 'react-router-dom'
 import {AuthContext} from '../context/AuthContext'
+import { LoadScript, Autocomplete } from '@react-google-maps/api';
 
 
 function AddReport() {
   // access logged in user details
   const {user} = useContext(AuthContext)
 
+  // GPS MAP CODE
+ 
+  const [location, setLocation] = useState({
+    name: '',
+    lat: null,
+    lng: null,
+  });
+  const [autocomplete, setAutocomplete] = useState(null);
+
+  const onLoad = (autocomplete) => {
+    console.log('autocomplete: ', autocomplete);
+    setAutocomplete(autocomplete);
+  };
+
+  const onPlaceChanged = () => {
+    const place = autocomplete.getPlace();
+    const location = {
+      name: place.name,
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+    };
+    setLocation(location);
+    setFormData({
+      ...formData,
+      location_name: place.name,
+      gps_coordinates: `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`,
+    });
+  };
+
+  // END OF GPS MAP CODE
 
   const[reportTypes, setReportTypes] = useState([])
   const [errors, setErrors] = useState([])
@@ -35,13 +66,16 @@ function AddReport() {
     description: "",
     image: "",
     video: "",
-    gps_coordinates: "-0.2802724, 36.0712048",
+    gps_coordinates: "",
     user_id: "",
     report_type_id: "",
     report_status_id: "1",
     title: "",
     location_name: "",
   });
+  console.log(`Location Name: ${formData.location_name}`)
+  console.log(`Location Name: ${formData.gps_coordinates}`)
+
 
   // watches for changes in the user object, then once available, update the formData
   useEffect(() => {
@@ -249,6 +283,7 @@ function AddReport() {
                       />
                     </div>
                   </div>
+                  
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
                       htmlFor="location_name"
@@ -257,35 +292,22 @@ function AddReport() {
                       Location Name
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
-                      <input
-                        id="location_name"
-                        name="location_name"
-                        type="text"
-                        className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
-                        onChange={handleChange}
-                        
-                      />
+                      <LoadScript
+                        googleMapsApiKey={'AIzaSyAnZbdt4s3ELI3x7kdeBxvrLa1nNgEwCFE'}
+                        libraries={['places']}
+                      >
+                        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+                          <input 
+                            type='text' 
+                            id='autocomplete' 
+                            className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                            placeholder='Enter address' />
+                        </Autocomplete>                        
+                      </LoadScript>
                     </div>
                   </div>
 
-                  <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                    <label
-                      htmlFor="gps_coordinates"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      GPS Coordinates
-                    </label>
-                    <div className="mt-1 sm:col-span-2 sm:mt-0">
-                      <input
-                        id="gps_coordinates"
-                        name="gps_coordinates"
-                        type="text"
-                        className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
-                        onChange={handleChange}
-                        defaultValue="-0.2802724, 36.0712048"
-                      />
-                    </div>
-                  </div>
+                  
                   {/* Alert for Displaying Submission Errors */}
                   {/* { errors.length > 0 && */}
                     {/* <div className="rounded-md bg-red-50 p-4 mt-3 w-2/3">
