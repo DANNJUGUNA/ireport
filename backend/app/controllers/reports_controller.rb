@@ -24,14 +24,11 @@ class ReportsController < ApplicationController
   # end
 
   def create
+    report_params = params.require(:report).permit(:description, :video, :gps_coordinates, :user_id, :report_type_id, :report_status_id, :title, :location_name)
+    report_params[:image] = params[:image] 
+  
     @report = Report.new(report_params)
     
-    if params[:report][:image].present?
-      uploaded_file = params[:report][:image]
-      cloudinary_url = Cloudinary::Uploader.upload(uploaded_file.tempfile.path)["secure_url"]
-      @report.image = cloudinary_url
-    end
-  
     if @report.save
       render json: @report, status: :created
     else
@@ -39,6 +36,7 @@ class ReportsController < ApplicationController
     end
   end
   
+
 
   # PATCH/PUT /reports/:id
   def update
