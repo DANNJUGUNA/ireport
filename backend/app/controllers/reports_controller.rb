@@ -14,14 +14,31 @@ class ReportsController < ApplicationController
   end
 
   # POST /reports
+  # def create
+  #   @report = Report.new(report_params)
+  #   if @report.save
+  #     render json: @report, status: :created
+  #   else
+  #     render json: @report.errors, status: :unprocessable_entity
+  #   end
+  # end
+
   def create
     @report = Report.new(report_params)
+    
+    if params[:report][:image].present?
+      uploaded_file = params[:report][:image]
+      cloudinary_url = Cloudinary::Uploader.upload(uploaded_file.tempfile.path)["secure_url"]
+      @report.image = cloudinary_url
+    end
+  
     if @report.save
       render json: @report, status: :created
     else
       render json: @report.errors, status: :unprocessable_entity
     end
   end
+  
 
   # PATCH/PUT /reports/:id
   def update
