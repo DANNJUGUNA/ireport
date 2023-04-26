@@ -54,13 +54,21 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const navigate = useNavigate();
 
+
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+  
 
     if (storedToken && storedUser) {
-      setUser(storedUser);
-      setToken(storedToken);
+      try {
+        setUser(JSON.parse(storedUser));
+        setToken(storedToken);
+      } catch (error) {
+        console.error(error);
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+      }
     }
   }, []);
 
