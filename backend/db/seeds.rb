@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # Admin users
-Admin.create(first_name: "Admin", surname: "User", email: "admin@example.com", password_digest: "password_digest")
+Admin.create(first_name: "Admin", surname: "User", email: "admin@example.com", password: "password_digest")
 
 # Report types
 ReportType.create(name: "Red Flag")

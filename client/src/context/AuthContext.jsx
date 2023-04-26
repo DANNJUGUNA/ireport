@@ -27,30 +27,47 @@ const loginUser=(email,password)=>{
         }
       })
 }
-
+const adminlogin=(email,password)=>{
+  return fetch('/admin',{
+    method: "POST",
+        headers: 
+       {
+        'content-Type': "application/json"
+       } ,
+       body: JSON.stringify({email: email, password: password})
+  })
+  .then(response=>response.json())
+      .then(data=>{
+        if(data.authorized){
+          const token=data.token
+  
+          return {user: data.user,token:token}
+        }
+        else{
+          throw new Error("Invalid email or password")
+        }})
+}
 export const AuthContext = createContext({
   user: null,
   token: null,
   login: () => {},
   signup: () => {},
-  logout: ()=>{}
+  logout: ()=>{},
+  adminlog:()=>{}
 });
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  
   const navigate = useNavigate();
 
   useEffect(() => {
-     const storedToken = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem('token');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
 
     if (storedToken && storedUser) {
       setUser(storedUser);
       setToken(storedToken);
-     
-   
     }
   }, []);
 
@@ -89,7 +106,6 @@ const AuthProvider = ({ children }) => {
         });
 
         navigate("/login");
-        
       }
     } catch (error) {
       console.error(error.message);
@@ -104,16 +120,42 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   };
-
-  const login=async(email,password)=>{
-   if(user){
+ const adminlog= async(email,password)=>{
+  if(user){
     Swal.fire({
       icon: 'warning',
-      title: 'You are already logged in',
+      title: 'Admin is already logged in',
     });
-    navigate('/userlandingpage')
+    navigate('/admindashboard')
     return;
-    
+  }
+  try{
+    const{user,token}=await adminlogin(email,password)
+    setUser(user)
+    setToken(token)
+    localStorage.setItem('token',token)
+  localStorage.setItem('user',JSON.stringify(user))
+  Swal.fire({
+    icon: 'success',
+    title: 'Logged in successfully',
+  });
+ 
+  navigate('/admindashboard')
+  }catch(error){
+    console.error(error.message)
+  Swal.fire({
+    icon: 'error',
+    title: 'Error logging in',
+    text: error.message,
+  });
+  throw error;
+  }
+ }
+  const login=async(email,password)=>{
+   if(user){
+    console.log("already logged in")
+    console.log(token)
+    return;
    }try{
     const {user,token}=await loginUser(email,password)
     setUser(user)
@@ -124,21 +166,16 @@ const AuthProvider = ({ children }) => {
     icon: 'success',
     title: 'Logged in successfully',
   });
- 
+
   navigate('/userlandingpage')
 }
+  
   catch(error){
   console.error(error.message)
-  Swal.fire({
-    icon: 'error',
-    title: 'Error logging in',
-    text: error.message,
-  });
-  throw error;
   }
   }
   return (
-    <AuthContext.Provider value={{ user, token, login,logout, signup }}>
+    <AuthContext.Provider value={{ user, token, login,logout, signup,adminlog }}>
 
       {children}
     </AuthContext.Provider>

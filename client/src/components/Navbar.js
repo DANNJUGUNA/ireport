@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {Link} from 'react-router-dom'
 import { AuthContext } from "../context/AuthContext";
 import Swal from 'sweetalert2'
-
+// import { AdminContext } from "../context/AdminContext";
 // import { PlusIcon } from "@heroicons/react/20/solid";
 
 // const user = {
@@ -17,7 +17,7 @@ const navigation = [
   { name: "Home", href: '/', current: false },
   { name: "Public Reports", href: '/reports', current: false },
   { name: "About us", href: '/about-us', current: false },
-  { name: "Admin Dashboard", href: '/admindashboard', current: false }
+  { name: "Admin", href: '/adminlogin', current: false }
 
 ];
 const userNavigation = [
@@ -34,7 +34,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const{user,logout}=useContext(AuthContext)
-
+  // const {admin,logout1}=useContext(AdminContext)
   const handleOnclick = () => {
    Swal.fire({
     icon: 'success',
@@ -46,6 +46,17 @@ export default function Navbar() {
     window.location.href = '/';
    }); 
   };
+  const handleadmin = () => {
+    Swal.fire({
+     icon: 'success',
+     title: 'Thank you for using Ireporer',
+     text: 'We are greatful for the opportunity to have had to report',
+     confirmButtonText: 'OK'
+    }).then(()=>{
+    //  logout();
+     window.location.href = '/';
+    }); 
+   };
   return (
     <Disclosure as="nav" className="bg-main1 text-poppins">
       {({ open }) => (
