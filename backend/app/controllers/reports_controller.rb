@@ -14,14 +14,29 @@ class ReportsController < ApplicationController
   end
 
   # POST /reports
+  # def create
+  #   @report = Report.new(report_params)
+  #   if @report.save
+  #     render json: @report, status: :created
+  #   else
+  #     render json: @report.errors, status: :unprocessable_entity
+  #   end
+  # end
+
   def create
+    report_params = params.require(:report).permit(:description, :video, :gps_coordinates, :user_id, :report_type_id, :report_status_id, :title, :location_name)
+    report_params[:image] = params[:image] 
+  
     @report = Report.new(report_params)
+    
     if @report.save
       render json: @report, status: :created
     else
       render json: @report.errors, status: :unprocessable_entity
     end
   end
+  
+
 
   # PATCH/PUT /reports/:id
   def update
