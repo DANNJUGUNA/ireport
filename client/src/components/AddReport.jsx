@@ -1,26 +1,25 @@
 import React, { useEffect, useState, useContext } from "react";
-import { XCircleIcon } from '@heroicons/react/20/solid'
-import Swal from 'sweetalert2';
-import {  useNavigate } from 'react-router-dom'
-import {AuthContext} from '../context/AuthContext'
-import { LoadScript, Autocomplete } from '@react-google-maps/api';
-
+import { XCircleIcon } from "@heroicons/react/20/solid";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { LoadScript, Autocomplete } from "@react-google-maps/api";
 
 function AddReport() {
   // access logged in user details
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   // GPS MAP CODE
- 
+
   const [location, setLocation] = useState({
-    name: '',
+    name: "",
     lat: null,
     lng: null,
   });
   const [autocomplete, setAutocomplete] = useState(null);
 
   const onLoad = (autocomplete) => {
-    console.log('autocomplete: ', autocomplete);
+    console.log("autocomplete: ", autocomplete);
     setAutocomplete(autocomplete);
   };
 
@@ -41,24 +40,24 @@ function AddReport() {
 
   // END OF GPS MAP CODE
 
-  const[reportTypes, setReportTypes] = useState([])
-  const [errors, setErrors] = useState([])
+  const [reportTypes, setReportTypes] = useState([]);
+  const [errors, setErrors] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Success Submit Message function
-  const showMessage = (msg = '', type = 'success') => {
+  const showMessage = (msg = "", type = "success") => {
     const toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        customClass: { container: 'toast' },
+      toast: true,
+      position: "top",
+      showConfirmButton: false,
+      timer: 3000,
+      customClass: { container: "toast" },
     });
     toast.fire({
-        icon: type,
-        title: msg,
-        padding: '10px 20px',
+      icon: type,
+      title: msg,
+      padding: "10px 20px",
     });
   };
 
@@ -73,9 +72,8 @@ function AddReport() {
     title: "",
     location_name: "",
   });
-  console.log(`Location Name: ${formData.location_name}`)
-  console.log(`Location Name: ${formData.gps_coordinates}`)
-
+  console.log(`Location Name: ${formData.location_name}`);
+  console.log(`Location Name: ${formData.gps_coordinates}`);
 
   // watches for changes in the user object, then once available, update the formData
   useEffect(() => {
@@ -86,14 +84,13 @@ function AddReport() {
       });
     }
   }, [user]);
-  
+
   // fetch all Report Types
   useEffect(() => {
-    fetch('/report_types')
-    .then(r => r.json())
-    .then((data) => setReportTypes(data))
-    
-  }, [])
+    fetch("/report_types")
+      .then((r) => r.json())
+      .then((data) => setReportTypes(data));
+  }, []);
 
   // POST Report
   function handleSubmit(e) {
@@ -105,31 +102,45 @@ function AddReport() {
         Accept: "application/json",
       },
       body: JSON.stringify(formData),
-    })
-    .then( resp => {
+    }).then((resp) => {
       if (resp.ok) {
-        resp.json()
-        .then((data) => console.log(data))
-        showMessage('Report has been saved successfully.');
-        navigate("/userlandingpage")
+        resp.json().then((data) => console.log(data));
+        showMessage("Report has been saved successfully.");
+        navigate("/userlandingpage");
+      } else {
+        resp.json().then((errorData) => setErrors(errorData));
+        showMessage("Report has NOT been saved!", "error");
       }
-      else {
-        resp.json()
-        .then(errorData => setErrors(errorData))
-        showMessage('Report has NOT been saved!', 'error');
-      }
-    })
-  }
-
-  function handleChange(e) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
     });
   }
 
-  if(!user) {
-    return <div>Loading...</div>
+  function handleChange(event) {
+    const { name, value } = event.target;
+    let newFormData = { ...formData };
+
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "h9stgrub");
+      fetch("https://api.cloudinary.com/v1_1/dm66wpmtb/image/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          newFormData[name] = data.secure_url;
+          setFormData(newFormData);
+        })
+        .catch((error) => console.error(error));
+    } else {
+      newFormData[name] = value;
+      setFormData(newFormData);
+    }
+  }
+
+  if (!user) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -168,10 +179,12 @@ function AddReport() {
                         className="block w-full max-w-lg h-10 rounded-md border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:max-w-xs sm:text-sm"
                         onChange={handleChange}
                         value={formData.report_type_id}
-                      > 
-                        <option>Select Report Type</option>                       
+                      >
+                        <option>Select Report Type</option>
                         {reportTypes.map((type) => (
-                          <option key={type.id} value={type.id}>{type.name}</option>
+                          <option key={type.id} value={type.id}>
+                            {type.name}
+                          </option>
                         ))}
                       </select>
                     </div>
@@ -252,7 +265,6 @@ function AddReport() {
                                 type="file"
                                 className="sr-only"
                                 onChange={handleChange}
-                                value={formData.image}
                               />
                             </label>
                             <p className="pl-1">or drag and drop</p>
@@ -283,7 +295,7 @@ function AddReport() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                     <label
                       htmlFor="location_name"
@@ -293,24 +305,29 @@ function AddReport() {
                     </label>
                     <div className="mt-1 sm:col-span-2 sm:mt-0">
                       <LoadScript
-                        googleMapsApiKey={'AIzaSyAnZbdt4s3ELI3x7kdeBxvrLa1nNgEwCFE'}
-                        libraries={['places']}
+                        googleMapsApiKey={
+                          "AIzaSyAnZbdt4s3ELI3x7kdeBxvrLa1nNgEwCFE"
+                        }
+                        libraries={["places"]}
                       >
-                        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
-                          <input 
-                            type='text' 
-                            id='autocomplete' 
+                        <Autocomplete
+                          onLoad={onLoad}
+                          onPlaceChanged={onPlaceChanged}
+                        >
+                          <input
+                            type="text"
+                            id="autocomplete"
                             className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
-                            placeholder='Enter address' />
-                        </Autocomplete>                        
+                            placeholder="Enter address"
+                          />
+                        </Autocomplete>
                       </LoadScript>
                     </div>
                   </div>
 
-                  
                   {/* Alert for Displaying Submission Errors */}
                   {/* { errors.length > 0 && */}
-                    {/* <div className="rounded-md bg-red-50 p-4 mt-3 w-2/3">
+                  {/* <div className="rounded-md bg-red-50 p-4 mt-3 w-2/3">
                       <div className="flex">
                         <div className="flex-shrink-0">
                           <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
@@ -328,14 +345,12 @@ function AddReport() {
                       </div>
                     </div> */}
                   {/* } */}
-
                 </div>
               </div>
             </div>
 
             <div className="pt-5">
               <div className="flex justify-end">
-                
                 <button
                   type="submit"
                   className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-main2 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-main1 focus:outline-none focus:ring-2 focus:ring-main2 focus:ring-offset-2"
