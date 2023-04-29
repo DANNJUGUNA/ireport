@@ -75,17 +75,16 @@ export default function Navbar() {
                     )}
                   </Disclosure.Button>
                 </div>
-                <div className="flex flex-shrink-0 items-center">
-                  {/* <img
-                    className="block h-8 w-auto lg:hidden bg-white"
-                    src={require('../assets/images/logo-icon.png')}
-                    alt="Your Company"
-                  /> */}
+                <div className="flex flex-shrink-0 items-center">             
+    
+                <a
+                  href="/">  
                   <img
-                    className="hidden h-8 w-auto lg:block bg-white oject-cover"
-                    src={require('../assets/images/logo-icon.png')}
-                    alt="Your Company"
+                    className=" h-12 w-auto lg:block oject-cover"
+                    src={require('../assets/images/logo(outer_glow).png')}
+                    alt="iReporter"                    
                   />
+                </a>
                 </div>
                 
                   {
