@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-    skip_before_action :authorize,only: [:admin]
+    skip_before_action :authorize,only: [:admin, :signup_admin]
+
     def admin
         @admin = Admin.find_by(email: params[:email])
       if @admin && @admin.authenticate(params[:password])
@@ -18,11 +19,17 @@ class AdminsController < ApplicationController
         admin=get_admin
         render json: admin, status: :ok
     end
-    def create
-        admin=Admin.create!(permited_params)
-        render json: admin,status: :created
-        
-    end
+
+    def signup_admin
+        admin = Admin.create!(permited_params)
+        if admin.save
+          token = encode_token({admin_id: admin.id})
+          render json: {admin: admin, token: token}, status: :created   
+        else
+          render json: {errors: admin.errors.full_messages}, status: :unprocessable_entity
+        end
+      end
+      
     def update
         admin=get_admin
         admin.update!(permited_params)
