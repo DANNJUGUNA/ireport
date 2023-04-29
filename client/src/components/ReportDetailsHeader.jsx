@@ -40,13 +40,19 @@ function ReportDetailsHeader({report, reportType, reportStatus, back_url}) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+        <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-neutral-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{dayjs(report.created_at).format('DD MMM, YYYY hh:mm')}</span>
+              <span className="text-gray-900">Date Created: </span> 
+              <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-bs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                {dayjs(report.created_at).format('DD MMM, YYYY hh:mm')}
+              </span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{dayjs(report.updated_at).format('DD MMM, YYYY hh:mm')}</span>
+              <span className="text-gray-900">Last Updated: </span> 
+              <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-bs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                {dayjs(report.updated_at).format('DD MMM, YYYY hh:mm')}
+              </span>
             </div>
             <div  className="px-6 py-3 text-center text-sm font-medium align-middle">
               
