@@ -135,8 +135,15 @@ export default function Navbar() {
                   user?  <div className="flex-shrink-0">
                   <button onClick={handleOnclick}
                 className="relative inline-flex items-center rounded-md border border-transparent bg-button px-4 py-2 text-sm font-medium text-main1 shadow-sm hover:bg-main3 hover:text-white focus:outline-none focus:ring-2 focus:ring-main3 focus:ring-offset-2 focus:ring-offset-gray-800"
-
-                  >log out</button>
+                    
+                  >
+                  <span className="mr-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                    </svg>
+                  </span>
+                    log out
+                  </button>
            </div>:<div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
                   <a href="/login"
