@@ -11,20 +11,10 @@ function PublicReports() {
   // sample data
  
   const[reports, setReports] = useState([])
-
-  // fetch all public reports
-  useEffect(() => {
-    fetch('/reports')
-    .then(res => res.json())
-    .then(data => setInitialRecords(data))
-  },[]) 
-
   const [page, setPage] = useState(1);
   const PAGE_SIZES = [10, 20, 30, 50, 100];
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  const [initialRecords, setInitialRecords] = useState(
-    sortBy(reports, "description")
-  );
+  const [initialRecords, setInitialRecords] = useState([]);
   const [recordsData, setRecordsData] = useState(initialRecords);
   const [search, setSearch] = useState("");
   const [sortStatus, setSortStatus] = useState({
@@ -32,6 +22,17 @@ function PublicReports() {
     direction: "asc",
   });
 
+ // fetch all public reports
+ useEffect(() => {
+  fetch('/reports')
+    .then(res => res.json())
+    .then(data => {
+      setReports(data);
+      setInitialRecords(sortBy(data, "description"));
+    })
+},[]);
+
+  
   useEffect(() => {
     setPage(1);
   }, [pageSize]);
@@ -43,20 +44,19 @@ function PublicReports() {
   }, [page, pageSize, initialRecords]);
 
   useEffect(() => {
-    setInitialRecords(() => {
-      return reports.filter((item) => {
-        return (
-          item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
-          item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
-          item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
-          item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.user.email.toLowerCase().includes(search.toLowerCase()) ||
-          item.description.toLowerCase().includes(search.toLowerCase())
-        );
-      });
+    const filteredRecords = reports.filter((item) => {
+      return (
+        item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
+        item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+        item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
+        item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
+        item.user.email.toLowerCase().includes(search.toLowerCase()) ||
+        item.description.toLowerCase().includes(search.toLowerCase())
+      );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+    setInitialRecords(sortBy(filteredRecords, "description"));
+  }, [search, reports]);
+ 
 
   useEffect(() => {
     const data = sortBy(initialRecords, sortStatus.columnAccessor);
