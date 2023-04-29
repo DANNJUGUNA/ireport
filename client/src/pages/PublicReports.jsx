@@ -4,6 +4,7 @@ import { sortBy } from "lodash";
 import Tippy from "@tippyjs/react";
 import { Link } from "react-router-dom";
 import { BeakerIcon } from '@heroicons/react/24/solid'
+import dayjs from 'dayjs';
 
 
 
@@ -164,7 +165,7 @@ function PublicReports() {
           columns={[
             {
               accessor: "user",
-              title: "Name",
+              title: "Reporter",
               sortable: true,
               render: (params) => (
                 <div className="flex items-center w-max">
@@ -172,8 +173,6 @@ function PublicReports() {
                 </div>
               ),
             },
-            { accessor: "description_summary", title: "Description", sortable: true },
-            { accessor: "gps_coordinates", title: "GPS", sortable: true },
             {
               accessor: "report_type",
               title: "Report Type",
@@ -190,7 +189,17 @@ function PublicReports() {
                   </div>
               ),
             },
-            { accessor: "user.email", title: "Email", sortable: true },
+            { 
+              accessor: "created_at", 
+              title: "Date Posted", 
+              sortable: true,
+              render: ({created_at}) => (
+                <p>{dayjs(created_at).format('DD MMM, YYYY')}</p>
+              )
+            },
+            { accessor: "title_summary", title: "Title", ellipsis: true, sortable: true },
+            { accessor: "location_name", title: "Location", ellipsis: true, sortable: true },
+            
             // { accessor: "", title: "Phone No.", sortable: true },
             {
               accessor: "report_status",

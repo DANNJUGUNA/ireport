@@ -45,7 +45,7 @@ function Login() {
                             onChange={e => setEmail(e.target.value)} 
                             autoComplete="email"
                             required
-                            className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-main2 focus:outline-none focus:ring-main2 sm:text-sm"
                         />
                         </div>
                     </div>
@@ -62,7 +62,7 @@ function Login() {
                             onChange={e => setPassword(e.target.value)}
                             autoComplete="current-password"
                             required
-                            className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-main2 focus:outline-none focus:ring-main2 sm:text-sm"
                         />
                         </div>
                     </div>
@@ -70,12 +70,12 @@ function Login() {
                     <div>
                         <button
                         type="submit"
-                        className="flex w-full justify-center rounded-md border border-transparent bg-main1 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="flex w-full justify-center rounded-md border border-transparent bg-main1 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-main4 hover:text-main1 focus:outline-none focus:ring-2 focus:ring-main2 focus:ring-offset-2"
                         >
                         Log in
                         </button>
                     </div>
-                    <p>Don't have an account? <a href='/signup' className=' font-sm text-blue-700 underline'>Sign up</a></p>
+                    <p>Don't have an account? <a href='/signup' className=' font-sm text-main2 hover:text-main1 underline'>Sign up</a></p>
                     </form>
                     
                 </div>
