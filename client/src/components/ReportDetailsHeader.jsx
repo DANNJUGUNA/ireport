@@ -1,4 +1,6 @@
 import React from 'react'
+import dayjs from 'dayjs';
+
 
 function ReportDetailsHeader({report, reportType, reportStatus, back_url}) {
   return (
@@ -28,6 +30,11 @@ function ReportDetailsHeader({report, reportType, reportStatus, back_url}) {
                 href={back_url}
                 className="flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
               >
+                <span className="mr-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                  </svg>
+                </span>
                 BACK
               </a>
             </div>
@@ -36,10 +43,10 @@ function ReportDetailsHeader({report, reportType, reportStatus, back_url}) {
         <div className="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
           
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{report.created_at}</span>
+              <span className="text-gray-900">Date Created: </span> <span className="text-gray-600">{dayjs(report.created_at).format('DD MMM, YYYY hh:mm')}</span>
             </div>
             <div  className="px-6 py-5 text-center text-sm font-medium">
-              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{report.updated_at}</span>
+              <span className="text-gray-900">Last Updated: </span> <span className="text-gray-600">{dayjs(report.updated_at).format('DD MMM, YYYY hh:mm')}</span>
             </div>
             <div  className="px-6 py-3 text-center text-sm font-medium align-middle">
               
