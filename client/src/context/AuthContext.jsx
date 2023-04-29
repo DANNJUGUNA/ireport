@@ -115,7 +115,7 @@ const AuthProvider = ({ children }) => {
  
  
     try {
-      const res = await fetch("http://localhost:3000/signup_admin", {
+      const res = await fetch("/signup_admin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
