@@ -28,7 +28,7 @@ class AdminsController < ApplicationController
         else
           render json: {errors: admin.errors.full_messages}, status: :unprocessable_entity
         end
-      end
+    end
       
     def update
         admin=get_admin
