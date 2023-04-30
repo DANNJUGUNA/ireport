@@ -74,6 +74,7 @@ function AdminLogin() {
                             </div>
                             <p>Don't have an account? <a href='/adminsignup' className=' font-sm text-blue-700 underline'>Sign up</a></p>
                         </form>
+
                     </div>
                 </div>
             </div>
