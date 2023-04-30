@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { DataTable, DataTableSortStatus } from "mantine-datatable";
+import { Link } from "react-router-dom";
+import { DataTable } from "mantine-datatable";
 import sortBy from "lodash/sortBy";
 import StatsDashboard from "../components/StatsDashboard";
 import { AuthContext } from "../context/AuthContext";
@@ -9,30 +9,29 @@ function UserLandingPage() {
   const { user } = useContext(AuthContext);
   // const[currentUser, setCurrentUser] = useState({})
   // setCurrentUser(user)
-
   const [reports, setReports] = useState([]);
-  // fetch all user specific reports
-
-  useEffect(() => {
-    if (user && user.id && typeof user.id === "number") {
-      fetch(`/userreport/${user.id}`)
-        .then((res) => res.json())
-        .then((data) => setInitialRecords(data));
-    }
-  }, [user]);
-
   const [page, setPage] = useState(1);
   const PAGE_SIZES = [10, 20, 30, 50, 100];
   const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-  const [initialRecords, setInitialRecords] = useState(
-    sortBy(reports, "description")
-  );
+  const [initialRecords, setInitialRecords] = useState([]);
   const [recordsData, setRecordsData] = useState(initialRecords);
   const [search, setSearch] = useState("");
   const [sortStatus, setSortStatus] = useState({
     columnAccessor: "id",
     direction: "asc",
   });
+
+  // fetch all user specific reports
+  useEffect(() => {
+    if (user && user.id && typeof user.id === "number") {
+      fetch(`/userreport/${user.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setReports(data); // Update reports state with fetched data
+          setInitialRecords(sortBy(data, "description"));
+        });
+    }
+  }, [user]);
 
   useEffect(() => {
     setPage(1);
@@ -60,8 +59,7 @@ function UserLandingPage() {
         );
       });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [reports, search]);
 
   useEffect(() => {
     const data = sortBy(initialRecords, sortStatus.columnAccessor);
@@ -70,43 +68,6 @@ function UserLandingPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortStatus]);
 
-  const formatDate = (date) => {
-    if (date) {
-      const dt = new Date(date);
-      const month =
-        dt.getMonth() + 1 < 10 ? "0" + (dt.getMonth() + 1) : dt.getMonth() + 1;
-      const day = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-      return day + "/" + month + "/" + dt.getFullYear();
-    }
-    return "";
-  };
-
-  const randomColor = () => {
-    const color = [
-      "primary",
-      "secondary",
-      "success",
-      "danger",
-      "warning",
-      "info",
-    ];
-    const random = Math.floor(Math.random() * color.length);
-    return color[random];
-  };
-
-  const randomStatus = () => {
-    const status = [
-      "PAID",
-      "APPROVED",
-      "FAILED",
-      "CANCEL",
-      "SUCCESS",
-      "PENDING",
-      "COMPLETE",
-    ];
-    const random = Math.floor(Math.random() * status.length);
-    return status[random];
-  };
 
   useEffect(() => {
     if (user && user.id && typeof user.id === "number") {
@@ -148,10 +109,10 @@ function UserLandingPage() {
                 <div className="sm:flex sm:items-center ">
                   <div className="sm:flex-auto">
                     <h1 className="text-xl font-semibold text-gray-900">
-                      Public Records{" "}
+                      My Records{" "}
                     </h1>
                     <p className="mt-2 text-sm text-gray-700">
-                      Here's a list of all red-flags and interventions posted on
+                      Here's a list of all red-flags and interventions you have posted on
                       our platform
                     </p>
                   </div>

@@ -65,6 +65,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
+
      if (storedToken && storedUser) {
       try {
         setUser(JSON.parse(storedUser));

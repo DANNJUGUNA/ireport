@@ -9,26 +9,27 @@ import StatsDashboard from '../StatsDashboard';
 
 function AdminDashboard() {
     const[reports, setReports] = useState([])
-
-    // fetch all user specific reports
-    useEffect(() => {
-        fetch('/reports')
-        .then(res => res.json())
-        .then(data => setInitialRecords(data))
-    },[]) 
-
     const [page, setPage] = useState(1);
     const PAGE_SIZES = [10, 20, 30, 50, 100];
     const [pageSize, setPageSize] = useState(PAGE_SIZES[0]);
-    const [initialRecords, setInitialRecords] = useState(
-        sortBy(reports, "description")
-    );
+    const [initialRecords, setInitialRecords] = useState([]);
     const [recordsData, setRecordsData] = useState(initialRecords);
     const [search, setSearch] = useState("");
     const [sortStatus, setSortStatus] = useState({
         columnAccessor: "id",
         direction: "asc",
     });
+
+   // fetch all reports
+   useEffect(() => {
+    fetch('/reports')
+      .then(res => res.json())
+      .then(data => {
+        setReports(data);
+        setInitialRecords(sortBy(data, "description"));
+      })
+  }, []);
+
 
     useEffect(() => {
         setPage(1);
@@ -40,21 +41,22 @@ function AdminDashboard() {
         setRecordsData([...initialRecords.slice(from, to)]);
     }, [page, pageSize, initialRecords]);
 
-    useEffect(() => {
-        setInitialRecords(() => {
-        return reports.filter((item) => {
-            return (
-            item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
-            item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
-            item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
-            item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
-            item.user.email.toLowerCase().includes(search.toLowerCase()) ||
-            item.description.toLowerCase().includes(search.toLowerCase())
-            );
-        });
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [search]);
+   // filter the reports based on search
+   useEffect(() => {
+    setInitialRecords(() => {
+      return reports.filter((item) => {
+        return (
+          item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
+          item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+          item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
+          item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
+          item.user.email.toLowerCase().includes(search.toLowerCase()) ||
+          item.description.toLowerCase().includes(search.toLowerCase())
+        );
+      });
+    });
+  }, [search, reports]);
+
 
     useEffect(() => {
         const data = sortBy(initialRecords, sortStatus.columnAccessor);
