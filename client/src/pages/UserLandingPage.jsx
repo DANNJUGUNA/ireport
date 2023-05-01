@@ -4,6 +4,8 @@ import { DataTable } from "mantine-datatable";
 import sortBy from "lodash/sortBy";
 import StatsDashboard from "../components/StatsDashboard";
 import { AuthContext } from "../context/AuthContext";
+import dayjs from 'dayjs';
+
 
 function UserLandingPage() {
   const { user } = useContext(AuthContext);
@@ -47,14 +49,14 @@ function UserLandingPage() {
     setInitialRecords(() => {
       return reports.filter((item) => {
         return (
-          item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
-          item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+          item.title.toLowerCase().includes(search.toLowerCase()) ||
+          item.location_name.toLowerCase().includes(search.toLowerCase()) ||
           item.report_status.name
             .toString()
             .toLowerCase()
             .includes(search.toLowerCase()) ||
           item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.user.email.toLowerCase().includes(search.toLowerCase()) ||
+          item.report_status.name.toLowerCase().includes(search.toLowerCase()) ||
           item.description.toLowerCase().includes(search.toLowerCase())
         );
       });
@@ -128,33 +130,10 @@ function UserLandingPage() {
                 </div>
                 <div className="min-w-full divide-y divide-gray-300 mt-6">
                   <DataTable
+                    striped
                     className="whitespace-nowrap table-hover"
                     records={recordsData}
                     columns={[
-                      {
-                        accessor: "user",
-                        title: "Reporter",
-                        sortable: true,
-                        render: (params) => (
-                          <div className="flex items-center w-max">
-                            <div>
-                              {params.user.first_name +
-                                " " +
-                                params.user.surname}
-                            </div>
-                          </div>
-                        ),
-                      },
-                      {
-                        accessor: "description_summary",
-                        title: "Description",
-                        sortable: true,
-                      },
-                      {
-                        accessor: "gps_coordinates",
-                        title: "GPS",
-                        sortable: true,
-                      },
                       {
                         accessor: "report_type",
                         title: "Report Type",
@@ -171,12 +150,27 @@ function UserLandingPage() {
                           </div>
                         ),
                       },
+                      { 
+                        accessor: "created_at", 
+                        title: "Date Posted", 
+                        sortable: true,
+                        render: ({created_at}) => (
+                          <p>{dayjs(created_at).format('DD MMM, YYYY')}</p>
+                        )
+                      },
                       {
-                        accessor: "user.email",
-                        title: "Email",
+                        accessor: "title",
+                        title: "Title",
+                        sortable: true,
+                        
+                      },
+                      
+                      { accessor: "location_name", title: "Location", ellipsis: true, sortable: true },
+                      {
+                        accessor: "gps_coordinates",
+                        title: "GPS",
                         sortable: true,
                       },
-                      // { accessor: "", title: "Phone No.", sortable: true },
                       {
                         accessor: "report_status",
                         title: "Status",
@@ -270,7 +264,11 @@ function UserLandingPage() {
                               to={`/userreportdetails/${id}`}
                               className="text-main2 hover:text-main1"
                             >
-                              <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
+                              <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-main1 hover:bg-main4 ">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                              </svg>
+
                                 Edit
                               </span>
                             </Link>
