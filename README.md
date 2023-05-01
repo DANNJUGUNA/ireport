@@ -51,19 +51,21 @@ Create a ***.env*** file in the root directory of your Ruby on Rails application
 
 Add your environment variables to the .env file in the following format: ```html VARIABLE_NAME=value```. For example:
 
-                ```bash DATABASE_URL=postgres://username:password@localhost/mydatabase
+                ```bash 
+                DATABASE_URL=postgres://username:password@localhost/mydatabase
                    API_KEY=1234567890
                 ```
 
 In your Ruby on Rails application, access the environment variables using the ENV object. For example:
 
-                ```CSS database_url = ENV['DATABASE_URL']
+                ```CSS 
+                database_url = ENV['DATABASE_URL']
                  api_key = ENV['API_KEY']
                 ```
 
   Configure your PostgresSQL database by updating the **config/database.yml file** in your Ruby on Rails application. Make sure to update the **username**, **password**, **host**, and **database** fields with your own values.
 
-                      ```yaml
+                    ```yaml
                       default: &default
                       adapter: postgresql
                       encoding: unicode
@@ -74,7 +76,24 @@ In your Ruby on Rails application, access the environment variables using the EN
 
                      development:
                      <<: *default
-                     ```
+
+                    ```
+
+
+In your ReactJS application, add your API keys or other settings to a .env file in the root directory of your application. Make sure to add this file to your .gitignore file to avoid committing sensitive information to your repository.
+
+Add your environment variables to the .env file in the following format: **REACT_APP_VARIABLE_NAME=value**
+ For example:
+
+                 ```javascript 
+                 REACT_APP_API_KEY=1234567890
+                 ```
+
+In your ReactJS application, access the environment variables using the process.env object. For example:
+
+                ``` javascript
+                const apiKey = process.env.REACT_APP_API_KEY;
+                ```
 
 
    
