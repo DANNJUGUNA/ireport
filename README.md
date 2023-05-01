@@ -136,14 +136,15 @@ Description
 
 Retrieves a list of all reports.
 
-Request
+_Request_
 
 HTTP Method: GET
 Endpoint: /reports
 Response Body: List of reports in JSON format
 
 
-Response
+_Response_
+
 Status: 200 OK
 Body: JSON formatted list of all reports
 
@@ -153,13 +154,106 @@ Body: JSON formatted list of all reports
 Description
 Retrieves a specific report by its ID.
 
-Request
+_Request_
 
 HTTP Method: GET
 Endpoint: /reports/:id
 Response Body: The specified report in JSON format
 
-Response
+_Response_
 
 Status: 200 OK
 Body: JSON formatted report
+
+### POST /reports
+
+Description
+Creates a new report with the provided parameters.
+
+_Request_
+
+HTTP Method: POST
+Endpoint: /reports
+Request Body: JSON formatted report parameters
+
+
+
+| Field              | Type    | Description                                       |
+| :-----------------| :------| :-------------------------------------------------|
+| description        | string  | Description of the report                         |
+| image              | string  | URL of the image attached to the report           |
+| video              | string  | URL of the video attached to the report           |
+| gps_coordinates    | string  | GPS coordinates of the report                     |
+| user_id            | integer | ID of the user who created the report             |
+| report_type_id     | integer | ID of the report type                             |
+| report_status_id   | integer | ID of the report status                           |
+| title              | string  | Title of the report                                |
+| location_name      | string  | Name of the location associated with the report   |
+
+
+_Response_
+
+Status: 201 Created
+Body: JSON formatted report
+
+### PATCH/PUT /reports/:id
+Description
+Updates an existing report with the provided parameters.
+
+Request
+HTTP Method: PATCH/PUT
+Endpoint: /reports/:id
+Request Body: JSON formatted report parameters
+
+| Field            | Type    | Description                                          |
+| :-----------------|:---------|:------------------------------------------------------|
+| description     | string  | Description of the report                            |
+| image           | string  | URL of the image attached to the report              |
+| video           | string  | URL of the video attached to the report              |
+| gps_coordinates | string  | GPS coordinates of the report                        |
+| user_id         | integer | ID of the user who created the report                |
+| report_type_id  | integer | ID of the report type                                 |
+| report_status_id| integer | ID of the report status                               |
+| title           | string  | Title of the report                                   |
+| location_name   | string  | Name of the location associated with the report       |
+
+
+_Response_
+
+Status: 202 Accepted
+Body: JSON formatted report
+
+
+### DELETE /reports/:id
+Description
+Deletes the specified report.
+
+_Request_
+
+HTTP Method: DELETE
+Endpoint: /reports/:id
+
+
+_Response_
+
+Status: 202 No Content
+
+### GET /users/:user_id/reports
+
+Description
+Retrieves a list of reports belonging to a specific user.
+
+_Request_
+
+HTTP Method: GET
+Endpoint: /users/:user_id/reports
+Response Body: List of reports belonging to the specified user in JSON format
+
+_Response_
+
+Status: 200 OK
+Body: JSON formatted list of user-specific reports
+
+   ### Request Body Parameters
+   
+
