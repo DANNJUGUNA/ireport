@@ -255,5 +255,12 @@ Status: 200 OK
 Body: JSON formatted list of user-specific reports
 
    ### Request Body Parameters
-   
+
+   | Field           | Type    | Description                                        |
+| :------------- | :----- | :------------------------------------------------- |
+| description    | string  | Description of the report                          |
+| image          | string  | URL of the image attached to the report            |
+| video          | string  | URL of the video attached to the report            |
+| gps_coordinates| string  | GPS coordinates of the report                      |
+
 
