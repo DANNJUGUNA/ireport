@@ -125,3 +125,41 @@ Click the "Update" or "Save" button to save the changes and update the report st
 5. Version Control: Git, GitHub, Bitbucket
 
 6. Other Libraries and Tools: Redux, Bootstrap, TailwindCSS, Node.js
+
+## Backend API Documentation
+
+The backend of the Ireporter application is built with Ruby on Rails and provides several API endpoints for managing reports. Below is the documentation for each endpoint, including details on the request and response formats.
+
+### GET /reports
+
+Description
+
+Retrieves a list of all reports.
+
+Request
+
+HTTP Method: GET
+Endpoint: /reports
+Response Body: List of reports in JSON format
+
+
+Response
+Status: 200 OK
+Body: JSON formatted list of all reports
+
+
+### GET /reports/:id
+
+Description
+Retrieves a specific report by its ID.
+
+Request
+
+HTTP Method: GET
+Endpoint: /reports/:id
+Response Body: The specified report in JSON format
+
+Response
+
+Status: 200 OK
+Body: JSON formatted report
