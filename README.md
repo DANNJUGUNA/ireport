@@ -46,8 +46,22 @@ For the frontend, use the following command to install the required packages:
 
 
  ## Configuration
- 
+  
+Create a ***.env*** file in the root directory of your Ruby on Rails application. This file will store your environment variables. Make sure to add this file to your .gitignore file to avoid committing sensitive information to your repository.
 
+Add your environment variables to the .env file in the following format: ```html VARIABLE_NAME=value```. For example:
+
+                ```bash DATABASE_URL=postgres://username:password@localhost/mydatabase
+                   API_KEY=1234567890
+                ```
+
+In your Ruby on Rails application, access the environment variables using the ENV object. For example:
+
+                ```CSS database_url = ENV['DATABASE_URL']
+                 api_key = ENV['API_KEY']
+                ```
 
   
 
+
+   
