@@ -300,4 +300,4 @@ The application should now be running on http://localhost:3000/
 
 ## Conclusion
 
-
+In conclusion, the Ireporter application provides a platform for users to report incidents anonymously or with their identities while allowing them to attach relevant media files and location data. The application's functionality includes creating, reading, updating, and deleting reports. With the front-end code stored in the /src folder and the index.html file stored in the /public folder, the application is easily accessible through a web browser. The back-end code handles the logic for the report controllers and can store and retrieve data from a database. Overall, the Ireporter application is a simple and effective solution for users to report incidents in a streamlined and efficient way.
