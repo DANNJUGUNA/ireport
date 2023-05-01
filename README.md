@@ -61,7 +61,20 @@ In your Ruby on Rails application, access the environment variables using the EN
                  api_key = ENV['API_KEY']
                 ```
 
-  
+  Configure your PostgresSQL database by updating the **config/database.yml file** in your Ruby on Rails application. Make sure to update the **username**, **password**, **host**, and **database** fields with your own values.
+
+                      ```yaml
+                      default: &default
+                      adapter: postgresql
+                      encoding: unicode
+                      username: your_username
+                      password: your_password
+                      host: localhost
+                      database: your_database_name
+
+                     development:
+                     <<: *default
+                     ```
 
 
    
