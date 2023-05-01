@@ -14,7 +14,7 @@ export default function Homepage() {
                 src="https://bit.ly/3oakcnw"
                 alt="iReporter"
               />
-              <h1 className="mt-12 text-4xl font-medium font-body tracking-tight text-bodyText1 sm:mt-10 sm:text-6xl">
+              <h1 className="mt-12 text-4xl font-medium font-body tracking-tight text-main1 sm:mt-10 sm:text-6xl">
                 iReporter the place to stop corruption
               </h1>
               {/* <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
@@ -29,13 +29,13 @@ export default function Homepage() {
               <div className="mt-5 flex items-center gap-x-6">
                 <a
                   href="/login"
-                  className="rounded-md bg-main4 px-3.5 py-1.5 text-base font-semibold leading-7 text-bodyText1 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="rounded-md bg-main4 px-3.5 py-1.5 text-base font-semibold leading-7 text-main1 hover:text-white shadow-sm hover:bg-main2 hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Report now
                 </a>
                 <a
                   href="/reports"
-                  className="rounded-md bg-main1 px-3.5 py-1.5 text-base font-semibold leading-7 text-main4 shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="rounded-md bg-main1 px-3.5 py-1.5 text-base font-semibold leading-7 text-main4 shadow-sm hover:bg-main2 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   View reports <span aria-hidden="true">→</span>
                 </a>
