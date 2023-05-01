@@ -6,13 +6,13 @@ Ireport is an application designed to facilitate communication between citizens 
 
 ## Setup and Installation
 
-1. Clone the repository: Open a terminal window and navigate to the directory where you want to download the application. Use the following command to clone the repository:
+1. ***Clone the repository:*** Open a terminal window and navigate to the directory where you want to download the application. Use the following command to clone the repository:
 
 ```javascript 
     git clone git@github.com:DANNJUGUNA/ireport.git
 ```
 
-2. Install dependencies: Navigate to the project directory and install the dependencies for both the backend (Ruby on Rails) and frontend (ReactJS).
+2. ***Install dependencies:*** Navigate to the project directory and install the dependencies for both the backend (Ruby on Rails) and frontend (ReactJS).
 cd to the backend and frontend on separate terminals respectively.
 For the backend, use the following command to install the required gems:
 
@@ -25,6 +25,28 @@ For the frontend, use the following command to install the required packages:
    cd client
    npm install
  ```
+ 3. ***Set up the database:*** In the terminal window, navigate to the project directory and run the following commands to create and migrate the database:
+
+  ```ruby
+   rails db:create
+   rails db:migrate
+   ```
+ 4. ***Start the server:*** In the terminal window, navigate to the project directory and run the following command to start the server:
+
+ ```ruby
+   rails s
+ ```
+ 5. ***Start the client:*** In a new terminal window, navigate to the project directory and run the following command to start the frontend server:
+   ```javascript
+   cd client
+   npm start
+
+   ```
+ 6. ***Access the application:*** Open a web browser and navigate to http://localhost:3000 to access the application.
+
+
  
 
+
+  
 
