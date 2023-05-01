@@ -44,11 +44,9 @@ table tr .mantine-Checkbox-root {
 [dir='rtl'] .datatables .mantine-ScrollArea-root.mantine-lvjyp7 {
     direction: rtl;
 }
-.mantine-Table-root[data-hover] tbody tr:hover {
-    @apply !bg-[#e0e6ed33] dark:!bg-[#1a2941]/40;
-}
+
 .mantine-Table-root[data-striped] tbody tr:nth-of-type(odd) {
-    @apply bg-white-light/20 dark:!bg-[#1a2941]/40;
+    @apply bg-white-light/20;
 }
 .datatables table {
     @apply font-sans !text-black dark:!text-white-dark;
@@ -97,7 +95,7 @@ table tr .mantine-Checkbox-root {
     @apply p-2 text-sm;
 }
 .mantine-Pagination-item {
-    @apply h-9 w-9 rounded-full border-white-light !bg-white-light font-sans text-sm !text-[#3b3f5c] hover:!bg-primary hover:!text-white dark:border-[#191e3a] dark:!bg-[#191e3a] dark:!text-white;
+    @apply h-9 w-9 rounded-full border-white-light !bg-white-light font-sans text-sm !text-main1 hover:!bg-primary hover:!text-white dark:border-[#191e3a] dark:!bg-[#191e3a] dark:!text-white;
 }
 .mantine-Pagination-item[data-active] {
     @apply !bg-primary !text-white;
