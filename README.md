@@ -110,4 +110,4 @@ Navigate to the homepage or dashboard where you can see a list of all the report
 Click on the report you want to update. This will take you to the report details page.
 On the report details page, locate the report status field. It may be labeled as "Current Status" or something similar.
 Select the new status for the report from the dropdown menu. The available options may include "Under Investigation," "Rejected," or "Resolved". 
-
+Click the "Update" or "Save" button to save the changes and update the report status.
