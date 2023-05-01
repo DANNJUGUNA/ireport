@@ -49,10 +49,11 @@ function PublicReports() {
       return (
         item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
         item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+        item.created_at.toLowerCase().includes(search.toLowerCase()) ||
         item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
         item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.user.email.toLowerCase().includes(search.toLowerCase()) ||
-        item.description.toLowerCase().includes(search.toLowerCase())
+        item.location_name.toLowerCase().includes(search.toLowerCase()) ||
+        item.title.toLowerCase().includes(search.toLowerCase())
       );
     });
     setInitialRecords(sortBy(filteredRecords, "description"));
