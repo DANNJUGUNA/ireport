@@ -95,5 +95,19 @@ In your ReactJS application, access the environment variables using the process.
                 const apiKey = process.env.REACT_APP_API_KEY;
                 ```
 
+## Application Usage
 
-   
+Open the application in your web browser by navigating to the URL where it is hosted.
+as a user you can sign-up and login to your account and view a list of all public reports.
+To post a report, click on the **"Report Now"** button on the **Homepage** or the **Add Report** button on the **"Navigation bar"**. This will bring up a form where you can enter the details of your report, including the type of report (red flag or intervention), the location, and a description of the issue. Once you have filled out the form, click the **"Submit"** button to post the report.
+
+***Report to hold individuals accountable, prevent harm, protect communities, and create a fair society.***
+
+As an admin, you can update the status of a report by following these steps:
+
+Log in to the application with your admin credentials.
+Navigate to the homepage or dashboard where you can see a list of all the reports.
+Click on the report you want to update. This will take you to the report details page.
+On the report details page, locate the report status field. It may be labeled as "Current Status" or something similar.
+Select the new status for the report from the dropdown menu. The available options may include "Under Investigation," "Rejected," or "Resolved". 
+
