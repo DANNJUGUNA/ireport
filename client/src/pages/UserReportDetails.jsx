@@ -438,7 +438,7 @@ function UserReportDetails() {
                           htmlFor="gps_coordinates"
                           className="block text-sm font-medium sm:mt-px sm:pt-2"
                         >
-                          GPS Coordinates
+                          Location
                         </label>
                         <div className="mt-1 sm:col-span-2 sm:mt-0">
                           <LoadScript
