@@ -111,3 +111,17 @@ Click on the report you want to update. This will take you to the report details
 On the report details page, locate the report status field. It may be labeled as "Current Status" or something similar.
 Select the new status for the report from the dropdown menu. The available options may include "Under Investigation," "Rejected," or "Resolved". 
 Click the "Update" or "Save" button to save the changes and update the report status.
+
+## Technologies Used
+
+1. Programming Languages: JavaScript, Ruby
+
+2. Frontend Frameworks/Libraries: React
+
+3. Backend Frameworks/Libraries: Ruby on Rails
+
+4. Database Management Systems: PostgreSQL, MySQL
+
+5. Version Control: Git, GitHub, Bitbucket
+
+6. Other Libraries and Tools: Redux, Bootstrap, TailwindCSS, Node.js
