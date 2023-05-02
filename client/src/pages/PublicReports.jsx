@@ -49,10 +49,11 @@ function PublicReports() {
       return (
         item.user.surname.toLowerCase().includes(search.toLowerCase()) ||
         item.user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+        item.created_at.toLowerCase().includes(search.toLowerCase()) ||
         item.report_status.name.toString().toLowerCase().includes(search.toLowerCase()) ||
         item.report_type.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.user.email.toLowerCase().includes(search.toLowerCase()) ||
-        item.description.toLowerCase().includes(search.toLowerCase())
+        item.location_name.toLowerCase().includes(search.toLowerCase()) ||
+        item.title.toLowerCase().includes(search.toLowerCase())
       );
     });
     setInitialRecords(sortBy(filteredRecords, "description"));
@@ -160,6 +161,7 @@ function PublicReports() {
       </div>
       <div className="min-w-full divide-y divide-gray-300 mt-6">
         <DataTable
+          striped
           className="whitespace-nowrap table-hover"
           records={recordsData}
           columns={[
@@ -244,12 +246,12 @@ function PublicReports() {
               titleClassName: "!text-center",
               render: ({id}) => ( 
                 <div>               
-                  <Link to={`/publicreportdetails/${id}`} className="text-main2 hover:text-main1">                
+                  <Link to={`/publicreportdetails/${id}`} >                
                   
-                    <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-main1">
-                      <svg className="mr-1.5 h-2 w-2 text-main2" fill="currentColor" viewBox="0 0 8 8">
-                        <circle cx={4} cy={4} r={3} />
-                      </svg>
+                    <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-main1 hover:bg-main4 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 mr-1">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
                       View
                     </span>
                   </Link>

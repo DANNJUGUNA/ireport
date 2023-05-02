@@ -29,11 +29,11 @@ const features = [
 
 export default function Feature() {
   return (
-    <div className="bg-white py-1 mt-0 sm:py-32">
+    <div className="bg-white py-1 sm:py-8">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-lg font-semibold leading-8 tracking-tight text-indigo-600">Report Red flags and Interventions Faster</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-lg font-semibold leading-8 tracking-tight text-main2">Report Red flags and Interventions Faster</h2>
+          <p className="mt-2 text-3xl font-bold tracking-tight text-main1 sm:text-4xl">
             Everything you need to report corruption
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -47,9 +47,9 @@ export default function Feature() {
           <dl className="grid max-w-xl grid-cols-1 gap-y-10 gap-x-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.name} className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                    <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                <dt className="text-base font-semibold leading-7 text-main1">
+                  <div className="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-lg bg-main4">
+                    <feature.icon className="h-6 w-6 text-main1" aria-hidden="true" />
                   </div>
                   {feature.name}
                 </dt>

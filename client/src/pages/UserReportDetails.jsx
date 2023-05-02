@@ -4,6 +4,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import Swal from "sweetalert2";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import ReportDetailsHeader from "../components/ReportDetailsHeader";
+import { LoadScript, Autocomplete } from "@react-google-maps/api";
+
 
 function UserReportDetails() {
   const back_url = "/userlandingpage";
@@ -17,6 +19,37 @@ function UserReportDetails() {
   const navigate = useNavigate();
 
   const [reportTypes, setReportTypes] = useState([]);
+
+    // GPS MAP CODE
+
+    const [location, setLocation] = useState({
+      name: "",
+      lat: null,
+      lng: null,
+    });
+    const [autocomplete, setAutocomplete] = useState(null);
+  
+    const onLoad = (autocomplete) => {
+      console.log("autocomplete: ", autocomplete);
+      setAutocomplete(autocomplete);
+    };
+  
+    const onPlaceChanged = () => {
+      const place = autocomplete.getPlace();
+      const location = {
+        name: place.name,
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      };
+      setLocation(location);
+      setUpdateFormData({
+        ...updateFormData,
+        location_name: place.name,
+        gps_coordinates: `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`,
+      });
+    };
+  
+    // END OF GPS MAP CODE
 
   // Success Message function
   const showMessage = (msg = "", type = "success") => {
@@ -165,6 +198,8 @@ function UserReportDetails() {
     .split(",")
     .map((coord) => Number(coord.trim()));
   // console.log(gpsCoordinates);
+
+
 
   return (
     <>
@@ -397,40 +432,33 @@ function UserReportDetails() {
                           />
                         </div>
                       </div>
-                      <div className="mb-5">
-                        <label
-                          htmlFor="location_name"
-                          className="block text-sm font-medium sm:mt-px sm:pt-2"
-                        >
-                          Location Name
-                        </label>
-                        <div className="mt-1 sm:col-span-2 sm:mt-0">
-                          <input
-                            id="location_name"
-                            name="location_name"
-                            type="text"
-                            className="block w-full h-10 max-w-lg rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
-                            onChange={handleUpdateChange}
-                            defaultValue={report.location_name}
-                          />
-                        </div>
-                      </div>
+                      
                       <div className="mb-5">
                         <label
                           htmlFor="gps_coordinates"
                           className="block text-sm font-medium sm:mt-px sm:pt-2"
                         >
-                          GPS Coordinates
+                          Location
                         </label>
                         <div className="mt-1 sm:col-span-2 sm:mt-0">
-                          <input
-                            id="gps_coordinates"
-                            name="gps_coordinates"
-                            type="text"
-                            className="block w-full h-10 max-w-lg rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
-                            onChange={handleUpdateChange}
-                            defaultValue={report.gps_coordinates}
-                          />
+                          <LoadScript
+                          googleMapsApiKey={
+                            "AIzaSyAnZbdt4s3ELI3x7kdeBxvrLa1nNgEwCFE"
+                          }
+                          libraries={["places"]}
+                        >
+                          <Autocomplete
+                            onLoad={onLoad}
+                            onPlaceChanged={onPlaceChanged}
+                          >
+                            <input
+                              type="text"
+                              id="autocomplete"
+                              className="block w-full h-10 max-w-lg rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-main2 focus:ring-main2 sm:text-sm"
+                              placeholder="Enter address"
+                            />
+                          </Autocomplete>
+                        </LoadScript>
                         </div>
                       </div>
                       <div className="mb-5">
