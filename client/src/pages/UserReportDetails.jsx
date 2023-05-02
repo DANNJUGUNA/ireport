@@ -69,14 +69,14 @@ function UserReportDetails() {
 
   // fetch all Report Types
   useEffect(() => {
-    fetch("/report_types")
+    fetch("https://ireporter1.onrender.com/report_types")
       .then((r) => r.json())
       .then((data) => setReportTypes(data));
   }, []);
 
   // Delete
   function handleDelete() {
-    fetch(`/reports/${reportId}`, {
+    fetch(`https://ireporter1.onrender.com/reports/${reportId}`, {
       method: "DELETE",
     }).then((resp) => {
       if (resp.ok) {
@@ -90,7 +90,7 @@ function UserReportDetails() {
 
   // UPDATE functionality
   function handleSubmitUpdate(e) {
-    fetch(`/reports/${reportId}`, {
+    fetch(`https://ireporter1.onrender.com/reports/${reportId}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

@@ -25,7 +25,7 @@ const loginUser = (email, password) => {
 
 // admin login
 const adminlogin = (email, password) => {
-  return fetch("/admin", {
+  return fetch("https://ireporter1.onrender.com/admin", {
     method: "POST",
     headers: {
       "content-Type": "application/json",
@@ -116,7 +116,7 @@ const AuthProvider = ({ children }) => {
  
  
     try {
-      const res = await fetch("/signup_admin", {
+      const res = await fetch("https://ireporter1.onrender.com/signup_admin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -166,7 +166,7 @@ const AuthProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch("/signup", {
+      const res = await fetch("https://ireporter1.onrender.com/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

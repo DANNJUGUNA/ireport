@@ -87,7 +87,7 @@ function AddReport() {
 
   // fetch all Report Types
   useEffect(() => {
-    fetch("/report_types")
+    fetch("https://ireporter1.onrender.com/report_types")
       .then((r) => r.json())
       .then((data) => setReportTypes(data));
   }, []);
@@ -95,7 +95,7 @@ function AddReport() {
   // POST Report
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/reports", {
+    fetch("https://ireporter1.onrender.com/reports", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

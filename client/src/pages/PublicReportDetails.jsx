@@ -19,7 +19,7 @@ function PublicReportDetails() {
   useEffect(() => {    
     if(shouldLog.current) {
       shouldLog.current = false
-      fetch(`/reports/${reportId}`)
+      fetch(`https://ireporter1.onrender.com/reports/${reportId}`)
       .then(r => r.json())
       .then((data) => {setReport(data); setReportStatus(data.report_status); setReportType(data.report_type); SetUser(data.user) })
     }

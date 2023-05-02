@@ -22,7 +22,7 @@ function AdminDashboard() {
 
    // fetch all reports
    useEffect(() => {
-    fetch('/reports')
+    fetch('https://ireporter1.onrender.com/reports')
       .then(res => res.json())
       .then(data => {
         setReports(data);

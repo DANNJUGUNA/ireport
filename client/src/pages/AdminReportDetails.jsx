@@ -20,7 +20,7 @@ function AdminReportDetails({ match }) {
   useEffect(() => {    
     if(shouldLog.current) {
       shouldLog.current = false
-      fetch(`/reports/${reportId}`)
+      fetch(`https://ireporter1.onrender.com/reports/${reportId}`)
       .then(r => r.json())
       .then((data) => { setReport(data); setReportStatus(data.report_status); setReportType(data.report_type); SetUser(data.user) })
     }
@@ -57,7 +57,7 @@ function AdminReportDetails({ match }) {
   // fetch all Report Statuses
   useEffect(() => {
     if(reportStatus && reportStatus.id && typeof reportStatus.id === 'number') {
-    fetch('/report_statuses')
+    fetch('https://ireporter1.onrender.com/report_statuses')
     .then(r => r.json())
     .then((data) => {
       const filteredData = data.filter((name) => name.id > reportStatus.id);
@@ -70,7 +70,7 @@ function AdminReportDetails({ match }) {
 
   // UPDATE functionality
   function handleSubmitUpdate(e) {
-    fetch(`/reports/${reportId}`, {
+    fetch(`https://ireporter1.onrender.com/reports/${reportId}`, {
       method: "PATCH",
       headers: {
           "content-type": "application/json",
