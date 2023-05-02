@@ -1,0 +1,19 @@
+current directory: /home/dan/Development/projects/ireport/backend/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+/home/dan/.rbenv/versions/3.0.0/bin/ruby extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /home/dan/Development/projects/ireport/backend/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20230502-17284-74gx1n sitelibdir\=./.gem.20230502-17284-74gx1n clean
+
+current directory: /home/dan/Development/projects/ireport/backend/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20230502-17284-74gx1n sitelibdir\=./.gem.20230502-17284-74gx1n
+compiling unf.cc
+linking shared-object unf_ext.so
+
+current directory: /home/dan/Development/projects/ireport/backend/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20230502-17284-74gx1n sitelibdir\=./.gem.20230502-17284-74gx1n install
+/bin/install -c -m 0755 unf_ext.so ./.gem.20230502-17284-74gx1n
+
+current directory: /home/dan/Development/projects/ireport/backend/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8.2/ext/unf_ext
+make DESTDIR\= sitearchdir\=./.gem.20230502-17284-74gx1n sitelibdir\=./.gem.20230502-17284-74gx1n clean
