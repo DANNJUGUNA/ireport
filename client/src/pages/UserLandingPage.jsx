@@ -26,7 +26,7 @@ function UserLandingPage() {
   // fetch all user specific reports
   useEffect(() => {
     if (user && user.id && typeof user.id === "number") {
-      fetch(`/userreport/${user.id}`)
+      fetch(`https://ireporter1.onrender.com/userreport/${user.id}`)
         .then((res) => res.json())
         .then((data) => {
           setReports(data); // Update reports state with fetched data
@@ -73,7 +73,7 @@ function UserLandingPage() {
 
   useEffect(() => {
     if (user && user.id && typeof user.id === "number") {
-      fetch(`/userreport/${user.id}`)
+      fetch(`https://ireporter1.onrender.com/userreport/${user.id}`)
         .then((res) => res.json())
         .then((data) => setInitialRecords(data));
     }
