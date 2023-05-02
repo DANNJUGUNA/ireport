@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://ireporter-hcgj.onrender.com",
+  "proxy": "https://ireporter1.onrender.com",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@headlessui/react": "^1.7.14",
