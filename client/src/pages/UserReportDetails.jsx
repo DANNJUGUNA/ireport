@@ -126,7 +126,7 @@ function UserReportDetails() {
   useEffect(() => {
     if (shouldLog.current) {
       shouldLog.current = false;
-      fetch(`/reports/${reportId}`)
+      fetch(`https://ireporter1.onrender.com/reports/${reportId}`)
         .then((r) => r.json())
         .then((data) => {
           setReport(data);
