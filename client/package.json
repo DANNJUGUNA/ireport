@@ -1,9 +1,8 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://localhost:3000",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "https://ireporter-hcgj.onrender.com",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@headlessui/react": "^1.7.14",
