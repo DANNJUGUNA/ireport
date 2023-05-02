@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 // user login
 const loginUser = (email, password) => {
-  return fetch("/login", {
+  return fetch("https://ireporter1.onrender.com/login", {
     method: "POST",
     headers: {
       "content-Type": "application/json",
